@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferencePlus", "ConferencePlus\ConferencePlus.csproj", "{710548CC-B71F-4E92-8917-15F9D9582249}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA70B03A-415E-4FAE-8812-08ABEE0516FF} = {FA70B03A-415E-4FAE-8812-08ABEE0516FF}
+		{6A40A947-F158-4478-B589-4F00229D4058} = {6A40A947-F158-4478-B589-4F00229D4058}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{390EEBC0-8364-4AD7-BC27-260160927C25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferencePlus.Entities", "ConferencePlus.Entities\ConferencePlus.Entities.csproj", "{6A40A947-F158-4478-B589-4F00229D4058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferencePlus.Data", "ConferencePlus.Data\ConferencePlus.Data.csproj", "{275C5F6D-F231-463B-8B8D-2196727F601D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6A40A947-F158-4478-B589-4F00229D4058} = {6A40A947-F158-4478-B589-4F00229D4058}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferencePlus.Business", "ConferencePlus.Business\ConferencePlus.Business.csproj", "{FA70B03A-415E-4FAE-8812-08ABEE0516FF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6A40A947-F158-4478-B589-4F00229D4058} = {6A40A947-F158-4478-B589-4F00229D4058}
+		{275C5F6D-F231-463B-8B8D-2196727F601D} = {275C5F6D-F231-463B-8B8D-2196727F601D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferencePlus.Tests", "ConferencePlus.Tests\ConferencePlus.Tests.csproj", "{8F81D402-ABBC-404A-BCD6-518D6D6FA80B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{710548CC-B71F-4E92-8917-15F9D9582249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{710548CC-B71F-4E92-8917-15F9D9582249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{710548CC-B71F-4E92-8917-15F9D9582249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{710548CC-B71F-4E92-8917-15F9D9582249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A40A947-F158-4478-B589-4F00229D4058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A40A947-F158-4478-B589-4F00229D4058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A40A947-F158-4478-B589-4F00229D4058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A40A947-F158-4478-B589-4F00229D4058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{275C5F6D-F231-463B-8B8D-2196727F601D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{275C5F6D-F231-463B-8B8D-2196727F601D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{275C5F6D-F231-463B-8B8D-2196727F601D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{275C5F6D-F231-463B-8B8D-2196727F601D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA70B03A-415E-4FAE-8812-08ABEE0516FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA70B03A-415E-4FAE-8812-08ABEE0516FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA70B03A-415E-4FAE-8812-08ABEE0516FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA70B03A-415E-4FAE-8812-08ABEE0516FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F81D402-ABBC-404A-BCD6-518D6D6FA80B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F81D402-ABBC-404A-BCD6-518D6D6FA80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F81D402-ABBC-404A-BCD6-518D6D6FA80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F81D402-ABBC-404A-BCD6-518D6D6FA80B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A40A947-F158-4478-B589-4F00229D4058} = {390EEBC0-8364-4AD7-BC27-260160927C25}
+		{275C5F6D-F231-463B-8B8D-2196727F601D} = {390EEBC0-8364-4AD7-BC27-260160927C25}
+		{FA70B03A-415E-4FAE-8812-08ABEE0516FF} = {390EEBC0-8364-4AD7-BC27-260160927C25}
+		{8F81D402-ABBC-404A-BCD6-518D6D6FA80B} = {390EEBC0-8364-4AD7-BC27-260160927C25}
+	EndGlobalSection
+EndGlobal
