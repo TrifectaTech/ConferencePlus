@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace KarzPlus.Base
+namespace ConferencePlus.Base
 {
     public class BasePage : System.Web.UI.Page
     {

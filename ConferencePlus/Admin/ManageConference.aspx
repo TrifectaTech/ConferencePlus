@@ -7,5 +7,27 @@
     
 	<br />
 	<br />
-    <telerik:RadGrid ID="RadGrid1" runat="server"></telerik:RadGrid>
+    <telerik:RadGrid ID="grdConference" OnNeedDataSource="grdConference_NeedDataSource" OnUpdateCommand="grdConference_UpdateCommand" 
+        runat="server" OnItemDataBound="grdConference_ItemDataBound" AutoGenerateColumns="false" AllowSorting="true" AllowFilteringByColumn="true"
+        AllowPaging="true">
+        <MasterTableView Name="Conferences" DataKeyNames="ConferenceId">
+            <Columns>
+                <telerik:GridBoundColumn DataField="Name" UniqueName="Name" HeaderText="Conference Name" />
+                <telerik:GridBoundColumn DataField="ActivityType" UniqueName="ActivityType" HeaderText="Activity Type" />
+                <telerik:GridBoundColumn DataField="Description" UniqueName="Description" HeaderText="Description" />
+                <telerik:GridNumericColumn DataField="BaseFee" UniqueName="BaseFee" HeaderText="Base Fee" NumericType="Currency" />
+                <telerik:GridBoundColumn DataField="StartDate" UniqueName="StartDate" HeaderText="Start Date" />
+                <telerik:GridBoundColumn DataField="EndDate" UniqueName="EndDate" HeaderText="End Date" />
+            </Columns>
+            <DetailTables>
+                <telerik:GridTableView Name="ConferenceFeeTypes" DataKeyNames="ConferenceFeeId">
+                    <Columns>
+                        <telerik:GridBoundColumn DataField="FeeAdjustment" UniqueName="FeeAdjustment" HeaderText="FeeAdjustment" />
+                        <telerik:GridBoundColumn DataField="FeeType" UniqueName="FeeType" HeaderText="FeeType" />
+                        <telerik:GridNumericColumn DataField="Multiplier" UniqueName="Multiplier" HeaderText="Multiplier" NumericType="Currency" />
+                    </Columns>
+                </telerik:GridTableView>
+            </DetailTables>
+        </MasterTableView>
+    </telerik:RadGrid>
 </asp:Content>
