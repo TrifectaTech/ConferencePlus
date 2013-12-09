@@ -46,7 +46,7 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private EnumActivityType activityTypeId;
+        private EnumActivityType activityType;
 
         /// <summary>
         /// Gets or sets ActivityTypeId.
@@ -56,13 +56,13 @@ namespace ConferencePlus.Entities
         {   
             get 
             {
-                return activityTypeId;
+                return activityType;
             }
             set
             {
-                if (value != activityTypeId)
+                if (value != activityType)
                 {
-                    activityTypeId = value;
+                    activityType = value;
                     IsItemModified = true;
                 }
             }
