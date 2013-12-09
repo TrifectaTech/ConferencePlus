@@ -27,6 +27,19 @@ namespace ConferencePlus.Business.NonPersistent
         public static IEnumerable<ConferenceEventsView> Search(SearchConferenceEventsView search)
         {            
 			return search == null ? new List <ConferenceEventsView>() : ConferenceEventsViewDao.Search(search);
-        }	
+        }
+
+		/// <summary>
+		/// Loads ConferenceEventsView by ConferenceId
+		/// </summary>
+		/// <param name="conferenceId" />
+		/// <returns>An IEnumerable set of ConferenceEventsView</returns>
+	    public static IEnumerable<ConferenceEventsView> LoadByConferenceId(int conferenceId)
+	    {
+		    return Search(new SearchConferenceEventsView
+		    {
+			    ConferenceId = conferenceId
+		    });
+	    }
     }
 }

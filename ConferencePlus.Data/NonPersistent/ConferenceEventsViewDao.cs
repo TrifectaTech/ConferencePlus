@@ -37,6 +37,7 @@ namespace ConferencePlus.Data.NonPersistent
 					{
                         new SqlParameter("@EventId", item.EventId),
                         new SqlParameter("@UserId", item.UserId),
+						new SqlParameter("@Username", item.Username),
                         new SqlParameter("@ConferenceId", item.ConferenceId),
                         new SqlParameter("@StartDate", item.StartDate),
                         new SqlParameter("@EndDate", item.EndDate),
@@ -64,6 +65,7 @@ namespace ConferencePlus.Data.NonPersistent
 	        {
 		        EventId = row.GetValue<int>("EventId"),
 		        UserId = row.GetValue<Guid>("UserId"),
+				Username = row.GetValue<string>("Username").TrimSafely(),
 		        ConferenceId = row.GetValue<int>("ConferenceId"),
 		        StartDate = row.GetValue<DateTime>("StartDate"),
 		        EndDate = row.GetValue<DateTime>("EndDate"),

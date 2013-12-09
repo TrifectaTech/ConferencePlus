@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConferencePlus {
+namespace ConferencePlus.Browse {
     
     
     public partial class BrowseConference {

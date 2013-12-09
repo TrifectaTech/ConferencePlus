@@ -209,6 +209,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Controls\ConferenceConfiguration.ascx" />
     <Content Include="Controls\ConferenceFeeTypeConfiguration.ascx" />
+    <Content Include="Controls\EventRegistration.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
@@ -327,6 +328,13 @@
     <Compile Include="Controls\ConferenceFeeTypeConfiguration.ascx.designer.cs">
       <DependentUpon>ConferenceFeeTypeConfiguration.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\EventRegistration.ascx.cs">
+      <DependentUpon>EventRegistration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\EventRegistration.ascx.designer.cs">
+      <DependentUpon>EventRegistration.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -399,7 +407,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

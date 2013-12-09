@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using ConferencePlus.Base;
 using ConferencePlus.Controls;
 using Telerik.Web.UI;
@@ -59,12 +55,12 @@ namespace ConferencePlus.Admin
                 ConferenceConfiguration userControl = item.FindControl(GridEditFormItem.EditFormUserControlID) as ConferenceConfiguration;
                 if (userControl != null)
                 {
-                    userControl.UserControl_Mode = EnumUserControlMode.Add;
+                    userControl.UserControlMode = EnumUserControlMode.Add;
                     if (!(item is GridEditFormInsertItem))
                     {
                         int conferenceId = (int)item.GetDataKeyValue("ConferenceId");
                         userControl.ConferenceId = conferenceId;
-                        userControl.UserControl_Mode = EnumUserControlMode.Edit;
+                        userControl.UserControlMode = EnumUserControlMode.Edit;
                     }
 
                     userControl.ReloadControl();
@@ -80,13 +76,13 @@ namespace ConferencePlus.Admin
                     int conferenceId = (int)e.Item.OwnerTableView.ParentItem.GetDataKeyValue("ConferenceId");
                     userControl.ConferenceId = conferenceId;
 
-                    userControl.UserControl_Mode = EnumUserControlMode.Add;
+                    userControl.UserControlMode = EnumUserControlMode.Add;
 
                     if (!(item is GridEditFormInsertItem))
                     {
                         int conferenceFeeId = (int)item.GetDataKeyValue("ConferenceFeeId");
                         userControl.ConferenceFeeId = conferenceFeeId;
-                        userControl.UserControl_Mode = EnumUserControlMode.Edit;
+                        userControl.UserControlMode = EnumUserControlMode.Edit;
                     }
 
                     userControl.ReloadControl();
@@ -106,8 +102,8 @@ namespace ConferencePlus.Admin
         protected void grdConference_DeleteCommand(object sender, GridCommandEventArgs e)
         {
             lblmessage.Text = string.Empty;
-            GridDataItem item = (e.Item as GridDataItem);
-            if (item.OwnerTableView.Name.SafeEquals("Conferences"))
+            GridDataItem item = e.Item as GridDataItem;
+            if (item != null && item.OwnerTableView.Name.SafeEquals("Conferences"))
             {
                 int conferenceId = (int)item.GetDataKeyValue("ConferenceId");
 
@@ -121,7 +117,7 @@ namespace ConferencePlus.Admin
                 }
             }
 
-            if (item.OwnerTableView.Name.SafeEquals("ConferenceFeeTypes"))
+            if (item != null && item.OwnerTableView.Name.SafeEquals("ConferenceFeeTypes"))
             {
                 int conferenceFeeId = (int)item.GetDataKeyValue("ConferenceFeeId");
                 ConferenceFeeManager.Delete(conferenceFeeId);
