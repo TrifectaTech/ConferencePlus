@@ -10,7 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ConferencePlus.Data;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -72,15 +74,36 @@ namespace ConferencePlus.Business
         /// <returns>return true if entity passes validation logic, else return false</returns>
         public static bool Validate(ConferenceFee item, out string errorMessage)
         {
-            // TODO: Provide any further needed validation logic 
-			
-			errorMessage = string.Empty;
+            StringBuilder builder = new StringBuilder();
 
-			
+            if (!item.ConferenceFeeId.HasValue)
+            {
+                builder.AppendHtmlLine("*Please specify pricing information for this conference");
+            }
 
-			errorMessage = errorMessage.TrimSafely();
-            
-            return errorMessage.Length == 0;
+            if (item.ConferenceId == default(int))
+            {
+                builder.AppendHtmlLine("*Please specify the conference to assign this fee to");
+            }
+
+            if (item.FeeAdjustment == EnumFeeAdjustment.None)
+            {
+                builder.AppendHtmlLine("*Please specify pricing type for this conference");
+            }
+
+            if (item.FeeType == EnumFeeType.None)
+            {
+                builder.AppendHtmlLine("*Please specify the type of fee for this conference");
+            }
+
+            if (item.Multiplier < 0)
+            {
+                builder.AppendHtmlLine("*Multiplier must be greater than or equal to 0");
+            }
+
+            errorMessage = builder.ToString();
+
+            return errorMessage.IsNullOrWhiteSpace();
         }
 
         /// <summary>

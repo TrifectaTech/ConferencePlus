@@ -10,7 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ConferencePlus.Data;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -72,23 +74,41 @@ namespace ConferencePlus.Business
         /// <returns>return true if entity passes validation logic, else return false</returns>
         public static bool Validate(Conference item, out string errorMessage)
         {
-            // TODO: Provide any further needed validation logic 
-			
-			errorMessage = string.Empty;
+            StringBuilder builder = new StringBuilder();
 
-			if (!item.StartDate.IsValidWithSqlDateStandards())
-			{
-				errorMessage += "StartDate must be valid.";
-			}
+            if (item.ActivityType == EnumActivityType.None)
+            {
+                builder.AppendHtmlLine("*Activity type is required");
+            }
 
-			if (!item.EndDate.IsValidWithSqlDateStandards())
-			{
-				errorMessage += "EndDate must be valid.";
-			}
+            if (item.BaseFee == default(decimal))
+            {
+                builder.AppendHtmlLine("*Base fee is required");
+            }
 
-			errorMessage = errorMessage.TrimSafely();
-            
-            return errorMessage.Length == 0;
+            if (item.Description.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Description is required");
+            }
+
+            if (!item.EndDate.IsValidWithSqlDateStandards())
+            {
+                builder.AppendHtmlLine("*End date is required");
+            }
+
+            if (!item.StartDate.IsValidWithSqlDateStandards())
+            {
+                builder.AppendHtmlLine("*Start date is required");
+            }
+
+            if (item.Name.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Name is required");
+            }
+
+            errorMessage = builder.ToString();
+
+            return errorMessage.IsNullOrWhiteSpace();
         }
 
         /// <summary>
