@@ -45,6 +45,8 @@
     <Compile Include="ConferenceFeeDao.cs" />
     <Compile Include="Common\DataManager.cs" />
     <Compile Include="EventDao.cs" />
+    <Compile Include="NonPersistent\ConferenceEventsViewDao.cs" />
+    <Compile Include="NonPersistent\PaperStatisticsViewDao.cs" />
     <Compile Include="PaperDao.cs" />
     <Compile Include="PaymentInfoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,9 +8,6 @@
 // </summary>
 // ---------------------------------
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using ConferencePlus.Entities;
 using ConferencePlus.Entities.Common;
 
 namespace ConferencePlus.Entities
@@ -199,7 +196,7 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int cCV;
+        private int ccv;
 
         /// <summary>
         /// Gets or sets CCV.
@@ -209,13 +206,13 @@ namespace ConferencePlus.Entities
         {   
             get 
             {
-                return cCV;
+                return ccv;
             }
             set
             {
-                if (value != cCV)
+				if (value != ccv)
                 {
-                    cCV = value;
+					ccv = value;
                     IsItemModified = true;
                 }
             }
