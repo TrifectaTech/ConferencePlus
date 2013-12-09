@@ -49,6 +49,13 @@
 <table>
     <tr>
         <td>
+            <asp:Label ID="lblError" runat="server" ForeColor="Red" />
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
             <asp:Button ID="btnSave" CommandName="Update" runat="server" Text="Save" />
         </td>
         <td>

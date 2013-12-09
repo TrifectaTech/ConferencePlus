@@ -55,15 +55,13 @@ namespace ConferencePlus.Controls
                 txtDescription.Text = conference.Description;
                 dtStartPicker.SelectedDate = conference.StartDate;
                 dtEndPicker.SelectedDate = conference.EndDate;
-                //ddlActivties.SelectedValue =conference.
+                ddlActivties.SelectedValue = conference.ActivityType.ToString();
             }
         }
 
         private void LoadDdlActivites()
         {
             ddlActivties.DataSource = EnumerationsHelper.GetEnumerationValues<EnumActivityType>().ToList();
-            ddlActivties.DataValueField = "LocationId";
-            ddlActivties.DataTextField = "FullAddress";
             ddlActivties.DataBind();
             ddlActivties.Items.Insert(0, new RadComboBoxItem("Select One"));
             ddlActivties.SelectedIndex = 0;
@@ -72,6 +70,19 @@ namespace ConferencePlus.Controls
 
         public bool SaveControl()
         {
+            bool isValid;
+
+            lblError.Text = string.Empty;
+
+            Conference confToSave = new Conference();
+
+            if (UserControl_Mode == EnumUserControlMode.Edit)
+            {
+                confToSave = ConferenceManager.Load(ConferenceId);
+            }
+
+            //TODO: Finish save
+
             return false;
         }
     }
