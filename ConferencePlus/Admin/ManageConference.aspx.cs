@@ -9,6 +9,7 @@ using ConferencePlus.Controls;
 using Telerik.Web.UI;
 using ConferencePlus.Business;
 using ConferencePlus.Entities.ExtensionMethods;
+using ConferencePlus.Entities.Common;
 
 namespace ConferencePlus.Admin
 {
@@ -58,11 +59,12 @@ namespace ConferencePlus.Admin
                 ConferenceConfiguration userControl = item.FindControl(GridEditFormItem.EditFormUserControlID) as ConferenceConfiguration;
                 if (userControl != null)
                 {
+                    userControl.UserControl_Mode = EnumUserControlMode.Add;
                     if (!(item is GridEditFormInsertItem))
                     {
                         int conferenceId = (int)item.GetDataKeyValue("ConferenceId");
                         userControl.ConferenceId = conferenceId;
-                        userControl.EditOption = true;
+                        userControl.UserControl_Mode = EnumUserControlMode.Edit;
                     }
 
                     userControl.ReloadControl();
@@ -78,11 +80,13 @@ namespace ConferencePlus.Admin
                     int conferenceId = (int)e.Item.OwnerTableView.ParentItem.GetDataKeyValue("ConferenceId");
                     userControl.ConferenceId = conferenceId;
 
+                    userControl.UserControl_Mode = EnumUserControlMode.Add;
+
                     if (!(item is GridEditFormInsertItem))
                     {
                         int conferenceFeeId = (int)item.GetDataKeyValue("ConferenceFeeId");
                         userControl.ConferenceFeeId = conferenceFeeId;
-                        userControl.EditOption = true;
+                        userControl.UserControl_Mode = EnumUserControlMode.Edit;
                     }
 
                     userControl.ReloadControl();

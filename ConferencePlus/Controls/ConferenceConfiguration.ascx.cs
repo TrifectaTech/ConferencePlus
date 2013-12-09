@@ -5,24 +5,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ConferencePlus.Base;
+using ConferencePlus.Business;
+using ConferencePlus.Entities;
+using ConferencePlus.Entities.ExtensionMethods;
+using ConferencePlus.Entities.Common;
+using Telerik.Web.UI;
 
 namespace ConferencePlus.Controls
 {
     public partial class ConferenceConfiguration : BaseControl
     {
-
-        public bool EditOption
-        {
-            get
-            {
-                if (ViewState["EditOption"] == null)
-                {
-                    ViewState["EditOption"] = false;
-                }
-                return (bool)ViewState["EditOption"];
-            }
-            set { ViewState["EditOption"] = value; }
-        }
 
         public int ConferenceId
         {
@@ -45,6 +37,36 @@ namespace ConferencePlus.Controls
 
         public void ReloadControl()
         {
+            LoadDdlActivites();
+
+            if (UserControl_Mode == EnumUserControlMode.Edit)
+            {
+                LoadConferenceOnConfId(ConferenceId);
+            }
+        }
+
+        private void LoadConferenceOnConfId(int confId)
+        {
+            Conference conference = ConferenceManager.Load(confId);
+
+            if (conference != null)
+            {
+                txtName.Text = conference.Name;
+                txtDescription.Text = conference.Description;
+                dtStartPicker.SelectedDate = conference.StartDate;
+                dtEndPicker.SelectedDate = conference.EndDate;
+                //ddlActivties.SelectedValue =conference.
+            }
+        }
+
+        private void LoadDdlActivites()
+        {
+            ddlActivties.DataSource = EnumerationsHelper.GetEnumerationValues<EnumActivityType>().ToList();
+            ddlActivties.DataValueField = "LocationId";
+            ddlActivties.DataTextField = "FullAddress";
+            ddlActivties.DataBind();
+            ddlActivties.Items.Insert(0, new RadComboBoxItem("Select One"));
+            ddlActivties.SelectedIndex = 0;
 
         }
 

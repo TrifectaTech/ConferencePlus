@@ -192,6 +192,14 @@ namespace ConferencePlus.Entities.Common
 
         InformationAssurance = 11
     }
+    [Serializable]
+    public enum EnumUserControlMode
+    {
+        None= 0,
 
+        Add = 1,
+
+        Edit = 2
+    }
 	#endregion
 }
