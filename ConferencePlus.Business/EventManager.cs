@@ -8,9 +8,12 @@
 // </summary>
 // ---------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ConferencePlus.Data;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -29,7 +32,17 @@ namespace ConferencePlus.Business
         public static IEnumerable<Event> Search(SearchEvent search)
         {            
 			return EventDao.Search(search);
-        }	
+        }
+
+        public static IEnumerable<Event> LoadByConferenceId(int conferenceId)
+        {
+            SearchEvent search = new SearchEvent
+            {
+                ConferenceId = conferenceId
+            };
+
+            return Search(search);
+        }
 	     
         /// <summary>
         /// Loads Event by the id parameter
@@ -44,6 +57,25 @@ namespace ConferencePlus.Business
 						EventId = eventId
 					};    
 			return Search(search).FirstOrDefault();
+        }
+
+        public static bool IsEventValidForConference(Event ev)
+        {
+            Conference conference = ConferenceManager.Load(ev.ConferenceId);
+
+            return DateTimeMethods.DoDatesOverlap(conference.StartDate, conference.EndDate, ev.StartDate, ev.EndDate);
+        }
+
+        public static bool IsEventPaperValidForConference(Event ev)
+        {
+            List<Event> eventsForConferenceExceptThisOne =
+                LoadByConferenceId(ev.ConferenceId).Where(dd => dd.EventId != ev.EventId.GetValueOrDefault()).ToList();
+
+            Paper paperForThisEvent = PaperManager.Load(ev.PaperId);
+
+            return
+                !eventsForConferenceExceptThisOne.SafeAny(
+                    dd => PaperManager.Load(dd.PaperId).PaperCategory == paperForThisEvent.PaperCategory);
         }
 
         /// <summary>
@@ -72,23 +104,51 @@ namespace ConferencePlus.Business
         /// <returns>return true if entity passes validation logic, else return false</returns>
         public static bool Validate(Event item, out string errorMessage)
         {
-            // TODO: Provide any further needed validation logic 
-			
-			errorMessage = string.Empty;
+            StringBuilder builder = new StringBuilder();
 
-			if (!item.StartDate.IsValidWithSqlDateStandards())
-			{
-				errorMessage += "StartDate must be valid.";
-			}
+            if (item.Comments.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Comments are required");
+            }
 
-			if (!item.EndDate.IsValidWithSqlDateStandards())
-			{
-				errorMessage += "EndDate must be valid.";
-			}
+            if (!item.EndDate.IsValidWithSqlDateStandards())
+            {
+                builder.AppendHtmlLine("*End date is required");
+            }
 
-			errorMessage = errorMessage.TrimSafely();
-            
-            return errorMessage.Length == 0;
+            if (!item.StartDate.IsValidWithSqlDateStandards())
+            {
+                builder.AppendHtmlLine("*Start date is required");
+            }
+
+            if (item.ConferenceId == default(int))
+            {
+                builder.AppendHtmlLine("*Conference is required");
+            }
+
+            if (!IsEventValidForConference(item))
+            {
+                builder.AppendHtmlLine("*Event is not valid for the selected conference");
+            }
+
+            if (item.FoodPreference == EnumFoodPreference.None)
+            {
+                builder.AppendHtmlLine("*Food preference is required");
+            }
+
+            if (item.PaperId == default(int))
+            {
+                builder.AppendHtmlLine("*Paper is required");
+            }
+
+            if (!IsEventPaperValidForConference(item))
+            {
+                builder.AppendHtmlLine("*A paper of this topic is already registered for this conference");
+            }
+
+            errorMessage = builder.ToString();
+
+            return errorMessage.IsNullOrWhiteSpace();
         }
 
         /// <summary>

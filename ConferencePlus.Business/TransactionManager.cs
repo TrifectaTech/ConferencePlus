@@ -8,9 +8,12 @@
 // </summary>
 // ---------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ConferencePlus.Data;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -72,23 +75,43 @@ namespace ConferencePlus.Business
         /// <returns>return true if entity passes validation logic, else return false</returns>
         public static bool Validate(Transaction item, out string errorMessage)
         {
-            // TODO: Provide any further needed validation logic 
-			
-			errorMessage = string.Empty;
+            StringBuilder builder = new StringBuilder();
 
-			if (!item.ExpirationDate.IsValidWithSqlDateStandards())
-			{
-				errorMessage += "ExpirationDate must be valid.";
-			}
+            PaymentInfo info = TypeMapper<PaymentInfo>.Map(item);
 
-			if (!item.TransactionDate.IsValidWithSqlDateStandards())
-			{
-				errorMessage += "TransactionDate must be valid.";
-			}
+            if (!PaymentInfoManager.Validate(info, out errorMessage))
+            {
+                builder.AppendHtmlLine(errorMessage);
+            }
 
-			errorMessage = errorMessage.TrimSafely();
-            
-            return errorMessage.Length == 0;
+            if (item.Fee == default(decimal))
+            {
+                builder.AppendHtmlLine("*Fee is required");
+            }
+
+            if (item.FeeAdjustment == EnumFeeAdjustment.None)
+            {
+                builder.AppendHtmlLine("*Fee adjustment is required");
+            }
+
+            if (item.FeeType == EnumFeeType.None)
+            {
+                builder.AppendHtmlLine("*Fee type is required");
+            }
+
+            if (!item.TransactionDate.IsValidWithSqlDateStandards())
+            {
+                builder.AppendHtmlLine("*Transaction date is required");
+            }
+
+            if (item.UserId == default(Guid))
+            {
+                builder.AppendHtmlLine("*User Id is required");
+            }
+
+            errorMessage = builder.ToString();
+
+            return errorMessage.IsNullOrWhiteSpace();
         }
 
         /// <summary>

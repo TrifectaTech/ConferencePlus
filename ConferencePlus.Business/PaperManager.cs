@@ -8,9 +8,12 @@
 // </summary>
 // ---------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ConferencePlus.Data;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -72,15 +75,36 @@ namespace ConferencePlus.Business
         /// <returns>return true if entity passes validation logic, else return false</returns>
         public static bool Validate(Paper item, out string errorMessage)
         {
-            // TODO: Provide any further needed validation logic 
-			
-			errorMessage = string.Empty;
+            StringBuilder builder = new StringBuilder();
 
-			
+            if (item.Author.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Author is required");
+            }
 
-			errorMessage = errorMessage.TrimSafely();
-            
-            return errorMessage.Length == 0;
+            if (item.Description.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Description is required");
+            }
+
+            if (item.Name.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Name is required");
+            }
+
+            if (item.PaperCategory == EnumPaperCategory.None)
+            {
+                builder.AppendHtmlLine("*Paper category is required");
+            }
+
+            if (item.UserId == default(Guid))
+            {
+                builder.AppendHtmlLine("*User is required");
+            }
+
+            errorMessage = builder.ToString();
+
+            return errorMessage.IsNullOrWhiteSpace();
         }
 
         /// <summary>

@@ -8,9 +8,12 @@
 // </summary>
 // ---------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ConferencePlus.Data;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -72,18 +75,58 @@ namespace ConferencePlus.Business
         /// <returns>return true if entity passes validation logic, else return false</returns>
         public static bool Validate(PaymentInfo item, out string errorMessage)
         {
-            // TODO: Provide any further needed validation logic 
-			
-			errorMessage = string.Empty;
+            StringBuilder builder = new StringBuilder();
 
-			if (!item.ExpirationDate.IsValidWithSqlDateStandards())
-			{
-				errorMessage += "ExpirationDate must be valid.";
-			}
+            if (item.BillingAddress.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Billing Address is required");
+            }
 
-			errorMessage = errorMessage.TrimSafely();
-            
-            return errorMessage.Length == 0;
+            if (item.BillingCity.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Billing City is required");
+            }
+
+            if (item.BillingState.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Billing State is required");
+            }
+
+            if (item.BillingZip.IsNullOrWhiteSpace())
+            {
+                builder.AppendHtmlLine("*Billing Zip is required");   
+            }
+
+            if (item.CCV == default(int))
+            {
+                builder.AppendHtmlLine("*CCV is required");
+            }
+
+            if (item.CreditCardNumber.IsNullOrWhiteSpace())
+
+            {
+                builder.AppendHtmlLine("*Credit card number is required");
+            }
+
+            if (item.CreditCardType == EnumCreditCardType.None)
+            {
+                builder.AppendHtmlLine("*Credit card type is required");
+            }
+
+            if (!item.ExpirationDate.IsValidWithSqlDateStandards())
+
+            {
+                builder.AppendHtmlLine("*Expiration date is required");   
+            }
+
+            if (item.UserId == default(Guid))
+            {
+                builder.AppendHtmlLine("*User Id is required");
+            }
+
+            errorMessage = builder.ToString();
+
+            return errorMessage.IsNullOrWhiteSpace();
         }
 
         /// <summary>
