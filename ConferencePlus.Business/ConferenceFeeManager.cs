@@ -86,11 +86,6 @@ namespace ConferencePlus.Business
         {
             StringBuilder builder = new StringBuilder();
 
-            if (!item.ConferenceFeeId.HasValue)
-            {
-                builder.AppendHtmlLine("*Please specify pricing information for this conference");
-            }
-
             if (item.ConferenceId == default(int))
             {
                 builder.AppendHtmlLine("*Please specify the conference to assign this fee to");

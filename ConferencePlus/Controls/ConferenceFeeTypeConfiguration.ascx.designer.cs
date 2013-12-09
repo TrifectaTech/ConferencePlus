@@ -22,6 +22,15 @@ namespace ConferencePlus.Controls {
         protected global::Telerik.Web.UI.RadComboBox ddlAdjustmentType;
         
         /// <summary>
+        /// valadjustment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valadjustment;
+        
+        /// <summary>
         /// ddlFeeType control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace ConferencePlus.Controls {
         protected global::Telerik.Web.UI.RadComboBox ddlFeeType;
         
         /// <summary>
+        /// valfeetype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valfeetype;
+        
+        /// <summary>
         /// txtMultiplier control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,24 @@ namespace ConferencePlus.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadNumericTextBox txtMultiplier;
+        
+        /// <summary>
+        /// valMultiplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valMultiplier;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// btnSave control.

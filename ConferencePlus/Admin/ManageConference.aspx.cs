@@ -107,7 +107,7 @@ namespace ConferencePlus.Admin
         {
             lblmessage.Text = string.Empty;
             GridDataItem item = (e.Item as GridDataItem);
-            if (item.OwnerTableView.Name.SafeEquals("ConferenceId"))
+            if (item.OwnerTableView.Name.SafeEquals("Conferences"))
             {
                 int conferenceId = (int)item.GetDataKeyValue("ConferenceId");
 

@@ -56,12 +56,13 @@ namespace ConferencePlus.Controls
                 dtStartPicker.SelectedDate = conference.StartDate;
                 dtEndPicker.SelectedDate = conference.EndDate;
                 ddlActivties.SelectedValue = conference.ActivityType.ToString();
+                txtBaseFee.Value = (double)conference.BaseFee;
             }
         }
 
         private void LoadDdlActivites()
         {
-            ddlActivties.DataSource = EnumerationsHelper.GetEnumerationValues<EnumActivityType>().ToList();
+            ddlActivties.DataSource = EnumerationsHelper.GetEnumerationValues<EnumActivityType>(true).ToList();
             ddlActivties.DataBind();
             ddlActivties.Items.Insert(0, new RadComboBoxItem("Select One"));
             ddlActivties.SelectedIndex = 0;
@@ -81,9 +82,18 @@ namespace ConferencePlus.Controls
                 confToSave = ConferenceManager.Load(ConferenceId);
             }
 
-            //TODO: Finish save
+            confToSave.Name = txtName.Text;
+            confToSave.Description = txtDescription.Text;
+            confToSave.StartDate = dtStartPicker.SelectedDate.GetValueOrDefault(DateTime.Now);
+            confToSave.EndDate = dtEndPicker.SelectedDate.GetValueOrDefault(DateTime.Now);
+            confToSave.ActivityType = EnumerationsHelper.ConvertFromString<EnumActivityType>(ddlActivties.SelectedValue);
+            confToSave.BaseFee = (decimal)txtBaseFee.Value;
 
-            return false;
+            string error;
+            isValid = ConferenceManager.Save(confToSave, out error);
+            lblError.Text = error;
+
+            return isValid;
         }
     }
 }
