@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConferencePlus.Business">
+      <HintPath>..\ConferencePlus.Business\bin\Debug\ConferencePlus.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="ConferencePlus.Entities">
+      <HintPath>..\ConferencePlus.Entities\bin\Debug\ConferencePlus.Entities.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -196,6 +202,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Controls\ConferenceConfiguration.ascx" />
+    <Content Include="Controls\ConferenceFeeTypeConfiguration.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
@@ -306,6 +313,13 @@
     </Compile>
     <Compile Include="Controls\ConferenceConfiguration.ascx.designer.cs">
       <DependentUpon>ConferenceConfiguration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ConferenceFeeTypeConfiguration.ascx.cs">
+      <DependentUpon>ConferenceFeeTypeConfiguration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ConferenceFeeTypeConfiguration.ascx.designer.cs">
+      <DependentUpon>ConferenceFeeTypeConfiguration.ascx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

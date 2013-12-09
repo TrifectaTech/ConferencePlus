@@ -48,6 +48,12 @@ namespace ConferencePlus.Business
 			return Search(search).FirstOrDefault();
         }
 
+        public static IEnumerable<Conference> LoadAll()
+        {
+            SearchConference search = new SearchConference();
+            return Search(search);
+        }
+
         /// <summary>
         /// Save Conference Entity
         /// </summary>
