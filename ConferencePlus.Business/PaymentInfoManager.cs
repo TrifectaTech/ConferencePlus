@@ -49,6 +49,16 @@ namespace ConferencePlus.Business
 			return Search(search).FirstOrDefault();
         }
 
+        public static IEnumerable<PaymentInfo> LoadByUserId(Guid userId)
+        {
+            SearchPaymentInfo search = new SearchPaymentInfo
+            {
+                UserId = userId
+            };
+
+            return Search(search);
+        }
+
         /// <summary>
         /// Save PaymentInfo Entity
         /// </summary>

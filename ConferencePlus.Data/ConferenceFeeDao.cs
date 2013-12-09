@@ -76,7 +76,6 @@ namespace ConferencePlus.Data
             List<SqlParameter> parameters 
 				= new List<SqlParameter>
 					{
-						new SqlParameter("@ConferenceFeeId", item.ConferenceFeeId),
                         new SqlParameter("@ConferenceId", item.ConferenceId),
                         new SqlParameter("@FeeAdjustmentId", item.FeeAdjustment),
                         new SqlParameter("@FeeTypeId", item.FeeType),
