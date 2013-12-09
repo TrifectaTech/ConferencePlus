@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ConferencePlus.SiteMaster" %>
+
 <%@ Import Namespace="Microsoft.AspNet.Identity" %>
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    
+
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
@@ -54,7 +55,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/BrowseConference.aspx">Browse Conferences</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>

@@ -80,7 +80,7 @@
                             <tr align="right">
                                 <td align="right" colspan="0">
                                     <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Create User" 
-                                        ValidationGroup="cuwUserWizard" OnPreRender="StepNextButton_OnPreRender" CssClass="btn-lg" />
+                                        ValidationGroup="cuwUserWizard" OnPreRender="StepNextButton_OnPreRender" CssClass="btn btn-primary" />
                                 </td>
                             </tr>
                         </table>
@@ -100,7 +100,7 @@
                                     <td align="right">
                                         <br />
                                         <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" CommandName="Continue" Text="Continue" 
-                                            ValidationGroup="cuwUserWizard" CssClass="btn-sm" OnPreRender="ContinueButton_OnPreRender" />
+                                            ValidationGroup="cuwUserWizard" CssClass="btn btn-primary" OnPreRender="ContinueButton_OnPreRender" />
                                     </td>
                                 </tr>
                             </h4>

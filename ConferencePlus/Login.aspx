@@ -35,7 +35,7 @@
                         </tr>
                     </table>
                     <br />
-                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log In" ValidationGroup="Login1" Width="100px" CssClass="btn-lg" />
+                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log In" ValidationGroup="Login1" Width="100px" CssClass="btn btn-primary" />
                     <br />
                     <br />
                     <span class="text-danger">
