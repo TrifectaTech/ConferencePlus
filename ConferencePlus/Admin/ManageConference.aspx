@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     	<h1>
-		<asp:Label ID="Label1" runat="server" Text="Manage Car Makes/Models"/>
+		<asp:Label ID="Label1" runat="server" Text="Manage Conferences"/>
 	</h1>
     
 	<br />
@@ -10,7 +10,7 @@
 	<br />
     <telerik:RadGrid ID="grdConference" OnNeedDataSource="grdConference_NeedDataSource" OnUpdateCommand="grdConference_UpdateCommand" 
         runat="server" OnItemDataBound="grdConference_ItemDataBound" AutoGenerateColumns="false" AllowSorting="true" AllowFilteringByColumn="true"
-        AllowPaging="true" OnDetailTableDataBind="grdConference_DetailTableDataBind" OnDeleteCommand="grdConference_DeleteCommand">
+        AllowPaging="true" OnDetailTableDataBind="grdConference_DetailTableDataBind" OnDeleteCommand="grdConference_DeleteCommand" Skin="MetroTouch">
         <MasterTableView Name="Conferences" DataKeyNames="ConferenceId" CommandItemDisplay="Top" CommandItemSettings-AddNewRecordText="Add Conference">
             <Columns>
                 <telerik:GridEditCommandColumn EditText="Edit" />

@@ -13,9 +13,6 @@
         <td>
             <telerik:RadTextBox ID="txtName" runat="server"/>
         </td>
-        <td>
-            Description:
-        </td>
     </tr>
 </table>
 <br />

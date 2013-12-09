@@ -12,18 +12,6 @@ namespace ConferencePlus.Controls
 {
     public partial class ConferenceFeeTypeConfiguration : BaseControl
     {
-        public bool EditOption
-        {
-            get
-            {
-                if (ViewState["EditOption"] == null)
-                {
-                    ViewState["EditOption"] = false;
-                }
-                return (bool)ViewState["EditOption"];
-            }
-            set { ViewState["EditOption"] = value; }
-        }
 
         public int ConferenceFeeId
         {
