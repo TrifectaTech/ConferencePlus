@@ -98,5 +98,30 @@ namespace ConferencePlus.Admin
                 e.DetailTableView.DataSource = ConferenceFeeManager.LoadOnConferenceId(conferenceId).ToList();
             }
         }
+
+        protected void grdConference_DeleteCommand(object sender, GridCommandEventArgs e)
+        {
+            lblmessage.Text = string.Empty;
+            GridDataItem item = (e.Item as GridDataItem);
+            if (item.OwnerTableView.Name.SafeEquals("ConferenceId"))
+            {
+                int conferenceId = (int)item.GetDataKeyValue("ConferenceId");
+
+                if (ConferenceManager.IsValidToRemove(conferenceId))
+                {
+                    ConferenceManager.Delete(conferenceId);
+                }
+                else
+                {
+                    lblmessage.Text = "There is an active Events. Please remove Events before removing Conference.";
+                }
+            }
+
+            if (item.OwnerTableView.Name.SafeEquals("ConferenceFeeTypes"))
+            {
+                int conferenceFeeId = (int)item.GetDataKeyValue("ConferenceFeeId");
+                ConferenceFeeManager.Delete(conferenceFeeId);
+            }
+        }
     }
 }

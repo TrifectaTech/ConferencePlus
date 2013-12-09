@@ -6,12 +6,15 @@
 	</h1>
     
 	<br />
+    <asp:Label ID="lblmessage" runat="server" ForeColor="Red"/>
 	<br />
     <telerik:RadGrid ID="grdConference" OnNeedDataSource="grdConference_NeedDataSource" OnUpdateCommand="grdConference_UpdateCommand" 
         runat="server" OnItemDataBound="grdConference_ItemDataBound" AutoGenerateColumns="false" AllowSorting="true" AllowFilteringByColumn="true"
-        AllowPaging="true" OnDetailTableDataBind="grdConference_DetailTableDataBind">
+        AllowPaging="true" OnDetailTableDataBind="grdConference_DetailTableDataBind" OnDeleteCommand="grdConference_DeleteCommand">
         <MasterTableView Name="Conferences" DataKeyNames="ConferenceId">
             <Columns>
+                <telerik:GridEditCommandColumn EditText="Edit" />
+                <telerik:GridButtonColumn Text="Remove" UniqueName="Delete" ConfirmText="Do you want this Conference?" CommandName="Delete" />
                 <telerik:GridBoundColumn DataField="Name" UniqueName="Name" HeaderText="Conference Name" />
                 <telerik:GridBoundColumn DataField="ActivityType" UniqueName="ActivityType" HeaderText="Activity Type" />
                 <telerik:GridBoundColumn DataField="Description" UniqueName="Description" HeaderText="Description" />
@@ -22,6 +25,8 @@
             <DetailTables>
                 <telerik:GridTableView Name="ConferenceFeeTypes" DataKeyNames="ConferenceFeeId">
                     <Columns>
+                        <telerik:GridEditCommandColumn EditText="Edit" />
+                        <telerik:GridButtonColumn Text="Remove" UniqueName="Delete" ConfirmText="Do you want to remove fee on Conference?" CommandName="Delete" />
                         <telerik:GridBoundColumn DataField="FeeAdjustment" UniqueName="FeeAdjustment" HeaderText="FeeAdjustment" />
                         <telerik:GridBoundColumn DataField="FeeType" UniqueName="FeeType" HeaderText="FeeType" />
                         <telerik:GridNumericColumn DataField="Multiplier" UniqueName="Multiplier" HeaderText="Multiplier" NumericType="Currency" />

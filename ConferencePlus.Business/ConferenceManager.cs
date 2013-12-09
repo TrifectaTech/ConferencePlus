@@ -48,10 +48,25 @@ namespace ConferencePlus.Business
 			return Search(search).FirstOrDefault();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<Conference> LoadAll()
         {
             SearchConference search = new SearchConference();
             return Search(search);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="conferenceId"></param>
+        /// <returns></returns>
+        public static bool IsValidToRemove(int conferenceId)
+        {
+            SearchEvent search = new SearchEvent { ConferenceId = conferenceId };
+            return !EventManager.Search(search).SafeAny();
         }
 
         /// <summary>
