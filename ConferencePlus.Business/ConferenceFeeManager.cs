@@ -48,6 +48,16 @@ namespace ConferencePlus.Business
 			return Search(search).FirstOrDefault();
         }
 
+        public static IEnumerable< ConferenceFee> LoadOnConferenceId(int conferenceId)
+        {
+			SearchConferenceFee search
+				= new SearchConferenceFee
+					{
+                        ConferenceId = conferenceId
+					};    
+			return Search(search);
+        }
+        
         /// <summary>
         /// Save ConferenceFee Entity
         /// </summary>

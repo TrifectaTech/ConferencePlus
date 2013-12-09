@@ -9,7 +9,7 @@
 	<br />
     <telerik:RadGrid ID="grdConference" OnNeedDataSource="grdConference_NeedDataSource" OnUpdateCommand="grdConference_UpdateCommand" 
         runat="server" OnItemDataBound="grdConference_ItemDataBound" AutoGenerateColumns="false" AllowSorting="true" AllowFilteringByColumn="true"
-        AllowPaging="true">
+        AllowPaging="true" OnDetailTableDataBind="grdConference_DetailTableDataBind">
         <MasterTableView Name="Conferences" DataKeyNames="ConferenceId">
             <Columns>
                 <telerik:GridBoundColumn DataField="Name" UniqueName="Name" HeaderText="Conference Name" />
