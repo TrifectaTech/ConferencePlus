@@ -155,5 +155,33 @@ namespace ConferencePlus.Entities.Common
         Open = 4
     }
 
+    [Serializable]
+    public enum Enum
+    {
+        None = 0,
+
+        ComputerScience = 1,
+
+        Agriculture = 2,
+
+        RocketScience = 3,
+
+        MechanicalEngineering = 4,
+
+        Aerospace = 5,
+
+        DatabaseManagement = 6,
+
+        Biology = 7,
+
+        Chemistry = 8,
+
+        Physics = 9,
+
+        InformationTechnology = 10,
+
+        InformationAssurance = 11
+    }
+
 	#endregion
 }
