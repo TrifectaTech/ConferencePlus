@@ -202,7 +202,7 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
-    <Content Include="BrowseConference.aspx" />
+    <Content Include="Browse\BrowseConference.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -299,11 +299,11 @@
     <Compile Include="Base\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BrowseConference.aspx.cs">
+    <Compile Include="Browse\BrowseConference.aspx.cs">
       <DependentUpon>BrowseConference.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BrowseConference.aspx.designer.cs">
+    <Compile Include="Browse\BrowseConference.aspx.designer.cs">
       <DependentUpon>BrowseConference.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">

@@ -26,7 +26,7 @@
                 Have questions about a certain field? Learn more about your passion using Conference Plus
             </p>
             <p>
-                <asp:LinkButton runat="server" ID="btnLearn" Text="Browse" PostBackUrl="~/BrowseConference.aspx" CssClass="btn btn-default" />
+                <asp:LinkButton runat="server" ID="btnLearn" Text="Browse" PostBackUrl="~/Browse/BrowseConference.aspx" CssClass="btn btn-default" />
             </p>
         </div>
         <div class="col-md-4">
