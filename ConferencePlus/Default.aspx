@@ -3,38 +3,39 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+        <h1>Everything is "learnable"</h1>
+        <p class="lead">Conference Plus is a free website to connect users to all sorts of interesting content.</p>
+        <p>
+            <asp:LinkButton runat="server" ID="btnLearnMoreJumbo" Text="Get Started With a Free Account" PostBackUrl="~/Register.aspx" CssClass="btn btn-primary btn-lg" />
+        </p>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            <h2>Getting started</h2>
+            <h2>Research</h2>
             <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
+                Interested in a topic? Curious about who we are and what we do?
             </p>
             <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
+                <asp:LinkButton runat="server" ID="btnResearch" Text="Learn More" PostBackUrl="~/About.aspx" CssClass="btn btn-default" />
             </p>
         </div>
         <div class="col-md-4">
-            <h2>Web Hosting</h2>
+            <h2>Learn</h2>
             <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
+                Have questions about a certain field? Learn more about your passion using Conference Plus
             </p>
             <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
+                <asp:LinkButton runat="server" ID="btnLearn" Text="Browse" PostBackUrl="~/BrowseConference.aspx" CssClass="btn btn-default" />
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Connect</h2>
+            <p>
+                Build connections with professionals like yourself to last a lifetime. Create a free account today!
+            </p>
+            <p>
+                <asp:LinkButton runat="server" ID="btnSignUp" Text="Sign Up" PostBackUrl="~/Register.aspx" CssClass="btn btn-default" />
             </p>
         </div>
     </div>
