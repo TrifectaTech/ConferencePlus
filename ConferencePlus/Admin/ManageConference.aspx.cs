@@ -113,7 +113,7 @@ namespace ConferencePlus.Admin
                 }
                 else
                 {
-                    lblmessage.Text = "There is an active Events. Please remove Events before removing Conference.";
+                    lblmessage.Text = "There is an active Event. Please remove Events before removing Conference.";
                 }
             }
 
