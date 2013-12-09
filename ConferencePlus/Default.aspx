@@ -31,12 +31,25 @@
         </div>
         <div class="col-md-4">
             <h2>Connect</h2>
-            <p>
-                Build connections with professionals like yourself to last a lifetime. Create a free account today!
-            </p>
-            <p>
-                <asp:LinkButton runat="server" ID="btnSignUp" Text="Sign Up" PostBackUrl="~/Register.aspx" CssClass="btn btn-default" />
-            </p>
+            <asp:LoginView runat="server" ViewStateMode="Disabled">
+                <AnonymousTemplate>
+                    <p>
+                        Build connections with professionals like yourself to last a lifetime. Create a free account today!
+                    </p>
+                    <p>
+                        <asp:LinkButton runat="server" ID="btnSignUp" Text="Sign Up" PostBackUrl="~/Register.aspx" CssClass="btn btn-default" />
+
+                    </p>
+                </AnonymousTemplate>
+                <LoggedInTemplate>
+                    <p>
+                        Build connections with professionals like yourself to last a lifetime. Manage your account with ease!
+                    </p>
+                    <p>
+                        <asp:LinkButton runat="server" ID="btnManageAccount" Text="Manage Account" PostBackUrl="~/Account/Manage.aspx" CssClass="btn btn-default" />
+                    </p>
+                </LoggedInTemplate>
+            </asp:LoginView>
         </div>
     </div>
 
