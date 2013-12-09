@@ -76,15 +76,6 @@ namespace ConferencePlus.Account {
         protected global::Telerik.Web.UI.RadPageView pvPaymentInformation;
         
         /// <summary>
-        /// pvPapers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView pvPapers;
-        
-        /// <summary>
         /// grdPaymentInfo control.
         /// </summary>
         /// <remarks>
@@ -92,5 +83,14 @@ namespace ConferencePlus.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid grdPaymentInfo;
+        
+        /// <summary>
+        /// pvPapers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView pvPapers;
     }
 }
