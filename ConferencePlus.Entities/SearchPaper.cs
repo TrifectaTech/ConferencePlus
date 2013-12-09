@@ -11,6 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ConferencePlus.Entities;
+using ConferencePlus.Entities.Common;
 
 namespace ConferencePlus.Entities
 {
@@ -33,7 +34,7 @@ namespace ConferencePlus.Entities
         /// <summary>
         /// Gets or sets PaperCategory.
         /// </summary>
-        public int? PaperCategory { get; set; }
+        public EnumPaperCategory? PaperCategory { get; set; }
 
         /// <summary>
         /// Gets or sets Name.

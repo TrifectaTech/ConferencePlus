@@ -14,6 +14,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using ConferencePlus.Data.Common;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -153,11 +154,11 @@ namespace ConferencePlus.Data
 				{
                     TransactionId = row.GetValue<int>("TransactionId"),
                     UserId = row.GetValue<Guid>("UserId"),
-                    FeeType = row.GetValue<int>("FeeTypeId"),
-                    FeeAdjustment = row.GetValue<int>("FeeAdjustmentId"),
+                    FeeType = row.GetValue<EnumFeeType>("FeeTypeId"),
+                    FeeAdjustment = row.GetValue<EnumFeeAdjustment>("FeeAdjustmentId"),
                     Fee = row.GetValue<decimal>("Fee"),
                     CreditCardNumber = row.GetValue<string>("CreditCardNumber").TrimSafely(),
-                    CreditCardType = row.GetValue<int>("CreditCardTypeId"),
+                    CreditCardType = row.GetValue<EnumCreditCardType>("CreditCardTypeId"),
                     ExpirationDate = row.GetValue<DateTime>("ExpirationDate"),
                     CCV = row.GetValue<int>("CCV"),
                     BillingAddress = row.GetValue<string>("BillingAddress").TrimSafely(),

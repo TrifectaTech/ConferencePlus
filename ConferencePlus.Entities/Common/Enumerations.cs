@@ -25,21 +25,31 @@ namespace ConferencePlus.Entities.Common
 			return returnVal;
 		}
 
-		public static T ConvertFromString<T>(string enumValue)
-		{
-			enumValue = enumValue.TrimSafely();
+        /// <summary>
+        /// Helper method that safely converts a string into an Enum
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T ConvertFromString<T>(string enumValue)
+        {
+            enumValue = enumValue.TrimSafely();
 
-			T defaultItem = default(T);
+            T defaultItem = default(T);
 
-			Type baseType = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
+            Type baseType = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
 
-			foreach (T item in Enum.GetValues(baseType).Cast<T>().Where(item => item.ToString().Equals(enumValue, StringComparison.CurrentCultureIgnoreCase)))
-			{
-				return item;
-			}
-
-			return defaultItem;
-		}
+            foreach (Enum item in Enum.GetValues(baseType))
+            {
+                if (enumValue.Equals(item.ToString(), StringComparison.CurrentCultureIgnoreCase) ||
+                    enumValue.Equals(item.ToFormattedString(), StringComparison.CurrentCultureIgnoreCase))
+                {
+                    object foundItem = item;
+                    return (T)foundItem;
+                }
+            }
+            return defaultItem;
+        }
 
 		/// <summary>
 		/// Gets Enumeration Values
@@ -156,7 +166,7 @@ namespace ConferencePlus.Entities.Common
     }
 
     [Serializable]
-    public enum Enum
+    public enum EnumPaperCategory
     {
         None = 0,
 

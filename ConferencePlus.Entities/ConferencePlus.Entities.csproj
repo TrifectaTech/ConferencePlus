@@ -49,6 +49,7 @@
     <Compile Include="ExtensionMethods\DateTimeMethods.cs" />
     <Compile Include="ExtensionMethods\DecimalMethods.cs" />
     <Compile Include="ExtensionMethods\DoubleMethods.cs" />
+    <Compile Include="ExtensionMethods\EnumerationMethods.cs" />
     <Compile Include="ExtensionMethods\GuidMethods.cs" />
     <Compile Include="ExtensionMethods\IComparableMethods.cs" />
     <Compile Include="ExtensionMethods\IEnumerableMethods.cs" />

@@ -89,13 +89,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int creditCardType;
+        private EnumCreditCardType creditCardType;
 
         /// <summary>
         /// Gets or sets CreditCardType.
         /// </summary>
         [SqlName("CreditCardTypeId")]
-        public int CreditCardType
+        public EnumCreditCardType CreditCardType
         {   
             get 
             {
@@ -251,7 +251,7 @@ namespace ConferencePlus.Entities
             PaymentInfoId = default(int?);
             UserId = default(Guid);
             CreditCardNumber = default(string);
-            CreditCardType = default(int);
+            CreditCardType = default(EnumCreditCardType);
             ExpirationDate = default(DateTime);
             CCV = default(int);
             BillingAddress = default(string);

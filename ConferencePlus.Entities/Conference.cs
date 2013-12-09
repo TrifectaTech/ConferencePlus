@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ConferencePlus.Entities;
 using ConferencePlus.Entities.Common;
+using ConferencePlus.Entities.ExtensionMethods;
 
 namespace ConferencePlus.Entities
 {
@@ -45,13 +46,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int activityTypeId;
+        private EnumActivityType activityTypeId;
 
         /// <summary>
         /// Gets or sets ActivityTypeId.
         /// </summary>
         [SqlName("ActivityTypeId")]
-        public int ActivityTypeId
+        public EnumActivityType ActivityType
         {   
             get 
             {
@@ -177,13 +178,21 @@ namespace ConferencePlus.Entities
             }
         }
 
+	    public bool IsConferenceEnrollmentExpired
+	    {
+	        get
+	        {
+	            return !DateTime.Now.Between(StartDate, EndDate);
+	        }
+	    }
+
         /// <summary>
         /// Initializes a new instance of the Conference class.
         /// </summary>
         public Conference()
         {
             ConferenceId = default(int?);
-            ActivityTypeId = default(int);
+            ActivityType = default(EnumActivityType);
             Name = default(string);
             BaseFee = default(decimal);
             Description = default(string);
@@ -194,7 +203,7 @@ namespace ConferencePlus.Entities
 
 		public override string ToString()
 		{
-			return string.Format("ConferenceId: {0}, ActivityTypeId: {1}, Name: {2}, Description: {3};", ConferenceId, ActivityTypeId, Name, Description);
+			return string.Format("ConferenceId: {0}, ActivityTypeId: {1}, Name: {2}, Description: {3};", ConferenceId, ActivityType, Name, Description);
 		}
 	}
 }

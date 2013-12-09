@@ -67,13 +67,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int feeType;
+        private EnumFeeType feeType;
 
         /// <summary>
         /// Gets or sets FeeType.
         /// </summary>
         [SqlName("FeeTypeId")]
-        public int FeeType
+        public EnumFeeType FeeType
         {   
             get 
             {
@@ -89,13 +89,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int feeAdjustment;
+        private EnumFeeAdjustment feeAdjustment;
 
         /// <summary>
         /// Gets or sets FeeAdjustment.
         /// </summary>
         [SqlName("FeeAdjustmentId")]
-        public int FeeAdjustment
+        public EnumFeeAdjustment FeeAdjustment
         {   
             get 
             {
@@ -155,13 +155,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int creditCardType;
+        private EnumCreditCardType creditCardType;
 
         /// <summary>
         /// Gets or sets CreditCardType.
         /// </summary>
         [SqlName("CreditCardTypeId")]
-        public int CreditCardType
+        public EnumCreditCardType CreditCardType
         {   
             get 
             {
@@ -338,11 +338,11 @@ namespace ConferencePlus.Entities
         {
             TransactionId = default(int?);
             UserId = default(Guid);
-            FeeType = default(int);
-            FeeAdjustment = default(int);
+            FeeType = default(EnumFeeType);
+            FeeAdjustment = default(EnumFeeAdjustment);
             Fee = default(decimal);
             CreditCardNumber = default(string);
-            CreditCardType = default(int);
+            CreditCardType = default(EnumCreditCardType);
             ExpirationDate = default(DateTime);
             CCV = default(int);
             BillingAddress = default(string);

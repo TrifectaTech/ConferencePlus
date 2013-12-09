@@ -14,6 +14,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using ConferencePlus.Data.Common;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -127,8 +128,8 @@ namespace ConferencePlus.Data
 				{
                     ConferenceFeeId = row.GetValue<int>("ConferenceFeeId"),
                     ConferenceId = row.GetValue<int>("ConferenceId"),
-                    FeeAdjustment = row.GetValue<int>("FeeAdjustmentId"),
-                    FeeType = row.GetValue<int>("FeeTypeId"),
+                    FeeAdjustment = row.GetValue<EnumFeeAdjustment>("FeeAdjustmentId"),
+                    FeeType = row.GetValue<EnumFeeType>("FeeTypeId"),
                     Multiplier = row.GetValue<decimal>("Multiplier")  
 				});
         }

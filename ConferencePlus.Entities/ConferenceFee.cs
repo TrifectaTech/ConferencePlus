@@ -67,13 +67,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int feeAdjustment;
+        private EnumFeeAdjustment feeAdjustment;
 
         /// <summary>
         /// Gets or sets FeeAdjustment.
         /// </summary>
         [SqlName("FeeAdjustmentId")]
-        public int FeeAdjustment
+        public EnumFeeAdjustment FeeAdjustment
         {   
             get 
             {
@@ -89,13 +89,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int feeType;
+        private EnumFeeType feeType;
 
         /// <summary>
         /// Gets or sets FeeType.
         /// </summary>
         [SqlName("FeeTypeId")]
-        public int FeeType
+        public EnumFeeType FeeType
         {   
             get 
             {
@@ -140,8 +140,8 @@ namespace ConferencePlus.Entities
         {
             ConferenceFeeId = default(int?);
             ConferenceId = default(int);
-            FeeAdjustment = default(int);
-            FeeType = default(int);
+            FeeAdjustment = default(EnumFeeAdjustment);
+            FeeType = default(EnumFeeType);
             Multiplier = default(decimal);
             IsItemModified = false;
         }

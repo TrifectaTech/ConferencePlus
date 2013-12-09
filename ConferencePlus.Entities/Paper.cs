@@ -67,13 +67,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int paperCategory;
+        private EnumPaperCategory paperCategory;
 
         /// <summary>
         /// Gets or sets PaperCategory.
         /// </summary>
         [SqlName("PaperCategoryId")]
-        public int PaperCategory
+        public EnumPaperCategory PaperCategory
         {   
             get 
             {
@@ -162,7 +162,7 @@ namespace ConferencePlus.Entities
         {
             PaperId = default(int?);
             UserId = default(Guid);
-            PaperCategory = default(int);
+            PaperCategory = default(EnumPaperCategory);
             Name = default(string);
             Description = default(string);
             Author = default(string);

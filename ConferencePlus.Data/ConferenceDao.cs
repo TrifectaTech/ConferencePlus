@@ -1,4 +1,4 @@
-// --------------------------------
+﻿// --------------------------------
 // <copyright file="ConferenceDao.cs" company="Conference Plus">
 //     © 2013 Conference Plus
 // </copyright>
@@ -14,6 +14,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using ConferencePlus.Data.Common;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -35,7 +36,7 @@ namespace ConferencePlus.Data
                 = new List<SqlParameter>
 					{
 						new SqlParameter("@ConferenceId", item.ConferenceId),
-                        new SqlParameter("@ActivityTypeId", item.ActivityTypeId),
+                        new SqlParameter("@ActivityTypeId", item.ActivityType),
                         new SqlParameter("@Name", item.Name),
                         new SqlParameter("@BaseFee", item.BaseFee),
                         new SqlParameter("@Description", item.Description),
@@ -77,7 +78,7 @@ namespace ConferencePlus.Data
             List<SqlParameter> parameters 
 				= new List<SqlParameter>
 					{
-						new SqlParameter("@ActivityTypeId", item.ActivityTypeId),
+						new SqlParameter("@ActivityTypeId", item.ActivityType),
                         new SqlParameter("@Name", item.Name),
                         new SqlParameter("@BaseFee", item.BaseFee),
                         new SqlParameter("@Description", item.Description),
@@ -97,7 +98,7 @@ namespace ConferencePlus.Data
 				= new List<SqlParameter>
 					{
 						new SqlParameter("@ConferenceId", item.ConferenceId),
-                        new SqlParameter("@ActivityTypeId", item.ActivityTypeId),
+                        new SqlParameter("@ActivityTypeId", item.ActivityType),
                         new SqlParameter("@Name", item.Name),
                         new SqlParameter("@BaseFee", item.BaseFee),
                         new SqlParameter("@Description", item.Description),
@@ -131,7 +132,7 @@ namespace ConferencePlus.Data
             return dataRows.Select(row => new Conference
 				{
                     ConferenceId = row.GetValue<int>("ConferenceId"),
-                    ActivityTypeId = row.GetValue<int>("ActivityTypeId"),
+                    ActivityType = row.GetValue<EnumActivityType>("ActivityTypeId"),
                     Name = row.GetValue<string>("Name").TrimSafely(),
                     BaseFee = row.GetValue<decimal>("BaseFee"),
                     Description = row.GetValue<string>("Description").TrimSafely(),

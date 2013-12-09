@@ -11,6 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ConferencePlus.Entities;
+using ConferencePlus.Entities.Common;
 
 namespace ConferencePlus.Entities
 {
@@ -28,7 +29,7 @@ namespace ConferencePlus.Entities
         /// <summary>
         /// Gets or sets ActivityTypeId.
         /// </summary>
-        public int? ActivityTypeId { get; set; }
+        public EnumActivityType? ActivityType { get; set; }
 
         /// <summary>
         /// Gets or sets Name.
@@ -61,7 +62,7 @@ namespace ConferencePlus.Entities
         public SearchConference()
         {
             ConferenceId = null;
-            ActivityTypeId = null;
+            ActivityType = null;
             Name = null;
             BaseFee = null;
             Description = null;

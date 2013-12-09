@@ -11,6 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ConferencePlus.Entities;
+using ConferencePlus.Entities.Common;
 
 namespace ConferencePlus.Entities
 {
@@ -33,12 +34,12 @@ namespace ConferencePlus.Entities
         /// <summary>
         /// Gets or sets FeeAdjustment.
         /// </summary>
-        public int? FeeAdjustment { get; set; }
+        public EnumFeeAdjustment? FeeAdjustment { get; set; }
 
         /// <summary>
         /// Gets or sets FeeType.
         /// </summary>
-        public int? FeeType { get; set; }
+        public EnumFeeType? FeeType { get; set; }
 
         /// <summary>
         /// Gets or sets Multiplier.

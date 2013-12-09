@@ -14,6 +14,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using ConferencePlus.Data.Common;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -133,7 +134,7 @@ namespace ConferencePlus.Data
                     EventId = row.GetValue<int>("EventId"),
                     ConferenceId = row.GetValue<int>("ConferenceId"),
                     PaperId = row.GetValue<int>("PaperId"),
-                    FoodPreference = row.GetValue<int>("FoodPreferenceId"),
+                    FoodPreference = row.GetValue<EnumFoodPreference>("FoodPreferenceId"),
                     Comments = row.GetValue<string>("Comments").TrimSafely(),
                     StartDate = row.GetValue<DateTime>("StartDate"),
                     EndDate = row.GetValue<DateTime>("EndDate")  

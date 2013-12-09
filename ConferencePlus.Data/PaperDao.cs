@@ -14,6 +14,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using ConferencePlus.Data.Common;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -129,7 +130,7 @@ namespace ConferencePlus.Data
 				{
                     PaperId = row.GetValue<int>("PaperId"),
                     UserId = row.GetValue<Guid>("UserId"),
-                    PaperCategory = row.GetValue<int>("PaperCategoryId"),
+                    PaperCategory = row.GetValue<EnumPaperCategory>("PaperCategoryId"),
                     Name = row.GetValue<string>("Name").TrimSafely(),
                     Description = row.GetValue<string>("Description").TrimSafely(),
                     Author = row.GetValue<string>("Author").TrimSafely()  

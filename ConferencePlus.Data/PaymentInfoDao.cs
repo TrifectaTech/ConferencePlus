@@ -14,6 +14,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using ConferencePlus.Data.Common;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities;
 
@@ -142,7 +143,7 @@ namespace ConferencePlus.Data
                     PaymentInfoId = row.GetValue<int>("PaymentInfoId"),
                     UserId = row.GetValue<Guid>("UserId"),
                     CreditCardNumber = row.GetValue<string>("CreditCardNumber").TrimSafely(),
-                    CreditCardType = row.GetValue<int>("CreditCardTypeId"),
+                    CreditCardType = row.GetValue<EnumCreditCardType>("CreditCardTypeId"),
                     ExpirationDate = row.GetValue<DateTime>("ExpirationDate"),
                     CCV = row.GetValue<int>("CCV"),
                     BillingAddress = row.GetValue<string>("BillingAddress").TrimSafely(),

@@ -89,13 +89,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private int foodPreference;
+        private EnumFoodPreference foodPreference;
 
         /// <summary>
         /// Gets or sets FoodPreference.
         /// </summary>
         [SqlName("FoodPreferenceId")]
-        public int FoodPreference
+        public EnumFoodPreference FoodPreference
         {   
             get 
             {
@@ -185,7 +185,7 @@ namespace ConferencePlus.Entities
             EventId = default(int?);
             ConferenceId = default(int);
             PaperId = default(int);
-            FoodPreference = default(int);
+            FoodPreference = default(EnumFoodPreference);
             Comments = default(string);
             StartDate = default(DateTime);
             EndDate = default(DateTime);
