@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web.Security;
 using ConferencePlus.Base;
 using ConferencePlus.Business;
 using ConferencePlus.Business.NonPersistent;
@@ -55,6 +56,11 @@ namespace ConferencePlus.Browse
 				GridDataItem item = e.Item as GridDataItem;
 				if (item.OwnerTableView.Name.SafeEquals("Event"))
 				{
+					item.OwnerTableView.CommandItemDisplay
+						= Roles.IsUserInRole("Member")
+							? GridCommandItemDisplay.Top
+							: GridCommandItemDisplay.None;
+
 					Guid userId = (Guid)item.GetDataKeyValue("UserId");
 					if (userId != CurrentUserId)
 					{
@@ -67,10 +73,14 @@ namespace ConferencePlus.Browse
 			{
 				if (e.Item.OwnerTableView.Name.SafeEquals("Event"))
 				{
-					EventRegistration control = e.Item.FindControl(GridEditFormItem.EditFormUserControlID) as EventRegistration;
+					GridEditableItem item = e.Item as GridEditableItem;
+
+					int conferenceId = (int)item.OwnerTableView.ParentItem.GetDataKeyValue("ConferenceId");
+
+					EventRegistration control = item.FindControl(GridEditFormItem.EditFormUserControlID) as EventRegistration;
 					if (control != null)
 					{
-						if (e.Item is GridEditFormInsertItem)
+						if (item is GridEditFormInsertItem)
 						{
 							control.UserControlMode = EnumUserControlMode.Add;
 							control.EventId = null;
@@ -78,9 +88,10 @@ namespace ConferencePlus.Browse
 						else
 						{
 							control.UserControlMode = EnumUserControlMode.Edit;
-							control.EventId = (int)( e.Item as GridEditableItem ).GetDataKeyValue("EventId");
+							control.EventId = (int)item.GetDataKeyValue("EventId");
 						}
 
+						control.ConferenceId = conferenceId;
 						control.ReloadControl();
 					}
 				}
