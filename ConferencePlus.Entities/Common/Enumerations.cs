@@ -90,5 +90,70 @@ namespace ConferencePlus.Entities.Common
 		}
 		#endregion
 	}
+
+    [Serializable]
+    public enum EnumActivityType
+    {
+        None = 0,
+
+        Banquest = 1,
+
+        Symposium = 2
+    }
+
+    [Serializable]
+    public enum EnumCreditCardType
+    {
+        None = 0,
+
+        Visa = 1,
+
+        Mastercard = 2,
+
+        Discover = 3,
+
+        AmericanExpress = 4
+    }
+
+    [Serializable]
+    public enum EnumFeeAdjustment
+    {
+        None = 0,
+
+        Early = 1,
+
+        Normal = 2,
+
+        OnSite = 3
+
+    }
+
+    [Serializable]
+    public enum EnumFeeType
+    {
+        None = 0,
+
+        Student = 1,
+
+        Regular = 2,
+
+        Special = 3
+
+    }
+
+    [Serializable]
+    public enum EnumFoodPreference
+    {
+        None = 0,
+
+        Vegetarian = 1,
+
+        LowCalorie = 2,
+
+        Organic = 3,
+
+        Open = 4
+    }
+
 	#endregion
 }
