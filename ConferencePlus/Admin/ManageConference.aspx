@@ -11,7 +11,7 @@
     <telerik:RadGrid ID="grdConference" OnNeedDataSource="grdConference_NeedDataSource" OnUpdateCommand="grdConference_UpdateCommand" 
         runat="server" OnItemDataBound="grdConference_ItemDataBound" AutoGenerateColumns="false" AllowSorting="true" AllowFilteringByColumn="true"
         AllowPaging="true" OnDetailTableDataBind="grdConference_DetailTableDataBind" OnDeleteCommand="grdConference_DeleteCommand">
-        <MasterTableView Name="Conferences" DataKeyNames="ConferenceId">
+        <MasterTableView Name="Conferences" DataKeyNames="ConferenceId" CommandItemDisplay="Top" CommandItemSettings-AddNewRecordText="Add Conference">
             <Columns>
                 <telerik:GridEditCommandColumn EditText="Edit" />
                 <telerik:GridButtonColumn Text="Remove" UniqueName="Delete" ConfirmText="Do you want this Conference?" CommandName="Delete" />
@@ -23,7 +23,7 @@
                 <telerik:GridBoundColumn DataField="EndDate" UniqueName="EndDate" HeaderText="End Date" />
             </Columns>
             <DetailTables>
-                <telerik:GridTableView Name="ConferenceFeeTypes" DataKeyNames="ConferenceFeeId">
+                <telerik:GridTableView Name="ConferenceFeeTypes" DataKeyNames="ConferenceFeeId" CommandItemDisplay="Top" CommandItemSettings-AddNewRecordText="Add Conference Fee Type">
                     <Columns>
                         <telerik:GridEditCommandColumn EditText="Edit" />
                         <telerik:GridButtonColumn Text="Remove" UniqueName="Delete" ConfirmText="Do you want to remove fee on Conference?" CommandName="Delete" />

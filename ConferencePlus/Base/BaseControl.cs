@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using ConferencePlus.Entities;
+using ConferencePlus.Entities.ExtensionMethods;
+using ConferencePlus.Entities.Common;
 
 namespace ConferencePlus.Base
 {
@@ -31,6 +34,19 @@ namespace ConferencePlus.Base
                 return Guid.Empty;
             }
         }
+
+        public EnumUserControlMode UserControl_Mode
+        {
+            get
+            {
+                if (ViewState["UserControl_Mode"] == null)
+                {
+                    ViewState["UserControl_Mode"] = EnumUserControlMode.None;
+                }
+                return (EnumUserControlMode)ViewState["UserControl_Mode"];
+            }
+            set { ViewState["UserControl_Mode"] = value; }
+        } 
 
     }
 }
