@@ -49,6 +49,16 @@ namespace ConferencePlus
 			{
 				Roles.AddUserToRole("jduverge", "Member");
 			}
+
+            if (!IsPostBack)
+            {
+                pnlAdminFunctions.Visible = false;
+
+                if (Roles.IsUserInRole(HttpContext.Current.User.Identity.Name, "Admin"))
+                {
+                    pnlAdminFunctions.Visible = true;
+                }
+            }
 		}
 
 		protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
