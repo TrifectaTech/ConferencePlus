@@ -8,9 +8,9 @@
 	<br />
 	<telerik:RadAjaxLoadingPanel runat="server" ID="RadAjaxLoadingPanel1" Skin="MetroTouch" />
 	<telerik:RadAjaxPanel runat="server" ID="RadAjaxPanel1" LoadingPanelID="RadAjaxLoadingPanel1">
-		<telerik:RadGrid runat="server" ID="grdConference" OnNeedDataSource="grdConference_NeedDataSource"
+		<telerik:RadGrid runat="server" ID="grdConference" OnNeedDataSource="grdConference_NeedDataSource" OnItemCommand="grdConference_ItemCommand"
 			OnItemDataBound="grdConference_ItemDataBound" Skin="MetroTouch" OnDetailTableDataBind="grdConference_DetailTableDataBind"
-			OnInsertCommand="grdConference_InsertCommand" OnUpdateCommand="grdConference_UpdateCommand" OnDeleteCommand="grdConference_DeleteCommand">
+			OnUpdateCommand="grdConference_UpdateCommand" OnDeleteCommand="grdConference_DeleteCommand">
 			<MasterTableView Name="Conference" DataKeyNames="ConferenceId" AutoGenerateColumns="False" AllowSorting="true" AllowFilteringByColumn="True" CommandItemDisplay="None">
 				<Columns>
 					<telerik:GridBoundColumn HeaderText="Name" UniqueName="Name" DataField="Name">

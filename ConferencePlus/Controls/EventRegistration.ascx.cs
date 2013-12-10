@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ConferencePlus.Base;
 using ConferencePlus.Business;
@@ -49,13 +50,6 @@ namespace ConferencePlus.Controls
 			return errorMessage.IsNullOrWhiteSpace();
 		}
 
-		#region Events
-		protected void btnAddPaper_Click(object sender, EventArgs e)
-		{
-			pnlAddPaper.Visible = true;
-		}
-		#endregion
-
 		#region Helper Methods
 		private void LoadFormFromEventId()
 		{
@@ -75,7 +69,11 @@ namespace ConferencePlus.Controls
 
 		private void LoadPapers()
 		{
-			rcbPaper.DataSource = PaperManager.LoadByUserId(UserId).ToList();
+			List<Paper> papers = PaperManager.LoadByUserId(UserId).OrderBy(p => p.DisplayName).ToList();
+
+			pnlNoPaper.Visible = papers.SafeAny();
+
+			rcbPaper.DataSource = papers;
 			rcbPaper.DataTextField = Paper.DataTextField;
 			rcbPaper.DataValueField = Paper.DataValueField;
 			rcbPaper.DataBind();

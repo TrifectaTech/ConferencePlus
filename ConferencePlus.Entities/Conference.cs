@@ -179,7 +179,7 @@ namespace ConferencePlus.Entities
 	    {
 	        get
 	        {
-	            return !DateTime.Now.Between(StartDate, EndDate);
+	            return DateTime.Now.OnOrAfter(StartDate);
 	        }
 	    }
 
