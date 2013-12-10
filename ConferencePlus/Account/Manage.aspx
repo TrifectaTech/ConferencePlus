@@ -25,7 +25,8 @@
                     AllowAutomaticInserts="False" AllowAutomaticUpdates="False" Width="" AllowMultiRowEdit="False"
                     AutoGenerateColumns="False" AllowPaging="True" OnNeedDataSource="grdPaymentInfo_OnNeedDataSource" OnInsertCommand="grdPaymentInfo_OnInsertCommand"
                     OnDeleteCommand="grdPaymentInfo_OnDeleteCommand" OnUpdateCommand="grdPaymentInfo_OnUpdateCommand" OnItemDataBound="grdPaymentInfo_OnItemDataBound">
-                    <MasterTableView Name="grdPaymentInfo" DataKeyNames="UserId,PaymentInfoId" CommandItemDisplay="Top" NoMasterRecordsText="No payment information" InsertItemPageIndexAction="ShowItemOnCurrentPage">
+                    <MasterTableView Name="grdPaymentInfo" DataKeyNames="UserId,PaymentInfoId" CommandItemDisplay="Top" 
+                        NoMasterRecordsText="No payment information" InsertItemPageIndexAction="ShowItemOnCurrentPage" CommandItemSettings-AddNewRecordText="Add New Payment Information">
                         <Columns>
                             <telerik:GridButtonColumn ButtonType="PushButton" Text="Delete" CommandName="Delete" ConfirmText="Are you sure you want to delete this payment profile?"
                                 ConfirmDialogType="RadWindow" />
@@ -142,10 +143,12 @@
                 <telerik:RadGrid runat="server" ID="grdPapers" AllowSorting="True" Skin="MetroTouch"
                     AutoGenerateColumns="False" AllowPaging="True" OnNeedDataSource="grdPapers_OnNeedDataSource"
                     OnDeleteCommand="grdPapers_OnDeleteCommand" OnUpdateCommand="grdPapers_OnUpdateCommand" OnItemDataBound="grdPapers_OnItemDataBound">
-                    <MasterTableView Name="grdPapers" DataKeyNames="PaperId, UserId" CommandItemDisplay="Top">
+                    <MasterTableView Name="grdPapers" DataKeyNames="PaperId, UserId" NoMasterRecordsText="No papers available" CommandItemDisplay="Top" CommandItemSettings-AddNewRecordText="Add New Paper">
                         <Columns>
+                            <telerik:GridEditCommandColumn EditText="Edit"/>
+                            <telerik:GridButtonColumn ButtonType="LinkButton" Text="Delete" ConfirmText="Are you sure you want to delete this paper?" CommandName="Delete"/>
                             <telerik:GridBoundColumn DataField="Name" UniqueName="Name" HeaderText="Name" />
-                            <telerik:GridBoundColumn DataField="Category" UniqueName="Category" HeaderText="Category" />
+                            <telerik:GridBoundColumn DataField="Author" UniqueName="Author" HeaderText="Author" />
                             <telerik:GridBoundColumn DataField="FormattedPaperCategory" UniqueName="FormattedPaperCategory" HeaderText="Category" />
                         </Columns>
                         <EditFormSettings EditFormType="WebUserControl" UserControlName="~/Controls/EditPaper.ascx" />
