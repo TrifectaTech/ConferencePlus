@@ -9,6 +9,7 @@
 // ---------------------------------
 using System;
 using ConferencePlus.Entities.Common;
+using ConferencePlus.Entities.ExtensionMethods;
 
 namespace ConferencePlus.Entities
 {
@@ -107,6 +108,14 @@ namespace ConferencePlus.Entities
                 }
             }
         }
+
+	    public string FormattedCreditCardType
+	    {
+	        get
+	        {
+	            return CreditCardType.ToFormattedString();
+	        }
+	    }
 
         private DateTime expirationDate;
 

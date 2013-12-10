@@ -6,8 +6,8 @@
     <telerik:RadAjaxPanel runat="server" ID="RadAjaxPanel1" LoadingPanelID="LoadingPanel1">
 
         <h2>
-			<asp:Label ID="lblTitle" runat="server" />
-		</h2>
+            <asp:Label ID="lblTitle" runat="server" />
+        </h2>
 
         <br />
 
@@ -25,12 +25,13 @@
                     AllowAutomaticInserts="False" AllowAutomaticUpdates="False" Width="" AllowMultiRowEdit="False"
                     AutoGenerateColumns="False" AllowPaging="True" OnNeedDataSource="grdPaymentInfo_OnNeedDataSource" OnInsertCommand="grdPaymentInfo_OnInsertCommand"
                     OnDeleteCommand="grdPaymentInfo_OnDeleteCommand" OnUpdateCommand="grdPaymentInfo_OnUpdateCommand" OnItemDataBound="grdPaymentInfo_OnItemDataBound">
-                    <MasterTableView Name="grdPaymentInfo" DataKeyNames="UserId,PaymentInfoId" CommandItemDisplay="Top" 
+                    <MasterTableView Name="grdPaymentInfo" DataKeyNames="UserId,PaymentInfoId" CommandItemDisplay="Top"
                         NoMasterRecordsText="No payment information" InsertItemPageIndexAction="ShowItemOnCurrentPage" CommandItemSettings-AddNewRecordText="Add New Payment Information">
                         <Columns>
                             <telerik:GridButtonColumn ButtonType="PushButton" Text="Delete" CommandName="Delete" ConfirmText="Are you sure you want to delete this payment profile?"
                                 ConfirmDialogType="RadWindow" />
                             <telerik:GridBoundColumn DataField="CreditCardNumber" HeaderText="Credit Card Number" UniqueName="CreditCardNumber" />
+                            <telerik:GridBoundColumn DataField="FormattedCreditCardType" HeaderText="Credit Card Type" UniqueName="FormattedCreditCardType" />
                             <telerik:GridBoundColumn DataField="CCV" HeaderText="CCV" UniqueName="CCV" />
                             <telerik:GridDateTimeColumn DataField="ExpirationDate" HeaderText="Expiration Date" UniqueName="ExpirationDate" DataFormatString="{0:MM/dd/yyyy}" />
                             <telerik:GridBoundColumn DataField="BillingAddress" HeaderText="Billing Address" UniqueName="BillingAddress" />
@@ -51,6 +52,18 @@
                                     <table>
                                         <tr>
                                             <td>
+                                                <asp:Label runat="server" ID="lblCreditCardType" Text="Credit Card Type: " />
+                                            </td>
+                                            <td>
+                                                <telerik:RadComboBox runat="server" ID="ddlCreditCardType" EmptyMessage="Please select a credit card type" 
+                                                    EnableVirtualScrolling="True" MaxHeight="200px" Width="200px" />
+
+                                                <asp:RequiredFieldValidator runat="server" ID="valCreditCardType" ControlToValidate="ddlCreditCardType" InitialValue="" Display="Dynamic"
+                                                    ErrorMessage="*Credit Card Type Is Required" ValidationGroup="PaymentInfoValidationGroup" CssClass="text-danger" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
                                                 <asp:Label runat="server" ID="lblCreditCardNumber" Text="Credit Card Number: " />
                                             </td>
                                             <td>
@@ -64,9 +77,9 @@
                                                 <asp:Label runat="server" ID="lblExpirationDate" Text="Expiration Date: " />
                                             </td>
                                             <td>
-												<telerik:RadDatePicker runat="server" ID="dtExpirationDate" MinDate="1/1/2000" MaxDate="1/1/2099">
-													<DateInput DateFormat="MM/yyyy" DisplayDateFormat="MM/yyyy" />
-												</telerik:RadDatePicker>
+                                                <telerik:RadDatePicker runat="server" ID="dtExpirationDate" MinDate="1/1/2000" MaxDate="1/1/2099">
+                                                    <DateInput DateFormat="MM/yyyy" DisplayDateFormat="MM/yyyy" />
+                                                </telerik:RadDatePicker>
 
                                                 <asp:RequiredFieldValidator runat="server" ID="valExpirationDate" ControlToValidate="dtExpirationDate" Display="Dynamic"
                                                     ErrorMessage="*Expiration Date Is Required" ValidationGroup="PaymentInfoValidationGroup" CssClass="text-danger" />
@@ -145,8 +158,8 @@
                     OnDeleteCommand="grdPapers_OnDeleteCommand" OnUpdateCommand="grdPapers_OnUpdateCommand" OnItemDataBound="grdPapers_OnItemDataBound">
                     <MasterTableView Name="grdPapers" DataKeyNames="PaperId, UserId" NoMasterRecordsText="No papers available" CommandItemDisplay="Top" CommandItemSettings-AddNewRecordText="Add New Paper">
                         <Columns>
-                            <telerik:GridEditCommandColumn EditText="Edit"/>
-                            <telerik:GridButtonColumn ButtonType="LinkButton" Text="Delete" ConfirmText="Are you sure you want to delete this paper?" CommandName="Delete"/>
+                            <telerik:GridEditCommandColumn EditText="Edit" />
+                            <telerik:GridButtonColumn ButtonType="LinkButton" Text="Delete" ConfirmText="Are you sure you want to delete this paper?" CommandName="Delete" />
                             <telerik:GridBoundColumn DataField="Name" UniqueName="Name" HeaderText="Name" />
                             <telerik:GridBoundColumn DataField="Author" UniqueName="Author" HeaderText="Author" />
                             <telerik:GridBoundColumn DataField="FormattedPaperCategory" UniqueName="FormattedPaperCategory" HeaderText="Category" />

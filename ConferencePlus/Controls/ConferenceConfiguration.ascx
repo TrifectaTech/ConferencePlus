@@ -73,10 +73,10 @@
 <table>
     <tr>
         <td>
-            <asp:Button ID="btnSave" CommandName="Update" runat="server" Text="Save" CausesValidation="true" />
+            <telerik:RadButton ID="btnSave" CommandName="Update" runat="server" Text="Save" CausesValidation="true" Skin="MetroTouch" />
         </td>
         <td>
-            <asp:Button ID="btnCancel" CommandName="Cancel" runat="server" Text="Cancel" CausesValidation="false" />
+            <telerik:RadButton ID="btnCancel" CommandName="Cancel" runat="server" Text="Cancel" CausesValidation="false" Skin="MetroTouch" />
         </td>
     </tr>
 </table>
