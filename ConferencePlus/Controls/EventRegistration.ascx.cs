@@ -71,7 +71,7 @@ namespace ConferencePlus.Controls
 		{
 			List<Paper> papers = PaperManager.LoadByUserId(UserId).OrderBy(p => p.DisplayName).ToList();
 
-			pnlNoPaper.Visible = papers.SafeAny();
+			pnlNoPaper.Visible = !papers.SafeAny();
 
 			rcbPaper.DataSource = papers;
 			rcbPaper.DataTextField = Paper.DataTextField;
