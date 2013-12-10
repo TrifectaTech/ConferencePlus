@@ -326,6 +326,12 @@
     <Compile Include="Controls\ConferenceFeeTypeConfiguration.ascx.designer.cs">
       <DependentUpon>ConferenceFeeTypeConfiguration.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\EditPaper.ascx.cs">
+      <DependentUpon>EditPaper.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditPaper.ascx.designer.cs">
+      <DependentUpon>EditPaper.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -384,7 +390,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
