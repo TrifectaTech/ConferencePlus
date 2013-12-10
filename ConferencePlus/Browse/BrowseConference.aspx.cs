@@ -73,8 +73,8 @@ namespace ConferencePlus.Browse
 
 					if (userId != CurrentUserId || (conference != null && conference.IsConferenceEnrollmentExpired))
 					{
-						item.OwnerTableView.Columns.FindByUniqueNameSafe("Edit").Visible = false;
-						item.OwnerTableView.Columns.FindByUniqueNameSafe("Delete").Visible = false;
+						item["Edit"].Visible = false;
+						item["Delete"].Visible = false;
 					}
 				}
 			}
