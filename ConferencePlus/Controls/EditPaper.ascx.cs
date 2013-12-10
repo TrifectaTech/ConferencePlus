@@ -139,6 +139,7 @@ namespace ConferencePlus.Controls
             List<EnumPaperCategory> categories =
                 EnumerationsHelper.GetEnumerationValues<EnumPaperCategory>()
                     .Where(dd => dd != EnumPaperCategory.None)
+                    .OrderBy(dd => dd.ToFormattedString())
                     .ToList();
 
             foreach (EnumPaperCategory category in categories)

@@ -5,9 +5,18 @@
     <div class="jumbotron">
         <h1>Everything is "learnable"</h1>
         <p class="lead">Conference Plus is a free website to connect users to all sorts of interesting content.</p>
-        <p>
-            <asp:LinkButton runat="server" ID="btnLearnMoreJumbo" Text="Get Started With a Free Account" PostBackUrl="~/Register.aspx" CssClass="btn btn-primary btn-lg" />
-        </p>
+        <asp:LoginView runat="server" ViewStateMode="Disabled">
+            <AnonymousTemplate>
+                <p>
+                    <asp:LinkButton runat="server" ID="btnSignUp" Text="Get Started With A Free Account" PostBackUrl="~/Register.aspx" CssClass="btn btn-primary btn-lg" />
+                </p>
+            </AnonymousTemplate>
+            <LoggedInTemplate>
+                <p>
+                    <asp:LinkButton runat="server" ID="btnManageAccount" Text="Manage Account" PostBackUrl="~/Account/Manage.aspx" CssClass="btn btn-primary btn-lg" />
+                </p>
+            </LoggedInTemplate>
+        </asp:LoginView>
     </div>
 
     <div class="row">

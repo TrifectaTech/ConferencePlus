@@ -12,7 +12,7 @@
                 <asp:Label runat="server" ID="lblPaperName" Text="Paper Name:" />
             </td>
             <td>
-                <telerik:RadTextBox runat="server" ID="txtPaperName" Width="200px" />
+                <telerik:RadTextBox runat="server" ID="txtPaperName" Width="300px" />
 
                 <asp:RequiredFieldValidator runat="server" ID="valPaperName" ControlToValidate="txtPaperName"
                     ErrorMessage="*Paper name is required" Display="Dynamic" CssClass="text-danger" />
@@ -55,7 +55,7 @@
             <td>
                 <telerik:RadButton ID="btnSave" runat="server" CommandName="Update" Text="Save" Width="150px" Height="35px"/>
                 
-                <telerik:RadButton ID="btnCancel" runat="server" CommandName="Cancel" Text="Cancel" Width="150px" Height="35px" />
+                <telerik:RadButton ID="btnCancel" runat="server" CommandName="Cancel" Text="Cancel" Width="150px" Height="35px" CausesValidation="False" />
             </td>
         </tr>
     </table>

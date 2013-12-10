@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using ConferencePlus.Base;
@@ -11,13 +12,41 @@ using Telerik.Web.UI;
 
 namespace ConferencePlus.Account
 {
-   public partial class Manage : BasePage
+    public partial class Manage : BasePage
     {
+        public int IndexFromQueryString
+        {
+            get
+            {
+                int index = 0;
+
+                int parsedIndex;
+
+                if (Request.QueryString.AllKeys.Contains("SelectedTabIndex") &&
+                    int.TryParse(Request.QueryString["SelectedTabIndex"], out parsedIndex))
+                {
+                    index = parsedIndex;
+                }
+
+                return index;
+            }
+        }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 lblTitle.Text = Page.Title;
+
+                if (IndexFromQueryString != default(int) &&
+                    IndexFromQueryString < tbManageYourAccount.Tabs.Count)
+                {
+                    tbManageYourAccount.SelectedIndex = IndexFromQueryString;
+
+                    mpManageAccount.SelectedIndex = IndexFromQueryString;
+                }
+
             }
         }
 
@@ -134,6 +163,10 @@ namespace ConferencePlus.Account
 
                 RadComboBox ddlStates = item.FindControl("ddlStates") as RadComboBox;
 
+                RadComboBox ddlCreditCardType = item.FindControl("ddlCreditCardType") as RadComboBox;
+
+                LoadDropCreditCardTypes(ddlCreditCardType);
+
                 RadButton btnSave = item.FindControl("btnSave") as RadButton;
 
                 if (btnSave != null)
@@ -165,7 +198,7 @@ namespace ConferencePlus.Account
                                 RadTextBox txtZip = item.FindControl("txtZip") as RadTextBox;
 
                                 bool canEdit = txtBillingAddress != null && dtExpirationDate != null && txtCCV != null &&
-                                               txtCity != null && txtZip != null && txtCreditCardNumber != null;
+                                               txtCity != null && txtZip != null && txtCreditCardNumber != null && ddlCreditCardType != null;
 
                                 if (canEdit)
                                 {
@@ -182,6 +215,8 @@ namespace ConferencePlus.Account
                                     txtZip.Text = infoFromDb.BillingZip;
 
                                     ddlStates.SelectedValue = infoFromDb.BillingState;
+
+                                    ddlCreditCardType.SelectedValue = infoFromDb.CreditCardType.ToString();
                                 }
                             }
                         }
@@ -213,8 +248,10 @@ namespace ConferencePlus.Account
 
                 RadComboBox ddlStates = item.FindControl("ddlStates") as RadComboBox;
 
+                RadComboBox ddlCreditCardType = item.FindControl("ddlCreditCardType") as RadComboBox;
+
                 bool canEdit = txtBillingAddress != null && dtExpirationDate != null && txtCCV != null &&
-                                              txtCity != null && txtZip != null && txtCreditCardNumber != null && ddlStates != null;
+                                              txtCity != null && txtZip != null && txtCreditCardNumber != null && ddlStates != null && ddlCreditCardType != null;
 
                 if (canEdit)
                 {
@@ -228,6 +265,7 @@ namespace ConferencePlus.Account
                         BillingZip = txtZip.Text,
                         CreditCardNumber = txtCreditCardNumber.Text,
                         CCV = Convert.ToInt32(txtCCV.Value),
+                        CreditCardType = EnumerationsHelper.ConvertFromString<EnumCreditCardType>(ddlCreditCardType.Text),
                         IsItemModified = true
                     };
 
@@ -287,8 +325,10 @@ namespace ConferencePlus.Account
 
                 RadComboBox ddlStates = item.FindControl("ddlStates") as RadComboBox;
 
+                RadComboBox ddlCreditCardType = item.FindControl("ddlCreditCardType") as RadComboBox;
+
                 bool canEdit = txtBillingAddress != null && dtExpirationDate != null && txtCCV != null &&
-                                              txtCity != null && txtZip != null && txtCreditCardNumber != null && ddlStates != null;
+                                              txtCity != null && txtZip != null && txtCreditCardNumber != null && ddlStates != null && ddlCreditCardType != null;
 
                 if (canEdit)
                 {
@@ -302,7 +342,8 @@ namespace ConferencePlus.Account
                         BillingZip = txtZip.Text,
                         CreditCardNumber = txtCreditCardNumber.Text,
                         CCV = Convert.ToInt32(txtCCV.Value),
-                        IsItemModified = true
+                        IsItemModified = true,
+                        CreditCardType = EnumerationsHelper.ConvertFromString<EnumCreditCardType>(ddlCreditCardType.Text)
                     };
 
                     info.PaymentInfoId = paymentInfoId;
@@ -325,87 +366,106 @@ namespace ConferencePlus.Account
             }
         }
 
-       protected void grdPapers_OnNeedDataSource(object sender, GridNeedDataSourceEventArgs e)
-       {
-           if (!e.IsFromDetailTable)
-           {
-               grdPapers.DataSource = PaperManager.LoadByUserId(UserId).ToList();
-           }
-       }
+        protected void grdPapers_OnNeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            if (!e.IsFromDetailTable)
+            {
+                grdPapers.DataSource = PaperManager.LoadByUserId(UserId).ToList();
+            }
+        }
 
-       protected void grdPapers_OnDeleteCommand(object sender, GridCommandEventArgs e)
-       {
-           if (e.Item != null &&
-               e.Item.OwnerTableView.Name.Equals("grdPapers") &&
-               e.Item is GridDataItem)
-           {
-               GridDataItem item = e.Item as GridDataItem;
+        protected void grdPapers_OnDeleteCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.Item != null &&
+                e.Item.OwnerTableView.Name.Equals("grdPapers") &&
+                e.Item is GridDataItem)
+            {
+                GridDataItem item = e.Item as GridDataItem;
 
-               int paperId = (int)item.GetDataKeyValue("PaperId");
+                int paperId = (int)item.GetDataKeyValue("PaperId");
 
-               if (!PaperManager.IsPaperAssociatedToEvent(paperId))
-               {
-                   PaperManager.Delete(paperId);
-               }
-               else
-               {
-                   RadAjaxPanel1.Alert("This paper cannot be deleted because it is registered to an event.");
-               }
-           }
-       }
+                if (!PaperManager.IsPaperAssociatedToEvent(paperId))
+                {
+                    PaperManager.Delete(paperId);
+                }
+                else
+                {
+                    RadAjaxPanel1.Alert("This paper cannot be deleted because it is registered to an event.");
+                }
+            }
+        }
 
-       protected void grdPapers_OnUpdateCommand(object sender, GridCommandEventArgs e)
-       {
-           if (e.Item is GridEditableItem && e.Item.IsInEditMode && e.Item.OwnerTableView.Name.SafeEquals("grdPapers"))
-           {
-               GridEditableItem item = e.Item as GridEditableItem;
+        protected void grdPapers_OnUpdateCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.Item is GridEditableItem && e.Item.IsInEditMode && e.Item.OwnerTableView.Name.SafeEquals("grdPapers"))
+            {
+                GridEditableItem item = e.Item as GridEditableItem;
 
-               EditPaper userControl = item.FindControl(GridEditFormItem.EditFormUserControlID) as EditPaper;
+                EditPaper userControl = item.FindControl(GridEditFormItem.EditFormUserControlID) as EditPaper;
 
-               if (userControl != null)
-               {
-                   string errorMessage;
+                if (userControl != null)
+                {
+                    string errorMessage;
 
-                   bool isValid = userControl.Save(out errorMessage);
+                    bool isValid = userControl.Save(out errorMessage);
 
-                   userControl.HideErrorMessage();
+                    userControl.HideErrorMessage();
 
-                   if (!isValid)
-                   {
-                       e.Canceled = true;
+                    if (!isValid)
+                    {
+                        e.Canceled = true;
 
-                       userControl.ShowErrorMessage(errorMessage);
-                   }
-               }
-           }
-       }
+                        userControl.ShowErrorMessage(errorMessage);
+                    }
+                }
+            }
+        }
 
-       protected void grdPapers_OnItemDataBound(object sender, GridItemEventArgs e)
-       {
-           if (e.Item is GridEditableItem &&
-               e.Item.OwnerTableView.Name.Equals("grdPapers") &&
-               e.Item.IsInEditMode)
-           {
-               GridEditableItem item = e.Item as GridEditableItem;
-               
-               EditPaper userControl = item.FindControl(GridEditFormItem.EditFormUserControlID) as EditPaper;
+        protected void grdPapers_OnItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridEditableItem &&
+                e.Item.OwnerTableView.Name.Equals("grdPapers") &&
+                e.Item.IsInEditMode)
+            {
+                GridEditableItem item = e.Item as GridEditableItem;
 
-               if (userControl != null)
-               {
-                   userControl.ControlMode = EnumUserControlMode.Add;
+                EditPaper userControl = item.FindControl(GridEditFormItem.EditFormUserControlID) as EditPaper;
 
-                   if (! (item is GridEditFormInsertItem))
-                   {
-                       int paperId = (int)item.GetDataKeyValue("PaperId");
+                if (userControl != null)
+                {
+                    userControl.ControlMode = EnumUserControlMode.Add;
 
-                       userControl.ControlMode = EnumUserControlMode.Edit;
+                    if (!(item is GridEditFormInsertItem))
+                    {
+                        int paperId = (int)item.GetDataKeyValue("PaperId");
 
-                       userControl.PaperId = paperId;
-                   }
+                        userControl.ControlMode = EnumUserControlMode.Edit;
 
-                   userControl.ReloadControl();
-               }
-           }
-       }
+                        userControl.PaperId = paperId;
+                    }
+
+                    userControl.ReloadControl();
+                }
+            }
+        }
+
+        protected void LoadDropCreditCardTypes(RadComboBox ddlCreditCardType)
+        {
+            if (ddlCreditCardType != null)
+            {
+                ddlCreditCardType.Items.Clear();
+
+                List<EnumCreditCardType> creditCardType =
+                    EnumerationsHelper.GetEnumerationValues<EnumCreditCardType>()
+                        .Where(dd => dd != EnumCreditCardType.None)
+                        .OrderBy(dd => dd.ToFormattedString())
+                        .ToList();
+
+                foreach (EnumCreditCardType cardType in creditCardType)
+                {
+                    ddlCreditCardType.Items.Add(new RadComboBoxItem(cardType.ToFormattedString(), cardType.ToString()));
+                }
+            }
+        }
     }
 }
