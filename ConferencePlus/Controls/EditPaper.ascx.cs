@@ -187,7 +187,5 @@ namespace ConferencePlus.Controls
 
             return paper;
         }
-
-
     }
 }
