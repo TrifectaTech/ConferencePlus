@@ -31,7 +31,7 @@
                         <telerik:GridButtonColumn Text="Remove" UniqueName="Delete" ConfirmText="Do you want to remove fee on Conference?" CommandName="Delete" />
                         <telerik:GridBoundColumn DataField="FeeAdjustment" UniqueName="FeeAdjustment" HeaderText="FeeAdjustment" />
                         <telerik:GridBoundColumn DataField="FeeType" UniqueName="FeeType" HeaderText="FeeType" />
-                        <telerik:GridNumericColumn DataField="Multiplier" UniqueName="Multiplier" HeaderText="Multiplier" NumericType="Currency" />
+                        <telerik:GridNumericColumn DataField="Multiplier" UniqueName="Multiplier" HeaderText="Multiplier" NumericType="Number" />
                     </Columns>
                     <EditFormSettings EditFormType="WebUserControl" UserControlName="~/Controls/ConferenceFeeTypeConfiguration.ascx"/>
                 </telerik:GridTableView>
