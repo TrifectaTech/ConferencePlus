@@ -209,6 +209,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Controls\ConferenceConfiguration.ascx" />
     <Content Include="Controls\ConferenceFeeTypeConfiguration.ascx" />
+    <Content Include="Controls\EditPaper.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
@@ -255,11 +256,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
-    <Content Include="ViewSwitcher.ascx" />
     <Content Include="Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Site.Mobile.Master" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -327,6 +326,13 @@
     <Compile Include="Controls\ConferenceFeeTypeConfiguration.ascx.designer.cs">
       <DependentUpon>ConferenceFeeTypeConfiguration.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\EditPaper.ascx.cs">
+      <DependentUpon>EditPaper.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\EditPaper.ascx.designer.cs">
+      <DependentUpon>EditPaper.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -359,21 +365,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewSwitcher.ascx.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.designer.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
@@ -399,7 +391,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

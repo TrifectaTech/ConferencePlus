@@ -49,6 +49,23 @@ namespace ConferencePlus.Business
 			return Search(search).FirstOrDefault();
         }
 
+        public static IEnumerable<Paper> LoadByUserId(Guid userId)
+        {
+            SearchPaper search = new SearchPaper
+            {
+                UserId = userId
+            };
+
+            return Search(search);
+        }
+
+        public static bool IsPaperAssociatedToEvent(int paperId)
+        {
+            List<Event> events = EventManager.LoadByPaperId(paperId).ToList();
+
+            return events.SafeAny();
+        }
+
         /// <summary>
         /// Save Paper Entity
         /// </summary>

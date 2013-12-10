@@ -14,7 +14,7 @@
 
         <br />
 
-        <telerik:RadTabStrip runat="server" ID="tbManageYourAccount" MultiPageID="mpManageAccount">
+        <telerik:RadTabStrip runat="server" ID="tbManageYourAccount" MultiPageID="mpManageAccount" Skin="MetroTouch">
             <Tabs>
                 <telerik:RadTab runat="server" Text="Payment Information" PageViewID="pvPaymentInformation" Selected="True" />
 
@@ -141,6 +141,18 @@
                 </telerik:RadGrid>
             </telerik:RadPageView>
             <telerik:RadPageView runat="server" ID="pvPapers">
+                <telerik:RadGrid runat="server" ID="grdPapers" AllowSorting="True" Skin="MetroTouch"
+                    AutoGenerateColumns="False" AllowPaging="True" OnNeedDataSource="grdPapers_OnNeedDataSource"
+                    OnDeleteCommand="grdPapers_OnDeleteCommand" OnUpdateCommand="grdPapers_OnUpdateCommand" OnItemDataBound="grdPapers_OnItemDataBound">
+                    <MasterTableView Name="grdPapers" DataKeyNames="PaperId, UserId" CommandItemDisplay="Top">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="Name" UniqueName="Name" HeaderText="Name" />
+                            <telerik:GridBoundColumn DataField="Category" UniqueName="Category" HeaderText="Category" />
+                            <telerik:GridBoundColumn DataField="FormattedPaperCategory" UniqueName="FormattedPaperCategory" HeaderText="Category" />
+                        </Columns>
+                        <EditFormSettings EditFormType="WebUserControl" UserControlName="~/Controls/EditPaper.ascx" />
+                    </MasterTableView>
+                </telerik:RadGrid>
             </telerik:RadPageView>
         </telerik:RadMultiPage>
 
