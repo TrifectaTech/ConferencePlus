@@ -136,7 +136,7 @@ namespace ConferencePlus.Controls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::Telerik.Web.UI.RadButton btnSave;
         
         /// <summary>
         /// btnCancel control.
@@ -145,6 +145,6 @@ namespace ConferencePlus.Controls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::Telerik.Web.UI.RadButton btnCancel;
     }
 }
