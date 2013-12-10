@@ -59,6 +59,14 @@ namespace ConferencePlus.Business
 			return Search(search).FirstOrDefault();
         }
 
+        public static IEnumerable<Event> LoadByPaperId(int paperId)
+        {
+            SearchEvent search = new SearchEvent
+            {PaperId = paperId};
+
+            return Search(search);
+        }
+
         public static bool IsEventValidForConference(Event ev)
         {
             Conference conference = ConferenceManager.Load(ev.ConferenceId);

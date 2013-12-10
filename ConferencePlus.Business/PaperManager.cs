@@ -49,7 +49,14 @@ namespace ConferencePlus.Business
 			return Search(search).FirstOrDefault();
         }
 
-		/// <summary>
+        public static bool IsPaperAssociatedToEvent(int paperId)
+        {
+            List<Event> events = EventManager.LoadByPaperId(paperId).ToList();
+
+            return events.SafeAny();
+        }
+
+        /// <summary>
 		/// Loads Paper by UserId
 		/// </summary>
 		/// <param name="userId" />

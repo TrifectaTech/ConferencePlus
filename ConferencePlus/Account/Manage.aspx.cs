@@ -3,7 +3,9 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using ConferencePlus.Base;
 using ConferencePlus.Business;
+using ConferencePlus.Controls;
 using ConferencePlus.Entities;
+using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using Telerik.Web.UI;
 
@@ -323,5 +325,87 @@ namespace ConferencePlus.Account
             }
         }
 
+       protected void grdPapers_OnNeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+       {
+           if (!e.IsFromDetailTable)
+           {
+               grdPapers.DataSource = PaperManager.LoadByUserId(UserId).ToList();
+           }
+       }
+
+       protected void grdPapers_OnDeleteCommand(object sender, GridCommandEventArgs e)
+       {
+           if (e.Item != null &&
+               e.Item.OwnerTableView.Name.Equals("grdPapers") &&
+               e.Item is GridDataItem)
+           {
+               GridDataItem item = e.Item as GridDataItem;
+
+               int paperId = (int)item.GetDataKeyValue("PaperId");
+
+               if (!PaperManager.IsPaperAssociatedToEvent(paperId))
+               {
+                   PaperManager.Delete(paperId);
+               }
+               else
+               {
+                   RadAjaxPanel1.Alert("This paper cannot be deleted because it is registered to an event.");
+               }
+           }
+       }
+
+       protected void grdPapers_OnUpdateCommand(object sender, GridCommandEventArgs e)
+       {
+           if (e.Item is GridEditableItem && e.Item.IsInEditMode && e.Item.OwnerTableView.Name.SafeEquals("grdPapers"))
+           {
+               GridEditableItem item = e.Item as GridEditableItem;
+
+               EditPaper userControl = item.FindControl(GridEditFormItem.EditFormUserControlID) as EditPaper;
+
+               if (userControl != null)
+               {
+                   string errorMessage;
+
+                   bool isValid = userControl.Save(out errorMessage);
+
+                   userControl.HideErrorMessage();
+
+                   if (!isValid)
+                   {
+                       e.Canceled = true;
+
+                       userControl.ShowErrorMessage(errorMessage);
+                   }
+               }
+           }
+       }
+
+       protected void grdPapers_OnItemDataBound(object sender, GridItemEventArgs e)
+       {
+           if (e.Item is GridEditableItem &&
+               e.Item.OwnerTableView.Name.Equals("grdPapers") &&
+               e.Item.IsInEditMode)
+           {
+               GridEditableItem item = e.Item as GridEditableItem;
+               
+               EditPaper userControl = item.FindControl(GridEditFormItem.EditFormUserControlID) as EditPaper;
+
+               if (userControl != null)
+               {
+                   userControl.ControlMode = EnumUserControlMode.Add;
+
+                   if (! (item is GridEditFormInsertItem))
+                   {
+                       int paperId = (int)item.GetDataKeyValue("PaperId");
+
+                       userControl.ControlMode = EnumUserControlMode.Edit;
+
+                       userControl.PaperId = paperId;
+                   }
+
+                   userControl.ReloadControl();
+               }
+           }
+       }
     }
 }

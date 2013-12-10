@@ -88,10 +88,7 @@ namespace ConferencePlus.Controls
 
 			confFeeToSave.FeeAdjustment = EnumerationsHelper.ConvertFromString<EnumFeeAdjustment>(ddlAdjustmentType.SelectedValue);
 			confFeeToSave.FeeType = EnumerationsHelper.ConvertFromString<EnumFeeType>(ddlFeeType.SelectedValue);
-			if (txtMultiplier.Value.HasValue)
-			{
-				confFeeToSave.Multiplier = (decimal)txtMultiplier.Value.Value;
-			}
+			confFeeToSave.Multiplier = (decimal)txtMultiplier.Value.GetValueOrDefault();
 
 
 			string error;

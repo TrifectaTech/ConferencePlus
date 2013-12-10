@@ -9,6 +9,7 @@
 // ---------------------------------
 using System;
 using ConferencePlus.Entities.Common;
+using ConferencePlus.Entities.ExtensionMethods;
 
 namespace ConferencePlus.Entities
 {
@@ -89,6 +90,17 @@ namespace ConferencePlus.Entities
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+	    public string FormattedPaperCategory
+	    {
+	        get
+	        {
+	            return paperCategory.ToFormattedString();
+	        }
+	    }
 
         private string name;
 

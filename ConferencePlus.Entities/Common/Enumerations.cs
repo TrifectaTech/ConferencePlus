@@ -101,6 +101,9 @@ namespace ConferencePlus.Entities.Common
 		#endregion
 	}
 
+    
+	#endregion
+
     [Serializable]
     public enum EnumActivityType
     {
@@ -195,11 +198,14 @@ namespace ConferencePlus.Entities.Common
     [Serializable]
     public enum EnumUserControlMode
     {
-        None= 0,
+        None = 0,
 
         Add = 1,
 
-        Edit = 2
+        Edit = 2,
+
+        PerformInsert = 3,
+
+        Update = 4
     }
-	#endregion
 }
