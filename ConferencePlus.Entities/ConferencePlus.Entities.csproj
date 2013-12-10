@@ -57,6 +57,10 @@
     <Compile Include="ExtensionMethods\IOMethods.cs" />
     <Compile Include="ExtensionMethods\ObjectCopier.cs" />
     <Compile Include="ExtensionMethods\StringMethods.cs" />
+    <Compile Include="NonPersistent\ConferenceEventsView.cs" />
+    <Compile Include="NonPersistent\PaperStatisticsView.cs" />
+    <Compile Include="NonPersistent\SearchConferenceEventsView.cs" />
+    <Compile Include="NonPersistent\SearchPaperStatisticsView.cs" />
     <Compile Include="Paper.cs" />
     <Compile Include="PaymentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

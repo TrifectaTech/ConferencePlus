@@ -8,9 +8,6 @@
 // </summary>
 // ---------------------------------
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using ConferencePlus.Entities;
 using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 

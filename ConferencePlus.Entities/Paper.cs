@@ -8,9 +8,6 @@
 // </summary>
 // ---------------------------------
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using ConferencePlus.Entities;
 using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 
@@ -22,6 +19,10 @@ namespace ConferencePlus.Entities
 	[Serializable]
 	public class Paper
 	{
+		public static string DataTextField { get { return "DisplayName"; } }
+
+		public static string DataValueField { get { return "PaperId"; } }
+
 		public bool IsItemModified { get; set; }
 
         private int? paperId;
@@ -167,7 +168,7 @@ namespace ConferencePlus.Entities
             }
         }
 
-        /// <summary>
+		/// <summary>
         /// Initializes a new instance of the Paper class.
         /// </summary>
         public Paper()
@@ -184,6 +185,11 @@ namespace ConferencePlus.Entities
 		public override string ToString()
 		{
 			return string.Format("PaperId: {0}, UserId: {1}, PaperCategory: {2}, Name: {3}, Description: {4}, Author: {5};", PaperId, UserId, PaperCategory, Name, Description, Author);
+		}
+
+		public string DisplayName
+		{
+			get { return string.Format("{0} - {1}", Name, PaperCategory); }
 		}
 	}
 }

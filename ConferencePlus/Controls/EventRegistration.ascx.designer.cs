@@ -10,70 +10,70 @@
 namespace ConferencePlus.Controls {
     
     
-    public partial class ConferenceFeeTypeConfiguration {
+    public partial class EventRegistration {
         
         /// <summary>
-        /// ddlAdjustmentType control.
+        /// rdtpStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadComboBox ddlAdjustmentType;
+        protected global::Telerik.Web.UI.RadDateTimePicker rdtpStartDate;
         
         /// <summary>
-        /// valadjustment control.
+        /// rdtpEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valadjustment;
+        protected global::Telerik.Web.UI.RadDateTimePicker rdtpEndDate;
         
         /// <summary>
-        /// ddlFeeType control.
+        /// rcbPaper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadComboBox ddlFeeType;
+        protected global::Telerik.Web.UI.RadComboBox rcbPaper;
         
         /// <summary>
-        /// valfeetype control.
+        /// btnAddPaper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valfeetype;
+        protected global::Telerik.Web.UI.RadButton btnAddPaper;
         
         /// <summary>
-        /// txtMultiplier control.
+        /// pnlAddPaper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadNumericTextBox txtMultiplier;
+        protected global::System.Web.UI.WebControls.Panel pnlAddPaper;
         
         /// <summary>
-        /// valMultiplier control.
+        /// rcbFoodPreference control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valMultiplier;
+        protected global::Telerik.Web.UI.RadComboBox rcbFoodPreference;
         
         /// <summary>
-        /// lblError control.
+        /// txtComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::Telerik.Web.UI.RadTextBox txtComments;
         
         /// <summary>
         /// btnSave control.
@@ -82,7 +82,7 @@ namespace ConferencePlus.Controls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::Telerik.Web.UI.RadButton btnSave;
         
         /// <summary>
         /// btnCancel control.
@@ -91,6 +91,6 @@ namespace ConferencePlus.Controls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::Telerik.Web.UI.RadButton btnCancel;
     }
 }

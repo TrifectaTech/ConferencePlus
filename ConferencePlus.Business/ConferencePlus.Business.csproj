@@ -42,6 +42,8 @@
     <Compile Include="ConferenceFeeManager.cs" />
     <Compile Include="ConferenceManager.cs" />
     <Compile Include="EventManager.cs" />
+    <Compile Include="NonPersistent\ConferenceEventsViewManager.cs" />
+    <Compile Include="NonPersistent\PaperStatisticsViewManager.cs" />
     <Compile Include="PaperManager.cs" />
     <Compile Include="PaymentInfoManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

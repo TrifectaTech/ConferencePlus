@@ -67,6 +67,19 @@ namespace ConferencePlus.Business
         }
 
         /// <summary>
+		/// Loads Paper by UserId
+		/// </summary>
+		/// <param name="userId" />
+		/// <returns>An IEnumerable set of Paper</returns>
+		public static IEnumerable<Paper> LoadByUserId(Guid userId)
+		{
+			return Search(new SearchPaper
+			{
+				UserId = userId
+			});
+		}
+
+        /// <summary>
         /// Save Paper Entity
         /// </summary>
         /// <param name="item">Entity to save</param>

@@ -90,7 +90,7 @@
     </Reference>
     <Reference Include="Telerik.Web.UI.Skins, Version=2013.3.1015.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for ASP.NET AJAX Q3 2013\Bin45\Telerik.Web.UI.Skins.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for ASP.NET AJAX Q2 2012\Bin40\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -202,13 +202,14 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
-    <Content Include="BrowseConference.aspx" />
+    <Content Include="Browse\BrowseConference.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Controls\ConferenceConfiguration.ascx" />
     <Content Include="Controls\ConferenceFeeTypeConfiguration.ascx" />
+    <Content Include="Controls\EventRegistration.ascx" />
     <Content Include="Controls\EditPaper.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Login.aspx" />
@@ -257,7 +258,6 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="Bundle.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
@@ -298,11 +298,11 @@
     <Compile Include="Base\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BrowseConference.aspx.cs">
+    <Compile Include="Browse\BrowseConference.aspx.cs">
       <DependentUpon>BrowseConference.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BrowseConference.aspx.designer.cs">
+    <Compile Include="Browse\BrowseConference.aspx.designer.cs">
       <DependentUpon>BrowseConference.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
@@ -325,13 +325,6 @@
     </Compile>
     <Compile Include="Controls\ConferenceFeeTypeConfiguration.ascx.designer.cs">
       <DependentUpon>ConferenceFeeTypeConfiguration.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditPaper.ascx.cs">
-      <DependentUpon>EditPaper.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\EditPaper.ascx.designer.cs">
-      <DependentUpon>EditPaper.ascx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

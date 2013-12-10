@@ -1,16 +1,13 @@
 ﻿<%@ Page Title="Manage Your Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="ConferencePlus.Account.Manage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-
     <telerik:RadFormDecorator runat="server" ID="decorator" DecoratedControls="Default" Skin="MetroTouch" />
-
     <telerik:RadAjaxLoadingPanel runat="server" ID="LoadingPanel1" Skin="MetroTouch" />
-
     <telerik:RadAjaxPanel runat="server" ID="RadAjaxPanel1" LoadingPanelID="LoadingPanel1">
 
         <h2>
-            <asp:Label ID="lblTitle" runat="server" /></h2>
+			<asp:Label ID="lblTitle" runat="server" />
+		</h2>
 
         <br />
 
@@ -57,7 +54,6 @@
                                             </td>
                                             <td>
                                                 <telerik:RadTextBox runat="server" ID="txtCreditCardNumber" MaxLength="16" />
-
                                                 <asp:RequiredFieldValidator runat="server" ID="valCreditCardNumber" ControlToValidate="txtCreditCardNumber" Display="Dynamic"
                                                     ErrorMessage="*Credit Card Number Is Required" ValidationGroup="PaymentInfoValidationGroup" CssClass="text-danger" />
                                             </td>
@@ -67,7 +63,9 @@
                                                 <asp:Label runat="server" ID="lblExpirationDate" Text="Expiration Date: " />
                                             </td>
                                             <td>
-                                                <telerik:RadDatePicker runat="server" ID="dtExpirationDate" MinDate="1/1/2000" MaxDate="1/1/2099" />
+												<telerik:RadDatePicker runat="server" ID="dtExpirationDate" MinDate="1/1/2000" MaxDate="1/1/2099">
+													<DateInput DateFormat="MM/yyyy" DisplayDateFormat="MM/yyyy" />
+												</telerik:RadDatePicker>
 
                                                 <asp:RequiredFieldValidator runat="server" ID="valExpirationDate" ControlToValidate="dtExpirationDate" Display="Dynamic"
                                                     ErrorMessage="*Expiration Date Is Required" ValidationGroup="PaymentInfoValidationGroup" CssClass="text-danger" />

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
-using ConferencePlus.Entities;
-using ConferencePlus.Entities.ExtensionMethods;
 using ConferencePlus.Entities.Common;
 
 namespace ConferencePlus.Base
@@ -35,7 +30,7 @@ namespace ConferencePlus.Base
             }
         }
 
-        public EnumUserControlMode UserControl_Mode
+        public EnumUserControlMode UserControlMode
         {
             get
             {
