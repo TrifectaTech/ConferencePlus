@@ -58,6 +58,9 @@
 						<li><a runat="server" href="~/Browse/BrowseConference.aspx">Browse Conferences</a></li>
 						<li><a runat="server" href="~/About.aspx">About</a></li>
 						<li><a runat="server" href="~/Contact.aspx">Contact</a></li>
+                        <asp:Panel runat="server" ID="pnlAdminFunctions" Visible="False" CssClass="nav navbar-nav">
+                        <li><a runat="server" href="~/Admin/ManageConference.aspx">Manage Conferences</a></li>
+                        </asp:Panel>
 					</ul>
 					<asp:LoginView runat="server" ViewStateMode="Disabled">
 						<AnonymousTemplate>

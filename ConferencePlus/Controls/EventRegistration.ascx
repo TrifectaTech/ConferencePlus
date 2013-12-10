@@ -8,7 +8,6 @@
 		<td class="alignLeft">
 			<telerik:RadDateTimePicker runat="server" ID="rdtpStartDate" Width="200px" />
 		</td>
-		<td>&nbsp;</td>
 	</tr>
 	<tr>
 		<td class="alignRight">
@@ -17,7 +16,6 @@
 		<td class="alignLeft">
 			<telerik:RadDateTimePicker runat="server" ID="rdtpEndDate" Width="200px" />
 		</td>
-		<td>&nbsp;</td>
 	</tr>
 	<tr>
 		<td class="alignRight">
@@ -28,14 +26,11 @@
 				<CollapseAnimation Duration="200" Type="OutQuint" />
 			</telerik:RadComboBox>
 		</td>
-		<td>
-			<telerik:RadButton runat="server" ID="btnAddPaper" OnClick="btnAddPaper_Click" Text="Add New Paper" />
-		</td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<asp:Panel runat="server" ID="pnlAddPaper" Visible="False">
-				ADD PAPER CONTROL GOES HERE
+			<asp:Panel runat="server" ID="pnlNoPaper" Visible="False">
+				<asp:HyperLink runat="server" NavigateUrl="~/Account/Manage.aspx?SelectedTabIndex=1" Text="No Papers? Create One!"/>
 			</asp:Panel>
 		</td>
 	</tr>
@@ -48,7 +43,6 @@
 				<CollapseAnimation Duration="200" Type="OutQuint" />
 			</telerik:RadComboBox>
 		</td>
-		<td>&nbsp;</td>
 	</tr>
 	<tr>
 		<td class="alignRight">
@@ -57,7 +51,6 @@
 		<td class="alignLeft">
 			<telerik:RadTextBox runat="server" ID="txtComments" TextMode="MultiLine" />
 		</td>
-		<td>&nbsp;</td>
 	</tr>
 	<tr>
 		<td colspan="3">

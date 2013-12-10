@@ -5,6 +5,7 @@ using ConferencePlus.Base;
 using ConferencePlus.Business;
 using ConferencePlus.Business.NonPersistent;
 using ConferencePlus.Controls;
+using ConferencePlus.Entities;
 using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using Telerik.Web.UI;
@@ -45,6 +46,15 @@ namespace ConferencePlus.Browse
 				case "Event":
 					int conferenceId = (int)e.DetailTableView.ParentItem.GetDataKeyValue("ConferenceId");
 					e.DetailTableView.DataSource = ConferenceEventsViewManager.LoadByConferenceId(conferenceId).ToList();
+
+					Conference conference = ConferenceManager.Load(conferenceId);
+					if (conference != null)
+					{
+						e.DetailTableView.CommandItemDisplay
+							= Roles.IsUserInRole("Member") && !conference.IsConferenceEnrollmentExpired
+								? GridCommandItemDisplay.Top
+								: GridCommandItemDisplay.None;
+					}
 					break;
 			}
 		}
@@ -56,16 +66,15 @@ namespace ConferencePlus.Browse
 				GridDataItem item = e.Item as GridDataItem;
 				if (item.OwnerTableView.Name.SafeEquals("Event"))
 				{
-					item.OwnerTableView.CommandItemDisplay
-						= Roles.IsUserInRole("Member")
-							? GridCommandItemDisplay.Top
-							: GridCommandItemDisplay.None;
+					int conferenceId = (int)item.OwnerTableView.ParentItem.GetDataKeyValue("ConferenceId");
+					Conference conference = ConferenceManager.Load(conferenceId);
 
 					Guid userId = (Guid)item.GetDataKeyValue("UserId");
-					if (userId != CurrentUserId)
+
+					if (userId != CurrentUserId || (conference != null && conference.IsConferenceEnrollmentExpired))
 					{
-						item.OwnerTableView.Columns.FindByUniqueNameSafe("Edit").Visible = false;
-						item.OwnerTableView.Columns.FindByUniqueNameSafe("Delete").Visible = false;
+						item["Edit"].Visible = false;
+						item["Delete"].Visible = false;
 					}
 				}
 			}
@@ -98,16 +107,73 @@ namespace ConferencePlus.Browse
 			}
 		}
 
-		protected void grdConference_InsertCommand(object sender, GridCommandEventArgs e)
-		{
-		}
-
 		protected void grdConference_UpdateCommand(object sender, GridCommandEventArgs e)
 		{
+			GridEditFormItem gridEditFormItem = e.Item as GridEditFormItem;
+			if (gridEditFormItem != null)
+			{
+				EventRegistration control = gridEditFormItem.FindControl(GridEditFormItem.EditFormUserControlID) as EventRegistration;
+				if (control != null)
+				{
+					string errorMessage;
+					e.Canceled = !control.Save(out errorMessage);
+
+					if (errorMessage.HasValue())
+					{
+						AjaxMessageBox(string.Format("Errors while saving:\n{0}", errorMessage));
+					}
+				}
+			}
 		}
 
 		protected void grdConference_DeleteCommand(object sender, GridCommandEventArgs e)
 		{
+			GridDataItem selectedItem = e.Item as GridDataItem;
+			if (selectedItem != null && selectedItem.OwnerTableView.Name.SafeEquals("Event"))
+			{
+				int eventId = (int)selectedItem.GetDataKeyValue("EventId");
+				EventManager.Delete(eventId);
+			}
+		}
+
+		protected void grdConference_ItemCommand(object sender, GridCommandEventArgs e)
+		{
+			if (e.Item != null)
+			{
+				string[] commandsToCloseOtherItemsFor = { RadGrid.InitInsertCommandName, RadGrid.EditCommandName };
+				if (commandsToCloseOtherItemsFor.Contains(e.CommandName))
+				{
+					e.Item.OwnerTableView.IsItemInserted = false;
+					e.Item.OwnerTableView.ClearChildEditItems();
+				}
+
+				if (e.CommandName.Equals(RadGrid.ExpandCollapseCommandName))
+				{
+					e.Item.OwnerTableView.IsItemInserted = false;
+					e.Item.OwnerTableView.ClearChildEditItems();
+
+					if (e.Item is GridDataItem)
+					{
+						foreach (GridDataItem item in e.Item.OwnerTableView.Items.OfType<GridDataItem>().Where(it => it != e.Item))
+						{
+							item.Expanded = false;
+						}
+					}
+				}
+
+				if (e.CommandName.Equals(RadGrid.RebindGridCommandName))
+				{
+					GridTableView table = e.Item.OwnerTableView;
+					table.SortExpressions.Clear();
+					table.Rebind();
+					e.Canceled = true;
+				}
+			}
+		}
+
+		private void AjaxMessageBox(string message)
+		{
+			RadAjaxPanel1.Alert(message.Replace("<br />", "\n").Replace("<br/>", "\n"));
 		}
 	}
 }
