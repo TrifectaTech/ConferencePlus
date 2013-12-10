@@ -33,7 +33,7 @@ namespace ConferencePlus.Controls
 		{
 			LoadPapers();
 			LoadFoodPreferences();
-			
+
 			if (UserControlMode == EnumUserControlMode.Edit)
 			{
 				LoadFormFromEventId();
@@ -44,11 +44,35 @@ namespace ConferencePlus.Controls
 		{
 			if (ValidateForm(out errorMessage))
 			{
-				
+
 			}
 
 			return errorMessage.IsNullOrWhiteSpace();
 		}
+
+		#region Events
+		protected void btnContinue_Click(object sender, EventArgs e)
+		{
+			pnlEventForm.Visible = false;
+			pnlTransactionForm.Visible = true;
+		}
+
+		protected void btnGoBack_Click(object sender, EventArgs e)
+		{
+			pnlEventForm.Visible = true;
+			pnlTransactionForm.Visible = false;
+		}
+
+		protected void rblFeeType_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			CalculateFee();
+		}
+
+		protected void rblFeeAdjustment_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			CalculateFee();
+		}
+		#endregion
 
 		#region Helper Methods
 		private void LoadFormFromEventId()
@@ -61,7 +85,7 @@ namespace ConferencePlus.Controls
 					rdtpStartDate.SelectedDate = eventEntity.StartDate;
 					rdtpEndDate.SelectedDate = eventEntity.EndDate;
 					rcbPaper.SelectedValue = eventEntity.PaperId.ToString();
-					rcbFoodPreference.SelectedValue = ((int)eventEntity.FoodPreference).ToString();
+					rcbFoodPreference.SelectedValue = ( (int)eventEntity.FoodPreference ).ToString();
 					txtComments.Text = eventEntity.Comments;
 				}
 			}
@@ -71,7 +95,11 @@ namespace ConferencePlus.Controls
 		{
 			List<Paper> papers = PaperManager.LoadByUserId(UserId).OrderBy(p => p.DisplayName).ToList();
 
-			pnlNoPaper.Visible = !papers.SafeAny();
+			bool noPapers = !papers.SafeAny();
+
+			pnlNoPaper.Visible = noPapers;
+			pnlEventForm.Visible = !noPapers;
+			pnlTransactionForm.Visible = false;
 
 			rcbPaper.DataSource = papers;
 			rcbPaper.DataTextField = Paper.DataTextField;
@@ -85,9 +113,9 @@ namespace ConferencePlus.Controls
 		{
 			rcbFoodPreference.Items.Clear();
 
-			foreach (EnumFoodPreference foodPreference  in EnumerationsHelper.GetEnumerationValues<EnumFoodPreference>(true, true))
+			foreach (EnumFoodPreference foodPreference in EnumerationsHelper.GetEnumerationValues<EnumFoodPreference>(true, true))
 			{
-				rcbFoodPreference.Items.Add(new RadComboBoxItem(foodPreference.ToString(), ((int)foodPreference).ToString()));
+				rcbFoodPreference.Items.Add(new RadComboBoxItem(foodPreference.ToString(), ( (int)foodPreference ).ToString()));
 			}
 
 			rcbFoodPreference.DataBind();
@@ -98,7 +126,43 @@ namespace ConferencePlus.Controls
 
 		private bool ValidateForm(out string errorMessage)
 		{
-			throw new NotImplementedException();
+			errorMessage = "test";
+			return false;
+		}
+
+		private void CalculateFee()
+		{
+			double fee = 0;
+
+			Conference conference = ConferenceManager.Load(ConferenceId);
+			if (conference != null)
+			{
+				fee = (double)conference.BaseFee;
+
+				List<ConferenceFee> conferenceFees = ConferenceFeeManager.LoadOnConferenceId(ConferenceId).ToList();
+
+				if (rblFeeAdjustment.SelectedValue.HasValue())
+				{
+					EnumFeeAdjustment adjustment = EnumerationsHelper.ConvertFromString<EnumFeeAdjustment>(rblFeeAdjustment.SelectedValue);
+					ConferenceFee conferenceFeeAdjustment = conferenceFees.FirstOrDefault(c => c.FeeAdjustment == adjustment);
+					if (conferenceFeeAdjustment != null)
+					{
+						fee *= (double)conferenceFeeAdjustment.Multiplier;
+					}
+				}
+
+				if (rblFeeType.SelectedValue.HasValue())
+				{
+					EnumFeeType type = EnumerationsHelper.ConvertFromString<EnumFeeType>(rblFeeType.SelectedValue);
+					ConferenceFee conferenceFeeType = conferenceFees.FirstOrDefault(c => c.FeeType == type);
+					if (conferenceFeeType != null)
+					{
+						fee *= (double)conferenceFeeType.Multiplier;
+					}
+				}
+			}
+
+			txtFee.Value = fee;
 		}
 		#endregion
 	}
