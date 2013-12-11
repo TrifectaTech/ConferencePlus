@@ -159,7 +159,7 @@ namespace ConferencePlus.Data
 					EventId = row.GetValue<int>("EventId"),
                     UserId = row.GetValue<Guid>("UserId"),
                     FeeType = row.GetValue<EnumFeeType>("FeeTypeId"),
-                    FeeAdjustment = row.GetValue<EnumFeeAdjustment>("FeeAdjustmentId"),
+                    FeeAdjustment = row.GetValue<EnumFeeAdjustment?>("FeeAdjustmentId"),
                     Fee = row.GetValue<decimal>("Fee"),
                     CreditCardNumber = row.GetValue<string>("CreditCardNumber").TrimSafely(),
                     CreditCardType = row.GetValue<EnumCreditCardType>("CreditCardTypeId"),

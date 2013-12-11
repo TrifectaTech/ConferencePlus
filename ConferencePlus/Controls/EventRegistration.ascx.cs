@@ -8,6 +8,8 @@ using ConferencePlus.Entities;
 using ConferencePlus.Entities.Common;
 using ConferencePlus.Entities.ExtensionMethods;
 using Telerik.Web.UI;
+using Transaction = ConferencePlus.Entities.Transaction;
+using TransactionManager = ConferencePlus.Business.TransactionManager;
 
 namespace ConferencePlus.Controls
 {
@@ -36,6 +38,7 @@ namespace ConferencePlus.Controls
 			LoadFoodPreferences();
 			LoadFeeTypes();
 			LoadPaymentInfo();
+			LoadCreditCardTypes();
 			LoadStates();
 
 			if (UserControlMode == EnumUserControlMode.Edit)
@@ -53,9 +56,26 @@ namespace ConferencePlus.Controls
 
 		public bool Save(out string errorMessage)
 		{
-			if (ValidateForm(out errorMessage))
-			{
+			Event eventEntity = LoadEventFromForm();
+			Transaction transaction = LoadTransactionFromForm();
 
+			string eventError,  transactionError = string.Empty;
+
+			if (EventManager.Validate(eventEntity, out eventError) &&
+			    TransactionManager.Validate(transaction, out transactionError))
+			{
+				EventManager.Save(eventEntity, out errorMessage);
+
+				if (eventEntity.EventId.HasValue)
+				{
+					transaction.EventId = eventEntity.EventId.Value;
+
+					TransactionManager.Save(transaction, out errorMessage);
+				}
+			}
+			else
+			{
+				errorMessage = string.Format("{0}{1}{2}", eventError, StringMethods.BreakTag, transactionError);
 			}
 
 			return errorMessage.IsNullOrWhiteSpace();
@@ -96,7 +116,14 @@ namespace ConferencePlus.Controls
 				PaymentInfo paymentInfo = PaymentInfoManager.Load(paymentInfoId);
 				if (paymentInfo != null)
 				{
+					rcbCreditCardType.SelectedValue = paymentInfo.CreditCardType.ToString();
 					txtCreditCardNumber.Text = paymentInfo.CreditCardNumber;
+					rdpExpirationDate.SelectedDate = paymentInfo.ExpirationDate;
+					txtCCV.Text = paymentInfo.CCV.ToString();
+					txtBillingAddress.Text = paymentInfo.BillingAddress;
+					txtCity.Text = paymentInfo.BillingCity;
+					rcbStates.SelectedValue = paymentInfo.BillingState;
+					txtZip.Text = paymentInfo.BillingZip;
 				}
 			}
 		}
@@ -113,7 +140,7 @@ namespace ConferencePlus.Controls
 					rdtpStartDate.SelectedDate = eventEntity.StartDate;
 					rdtpEndDate.SelectedDate = eventEntity.EndDate;
 					rcbPaper.SelectedValue = eventEntity.PaperId.ToString();
-					rcbFoodPreference.SelectedValue = ( (int)eventEntity.FoodPreference ).ToString();
+					rcbFoodPreference.SelectedValue = eventEntity.FoodPreference.ToString();
 					txtComments.Text = eventEntity.Comments;
 
 					Transaction transaction = TransactionManager.LoadByEvent(EventId.Value);
@@ -122,6 +149,15 @@ namespace ConferencePlus.Controls
 						rblFeeType.SelectedValue = transaction.FeeType.ToString();
 						txtFee.Value = transaction.Fee.ToDouble();
 						lblFeeAdjustment.Text = transaction.FeeAdjustment.ToFormattedString();
+
+						rcbCreditCardType.SelectedValue = transaction.CreditCardType.ToString();
+						txtCreditCardNumber.Text = transaction.CreditCardNumber;
+						rdpExpirationDate.SelectedDate = transaction.ExpirationDate;
+						txtCCV.Text = transaction.CCV.ToString();
+						txtBillingAddress.Text = transaction.BillingAddress;
+						txtCity.Text = transaction.BillingCity;
+						rcbStates.SelectedValue = transaction.BillingState;
+						txtZip.Text = transaction.BillingZip;
 					}
 				}
 			}
@@ -151,7 +187,7 @@ namespace ConferencePlus.Controls
 
 			foreach (EnumFoodPreference foodPreference in EnumerationsHelper.GetEnumerationValues<EnumFoodPreference>(true, true))
 			{
-				rcbFoodPreference.Items.Add(new RadComboBoxItem(foodPreference.ToString(), ( (int)foodPreference ).ToString()));
+				rcbFoodPreference.Items.Add(new RadComboBoxItem(foodPreference.ToString(), foodPreference.ToString()));
 			}
 
 			rcbFoodPreference.DataBind();
@@ -166,7 +202,7 @@ namespace ConferencePlus.Controls
 
 			foreach (EnumFeeType feeType in EnumerationsHelper.GetEnumerationValues<EnumFeeType>(true, true))
 			{
-				rblFeeType.Items.Add(new ListItem(feeType.ToFormattedString(), ( (int)feeType ).ToString()));
+				rblFeeType.Items.Add(new ListItem(feeType.ToFormattedString(), feeType.ToString()));
 			}
 
 			rblFeeType.DataBind();
@@ -190,6 +226,18 @@ namespace ConferencePlus.Controls
 			{
 				pnlPaymentInfo.Visible = false;
 			}
+		}
+
+		private void LoadCreditCardTypes()
+		{
+			rcbCreditCardType.Items.Clear();
+
+			foreach (EnumCreditCardType cardType in EnumerationsHelper.GetEnumerationValues<EnumCreditCardType>(true, true))
+			{
+				rcbCreditCardType.Items.Add(new RadComboBoxItem(cardType.ToFormattedString(), cardType.ToString()));
+			}
+
+			rcbCreditCardType.ClearSelection();
 		}
 
 		private void LoadStates()
@@ -252,10 +300,39 @@ namespace ConferencePlus.Controls
 			}
 		}
 
-		private bool ValidateForm(out string errorMessage)
+		private Event LoadEventFromForm()
 		{
-			errorMessage = "test";
-			return false;
+			return new Event
+			{
+				Comments = txtComments.Text.TrimSafely(),
+				ConferenceId = ConferenceId,
+				EndDate = rdtpEndDate.SelectedDate.GetValueOrDefault(),
+				FoodPreference = EnumerationsHelper.ConvertFromString<EnumFoodPreference>(rcbFoodPreference.SelectedValue),
+				PaperId = int.Parse(rcbPaper.SelectedValue),
+				StartDate = rdtpStartDate.SelectedDate.GetValueOrDefault()
+			};
+		}
+
+		private Transaction LoadTransactionFromForm()
+		{
+			return new Transaction
+			{
+				BillingAddress = txtBillingAddress.Text.TrimSafely(),
+				BillingCity = txtCity.Text.TrimSafely(),
+				BillingState = rcbStates.SelectedValue,
+				BillingZip = txtZip.Text.TrimSafely(),
+				CCV = txtCCV.Value.GetValueOrDefault().ToInt(),
+				CreditCardNumber = txtCreditCardNumber.Text.TrimSafely(),
+				CreditCardType = EnumerationsHelper.ConvertFromString<EnumCreditCardType>(rcbCreditCardType.SelectedValue),
+				ExpirationDate = rdpExpirationDate.SelectedDate.GetValueOrDefault(),
+				Fee = txtFee.Value.GetValueOrDefault().ToDecimal(),
+				FeeAdjustment = lblFeeAdjustment.Text.HasValue()
+					? EnumerationsHelper.ConvertFromString<EnumFeeAdjustment>(lblFeeAdjustment.Text)
+					: (EnumFeeAdjustment?)null,
+				FeeType = EnumerationsHelper.ConvertFromString<EnumFeeType>(rblFeeType.SelectedValue),
+				TransactionDate = DateTime.Now,
+				UserId = UserId
+			};
 		}
 		#endregion
 	}

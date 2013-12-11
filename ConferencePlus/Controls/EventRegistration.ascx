@@ -84,14 +84,7 @@
 		</tr>
 		<tr>
 			<td>
-				<telerik:RadNumericTextBox ID="txtFee" runat="server" NumberFormat-DecimalDigits="2" Type="Currency" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<telerik:RadButton runat="server" ID="btnGoBack" Text="Go Back" CausesValidation="False" OnClick="btnGoBack_Click" Width="100px" Height="30px" />
-				<telerik:RadButton runat="server" ID="btnSave" Text="Save" CommandName="Update" Width="100px" Height="30px" />
-				<telerik:RadButton runat="server" ID="btnCancelTransaction" CausesValidation="False" CommandName="Cancel" Text="Cancel" Width="100px" Height="30px" />
+				<telerik:RadNumericTextBox ID="txtFee" runat="server" NumberFormat-DecimalDigits="2" Type="Currency" ReadOnly="True" />
 			</td>
 		</tr>
 	</table>
@@ -118,10 +111,10 @@
 								<asp:Label runat="server" ID="lblCreditCardType" Text="Credit Card Type: " />
 							</td>
 							<td>
-								<telerik:RadComboBox runat="server" ID="ddlCreditCardType" EmptyMessage="Please select a credit card type"
+								<telerik:RadComboBox runat="server" ID="rcbCreditCardType" EmptyMessage="Please select a credit card type"
 									EnableVirtualScrolling="True" MaxHeight="200px" Width="200px" />
 
-								<asp:RequiredFieldValidator runat="server" ID="valCreditCardType" ControlToValidate="ddlCreditCardType" InitialValue="" Display="Dynamic"
+								<asp:RequiredFieldValidator runat="server" ID="valCreditCardType" ControlToValidate="rcbCreditCardType" InitialValue="" Display="Dynamic"
 									ErrorMessage="*Credit Card Type Is Required" CssClass="text-danger" />
 							</td>
 						</tr>
@@ -140,11 +133,11 @@
 								<asp:Label runat="server" ID="lblExpirationDate" Text="Expiration Date: " />
 							</td>
 							<td>
-								<telerik:RadDatePicker runat="server" ID="dtExpirationDate" MinDate="1/1/2000" MaxDate="1/1/2099">
-									<DateInput DateFormat="MM/yyyy" DisplayDateFormat="MM/yyyy" />
+								<telerik:RadDatePicker runat="server" ID="rdpExpirationDate" MinDate="1/1/2000" MaxDate="1/1/2099">
+									<DateInput runat="Server" DateFormat="MM/yyyy" DisplayDateFormat="MM/yyyy" />
 								</telerik:RadDatePicker>
 
-								<asp:RequiredFieldValidator runat="server" ID="valExpirationDate" ControlToValidate="dtExpirationDate" Display="Dynamic"
+								<asp:RequiredFieldValidator runat="server" ID="valExpirationDate" ControlToValidate="rdpExpirationDate" Display="Dynamic"
 									ErrorMessage="*Expiration Date Is Required" CssClass="text-danger" />
 							</td>
 						</tr>
@@ -155,8 +148,7 @@
 							<td>
 								<telerik:RadNumericTextBox runat="server" ID="txtCCV" NumberFormat-DecimalDigits="0" NumberFormat-GroupSeparator="" MaxValue="9999" />
 
-								<asp:RequiredFieldValidator runat="server" ID="valCCV" ControlToValidate="txtCCV" Display="Dynamic"
-									ErrorMessage="*CCV Is Required" CssClass="text-danger" />
+								<asp:RequiredFieldValidator runat="server" ID="valCCV" ControlToValidate="txtCCV" Display="Dynamic" ErrorMessage="*CCV Is Required" CssClass="text-danger" />
 							</td>
 						</tr>
 						<tr>
@@ -204,6 +196,15 @@
 						</tr>
 					</table>
 				</fieldset>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				<telerik:RadButton runat="server" ID="btnGoBack" Text="Go Back" CausesValidation="False" OnClick="btnGoBack_Click" Width="100px" Height="30px" />
+				<telerik:RadButton runat="server" ID="btnSave" Text="Save" CommandName="Update" Width="100px" Height="30px" />
+				<telerik:RadButton runat="server" ID="btnCancelTransaction" CausesValidation="False" CommandName="Cancel" Text="Cancel" Width="100px" Height="30px" />
 			</td>
 		</tr>
 	</table>

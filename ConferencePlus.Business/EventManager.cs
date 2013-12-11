@@ -8,7 +8,6 @@
 // </summary>
 // ---------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,11 +113,6 @@ namespace ConferencePlus.Business
         {
             StringBuilder builder = new StringBuilder();
 
-            if (item.Comments.IsNullOrWhiteSpace())
-            {
-                builder.AppendHtmlLine("*Comments are required");
-            }
-
             if (!item.EndDate.IsValidWithSqlDateStandards())
             {
                 builder.AppendHtmlLine("*End date is required");
@@ -128,6 +122,11 @@ namespace ConferencePlus.Business
             {
                 builder.AppendHtmlLine("*Start date is required");
             }
+
+	        if (item.EndDate.OnOrBefore(item.StartDate))
+	        {
+                builder.AppendHtmlLine("*End date must be after start date");
+	        }
 
             if (item.ConferenceId == default(int))
             {
