@@ -64,7 +64,7 @@
 		</tr>
 		<tr>
 			<td colspan="3">
-				<telerik:RadButton runat="server" ID="btnContinue" Text="Save" OnClick="btnContinue_Click" Width="100px" Height="30px" />
+				<telerik:RadButton runat="server" ID="btnContinue" Text="Continue" OnClick="btnContinue_Click" Width="100px" Height="30px" />
 				<telerik:RadButton runat="server" ID="btnCancel" CausesValidation="False" CommandName="Cancel" Text="Cancel" Width="100px" Height="30px" />
 			</td>
 		</tr>

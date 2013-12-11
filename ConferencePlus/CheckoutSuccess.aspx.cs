@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using ConferencePlus.Base;
 using ConferencePlus.Business;
 using ConferencePlus.Entities;
@@ -39,6 +35,7 @@ namespace ConferencePlus
                 LoadPageFromTransaction(TransactionId);
             }
         }
+
         private void LoadPageFromTransaction(int transactionId)
         {
             Transaction transaction = TransactionManager.Load(transactionId);

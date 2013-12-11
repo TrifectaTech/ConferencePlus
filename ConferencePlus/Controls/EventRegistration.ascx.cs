@@ -27,6 +27,12 @@ namespace ConferencePlus.Controls
 			set { ViewState["CurrentEventId"] = value; }
 		}
 
+		public int? TransactionId
+		{
+			get { return (int?)ViewState["CurrentTransactionId"]; }
+			set { ViewState["CurrentTransactionId"] = value; }
+		}
+
 		protected void Page_Load(object sender, EventArgs e)
 		{
 
@@ -56,8 +62,18 @@ namespace ConferencePlus.Controls
 
 		public bool Save(out string errorMessage)
 		{
-			Event eventEntity = LoadEventFromForm();
-			Transaction transaction = LoadTransactionFromForm();
+			Event eventEntity = new Event();
+			Transaction transaction = new Transaction();
+
+			if (UserControlMode == EnumUserControlMode.Edit && EventId.HasValue)
+			{
+				eventEntity = EventManager.Load(EventId.Value);
+				transaction = TransactionManager.LoadByEvent(EventId.Value);
+			}
+
+			LoadEventFromForm(eventEntity);
+			LoadTransactionFromForm(transaction);
+			
 
 			string eventError,  transactionError = string.Empty;
 
@@ -71,6 +87,8 @@ namespace ConferencePlus.Controls
 					transaction.EventId = eventEntity.EventId.Value;
 
 					TransactionManager.Save(transaction, out errorMessage);
+
+					TransactionId = transaction.TransactionId;
 				}
 			}
 			else
@@ -300,39 +318,33 @@ namespace ConferencePlus.Controls
 			}
 		}
 
-		private Event LoadEventFromForm()
+		private void LoadEventFromForm(Event eventEntity)
 		{
-			return new Event
-			{
-				Comments = txtComments.Text.TrimSafely(),
-				ConferenceId = ConferenceId,
-				EndDate = rdtpEndDate.SelectedDate.GetValueOrDefault(),
-				FoodPreference = EnumerationsHelper.ConvertFromString<EnumFoodPreference>(rcbFoodPreference.SelectedValue),
-				PaperId = int.Parse(rcbPaper.SelectedValue),
-				StartDate = rdtpStartDate.SelectedDate.GetValueOrDefault()
-			};
+			eventEntity.Comments = txtComments.Text.TrimSafely();
+			eventEntity.ConferenceId = ConferenceId;
+			eventEntity.EndDate = rdtpEndDate.SelectedDate.GetValueOrDefault();
+			eventEntity.FoodPreference = EnumerationsHelper.ConvertFromString<EnumFoodPreference>(rcbFoodPreference.SelectedValue);
+			eventEntity.PaperId = int.Parse(rcbPaper.SelectedValue);
+			eventEntity.StartDate = rdtpStartDate.SelectedDate.GetValueOrDefault();
 		}
 
-		private Transaction LoadTransactionFromForm()
+		private void LoadTransactionFromForm(Transaction transaction)
 		{
-			return new Transaction
-			{
-				BillingAddress = txtBillingAddress.Text.TrimSafely(),
-				BillingCity = txtCity.Text.TrimSafely(),
-				BillingState = rcbStates.SelectedValue,
-				BillingZip = txtZip.Text.TrimSafely(),
-				CCV = txtCCV.Value.GetValueOrDefault().ToInt(),
-				CreditCardNumber = txtCreditCardNumber.Text.TrimSafely(),
-				CreditCardType = EnumerationsHelper.ConvertFromString<EnumCreditCardType>(rcbCreditCardType.SelectedValue),
-				ExpirationDate = rdpExpirationDate.SelectedDate.GetValueOrDefault(),
-				Fee = txtFee.Value.GetValueOrDefault().ToDecimal(),
-				FeeAdjustment = lblFeeAdjustment.Text.HasValue()
-					? EnumerationsHelper.ConvertFromString<EnumFeeAdjustment>(lblFeeAdjustment.Text)
-					: (EnumFeeAdjustment?)null,
-				FeeType = EnumerationsHelper.ConvertFromString<EnumFeeType>(rblFeeType.SelectedValue),
-				TransactionDate = DateTime.Now,
-				UserId = UserId
-			};
+			transaction.BillingAddress = txtBillingAddress.Text.TrimSafely();
+			transaction.BillingCity = txtCity.Text.TrimSafely();
+			transaction.BillingState = rcbStates.SelectedValue;
+			transaction.BillingZip = txtZip.Text.TrimSafely();
+			transaction.CCV = txtCCV.Value.GetValueOrDefault().ToInt();
+			transaction.CreditCardNumber = txtCreditCardNumber.Text.TrimSafely();
+			transaction.CreditCardType = EnumerationsHelper.ConvertFromString<EnumCreditCardType>(rcbCreditCardType.SelectedValue);
+			transaction.ExpirationDate = rdpExpirationDate.SelectedDate.GetValueOrDefault();
+			transaction.Fee = txtFee.Value.GetValueOrDefault().ToDecimal();
+			transaction.FeeAdjustment = lblFeeAdjustment.Text.HasValue()
+				? EnumerationsHelper.ConvertFromString<EnumFeeAdjustment>(lblFeeAdjustment.Text)
+				: (EnumFeeAdjustment?) null;
+			transaction.FeeType = EnumerationsHelper.ConvertFromString<EnumFeeType>(rblFeeType.SelectedValue);
+			transaction.TransactionDate = DateTime.Now;
+			transaction.UserId = UserId;
 		}
 		#endregion
 	}

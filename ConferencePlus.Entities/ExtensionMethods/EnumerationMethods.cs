@@ -116,7 +116,7 @@ namespace ConferencePlus.Entities.ExtensionMethods
                 return val.ToFormattedString();
             }
 
-            return enumValue.ToString();
+            return enumValue == null ? string.Empty : enumValue.ToString();
         }
 
     }

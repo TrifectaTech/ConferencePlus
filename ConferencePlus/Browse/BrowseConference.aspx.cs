@@ -71,10 +71,12 @@ namespace ConferencePlus.Browse
 
 					Guid userId = (Guid)item.GetDataKeyValue("UserId");
 
-					if (userId != CurrentUserId || (conference != null && conference.IsConferenceEnrollmentExpired))
+					if (userId != CurrentUserId || ( conference != null && conference.IsConferenceEnrollmentExpired ))
 					{
-						item["Edit"].Visible = false;
-						item["Delete"].Visible = false;
+						item["Edit"].Enabled = false;
+						item["Edit"].Text = string.Empty;
+						item["Delete"].Enabled = false;
+						item["Delete"].Text = string.Empty;
 					}
 				}
 			}
@@ -116,11 +118,21 @@ namespace ConferencePlus.Browse
 				if (control != null)
 				{
 					string errorMessage;
-					e.Canceled = !control.Save(out errorMessage);
-
-					if (errorMessage.HasValue())
+					if (control.Save(out errorMessage))
 					{
-						AjaxMessageBox(string.Format("Errors while saving:\n{0}", errorMessage));
+						int? transactionId = control.TransactionId;
+						if (transactionId.HasValue)
+						{
+							RadAjaxPanel1.ResponseScripts.Add(string.Format("return ShowSuccessDialog('{0}');", transactionId.Value));
+						}
+					}
+					else
+					{
+						e.Canceled = true;
+						if (errorMessage.HasValue())
+						{
+							AjaxMessageBox(string.Format("Errors while saving:\n{0}", errorMessage));
+						}
 					}
 				}
 			}

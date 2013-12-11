@@ -1,6 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BrowseConference.aspx.cs" Inherits="ConferencePlus.Browse.BrowseConference" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+	<telerik:RadWindowManager ID="RadWindowManager1" runat="server" Skin="BlackMetroTouch" Behaviors="None"
+		Title="Success" VisibleStatusbar="False" Modal="True" Width="1000px" Height="675px" />
+
+	<telerik:RadCodeBlock runat="server">
+		<script type="text/javascript">
+			function ShowSuccessDialog(transactionId) {
+				var oWnd = window.radopen('<%= ResolveUrl("~/CheckoutSuccess.aspx?TransactionId=") %>') + transactionId;
+				oWnd.center();
+			}
+
+        	function RedirectToRegisteredEvents() {
+        		window.location.assign('<%= ResolveUrl("~/Account/SearchRegisteredEvents.aspx") %>');
+        	}
+
+		</script>
+	</telerik:RadCodeBlock>
 	<h1>
 		<asp:Label runat="server" Text="Browse Conferences" />
 	</h1>
