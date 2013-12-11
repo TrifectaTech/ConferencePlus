@@ -29,6 +29,24 @@
 <table>
     <tr>
         <td>
+            Start Date:
+        </td>
+        <td>
+            <telerik:RadDateTimePicker ID="dtStartPicker" runat="server"/>
+            <asp:RequiredFieldValidator ID="valstart" ForeColor="Red" runat="server" Text="*" ControlToValidate="dtStartPicker" />
+        </td>
+        <td>
+            End Date:
+        </td>
+        <td>
+            <telerik:RadDateTimePicker ID="dtEndPicker" runat="server"/>
+            <asp:RequiredFieldValidator ID="valend" ForeColor="Red" runat="server" Text="*" ControlToValidate="dtEndPicker" />
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
             <asp:Label ID="lblError" runat="server" ForeColor="Red" />
         </td>
     </tr>

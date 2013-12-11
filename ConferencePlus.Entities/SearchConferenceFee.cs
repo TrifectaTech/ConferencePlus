@@ -44,6 +44,16 @@ namespace ConferencePlus.Entities
         public decimal? Multiplier { get; set; }
 
         /// <summary>
+        /// Gets or sets EffectiveStartDate.
+        /// </summary>
+        public DateTime? EffectiveStartDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets EffectiveEndDate.
+        /// </summary>
+        public DateTime? EffectiveEndDate { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the SearchConferenceFee class.
         /// </summary>
         public SearchConferenceFee()
@@ -53,6 +63,8 @@ namespace ConferencePlus.Entities
             FeeAdjustment = null;
             FeeType = null;
             Multiplier = null;
+            EffectiveStartDate = null;
+            EffectiveEndDate = null;
         }
 	}
 }
