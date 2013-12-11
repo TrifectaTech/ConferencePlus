@@ -78,7 +78,7 @@
                                             </td>
                                             <td>
                                                 <telerik:RadDatePicker runat="server" ID="dtExpirationDate" MinDate="1/1/2000" MaxDate="1/1/2099">
-                                                    <DateInput DateFormat="MM/yyyy" DisplayDateFormat="MM/yyyy" />
+                                                    <DateInput runat="server" DateFormat="MM/yyyy" DisplayDateFormat="MM/yyyy" />
                                                 </telerik:RadDatePicker>
 
                                                 <asp:RequiredFieldValidator runat="server" ID="valExpirationDate" ControlToValidate="dtExpirationDate" Display="Dynamic"
