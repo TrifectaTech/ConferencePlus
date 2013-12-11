@@ -109,7 +109,7 @@ namespace ConferencePlus.Entities.Common
     {
         None = 0,
 
-        Banquest = 1,
+        Banquet = 1,
 
         Symposium = 2
     }
