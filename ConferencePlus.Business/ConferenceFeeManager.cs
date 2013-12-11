@@ -8,6 +8,7 @@
 // </summary>
 // ---------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace ConferencePlus.Business
 		/// <returns>An IEnumerable set of ConferenceFee</returns>
 		public static IEnumerable<ConferenceFee> Search(SearchConferenceFee search)
 		{
-            return ConferenceFeeDao.Search(search);
+			return ConferenceFeeDao.Search(search);
 		}
 
 		/// <summary>
@@ -40,12 +41,12 @@ namespace ConferencePlus.Business
 		/// <returns>ConferenceFee entity</returns>
 		public static ConferenceFee Load(int conferenceFeeId)
 		{
-            SearchConferenceFee search
-                = new SearchConferenceFee
-                    {
-                        ConferenceFeeId = conferenceFeeId
-                    };
-            return Search(search).FirstOrDefault();
+			SearchConferenceFee search
+				= new SearchConferenceFee
+					{
+						ConferenceFeeId = conferenceFeeId
+					};
+			return Search(search).FirstOrDefault();
 		}
 
 		/// <summary>
@@ -55,12 +56,12 @@ namespace ConferencePlus.Business
 		/// <returns>An IEnumerable set of ConferenceFee</returns>
 		public static IEnumerable<ConferenceFee> LoadOnConferenceId(int conferenceId)
 		{
-            SearchConferenceFee search
-                = new SearchConferenceFee
-                    {
-                        ConferenceId = conferenceId
-                    };
-            return Search(search);
+			SearchConferenceFee search
+				= new SearchConferenceFee
+					{
+						ConferenceId = conferenceId
+					};
+			return Search(search);
 		}
 
 		/// <summary>
@@ -68,15 +69,15 @@ namespace ConferencePlus.Business
 		/// </summary>
 		/// <param name="item">Entity to save</param>
 		/// <param name="errorMessage">Error Message</param>
-        /// <returns>return true if save successfully, else return false</returns>
+		/// <returns>return true if save successfully, else return false</returns>
 		public static bool Save(ConferenceFee item, out string errorMessage)
 		{
 			bool isValid = Validate(item, out errorMessage);
 
-            if (isValid)
-            {
-                ConferenceFeeDao.Save(item);
-            }
+			if (isValid)
+			{
+				ConferenceFeeDao.Save(item);
+			}
 
 			return isValid;
 		}
@@ -111,74 +112,74 @@ namespace ConferencePlus.Business
 				builder.AppendHtmlLine("*Multiplier must be greater than or equal to 0");
 			}
 
-            if (!item.EffectiveStartDate.IsValidWithSqlDateStandards())
-            {
-                builder.AppendHtmlLine("*EffectiveStartDate is not valid with Sql Date Standards.");
-            }
+			if (!item.EffectiveStartDate.IsValidWithSqlDateStandards())
+			{
+				builder.AppendHtmlLine("*EffectiveStartDate is not valid with Sql Date Standards.");
+			}
 
-            if (!item.EffectiveEndDate.IsValidWithSqlDateStandards())
-            {
-                builder.AppendHtmlLine("*EffectiveEndDate is not valid with Sql Date Standards.");
-            }
+			if (!item.EffectiveEndDate.IsValidWithSqlDateStandards())
+			{
+				builder.AppendHtmlLine("*EffectiveEndDate is not valid with Sql Date Standards.");
+			}
 
-            if (item.EffectiveEndDate <= item.EffectiveStartDate)
-            {
-                builder.AppendHtmlLine("*Effective End Date needs to be after the Effective Start Date");
-            }
+			if (item.EffectiveEndDate <= item.EffectiveStartDate)
+			{
+				builder.AppendHtmlLine("*Effective End Date needs to be after the Effective Start Date");
+			}
 
-            if (builder.ToString().IsNullOrWhiteSpace())
-            {
-                SearchConferenceFee searchList = new SearchConferenceFee{FeeType = item.FeeType, FeeAdjustment = item.FeeAdjustment, ConferenceId = item.ConferenceId};
-                List<ConferenceFee> feeList = Search(searchList).Where(t => t.ConferenceFeeId != item.ConferenceFeeId.GetValueOrDefault(0)).ToList();
+			if (builder.ToString().IsNullOrWhiteSpace())
+			{
+				SearchConferenceFee searchList = new SearchConferenceFee { FeeType = item.FeeType, FeeAdjustment = item.FeeAdjustment, ConferenceId = item.ConferenceId };
+				List<ConferenceFee> feeList = Search(searchList).Where(t => t.ConferenceFeeId != item.ConferenceFeeId.GetValueOrDefault(0)).ToList();
 
-                if (feeList.SafeAny())
-                {
-                    builder.AppendHtmlLine("*Cannot contain a duplicate Conference Fee Type Entry.");
-                }
-                else
-                {
-                    SearchConferenceFee allSearch = new SearchConferenceFee { FeeType = item.FeeType, ConferenceId = item.ConferenceId };
-                    List<ConferenceFee> allList = Search(searchList).Where(t => t.ConferenceFeeId != item.ConferenceFeeId.GetValueOrDefault(0) ).ToList();
+				if (feeList.SafeAny())
+				{
+					builder.AppendHtmlLine("*Cannot contain a duplicate Conference Fee Type Entry.");
+				}
+				else
+				{
+					SearchConferenceFee allSearch = new SearchConferenceFee { FeeType = item.FeeType, ConferenceId = item.ConferenceId };
+					List<ConferenceFee> allList = Search(allSearch).Where(t => t.ConferenceFeeId != item.ConferenceFeeId.GetValueOrDefault(0)).ToList();
 
-                    if (allList.SafeAny())
-                    {
+					if (allList.SafeAny())
+					{
 
-                        if (allList.SafeAny(t => item.EffectiveStartDate.Between(t.EffectiveStartDate, t.EffectiveEndDate) || item.EffectiveEndDate.Between(t.EffectiveStartDate, t.EffectiveEndDate)))
-                        {
-                            builder.AppendHtmlLine("*There is a conflict with the dates for Conference Fee.");
-                        }
+						if (allList.SafeAny(t => item.EffectiveStartDate.Between(t.EffectiveStartDate, t.EffectiveEndDate) || item.EffectiveEndDate.Between(t.EffectiveStartDate, t.EffectiveEndDate)))
+						{
+							builder.AppendHtmlLine("*There is a conflict with the dates for Conference Fee.");
+						}
 
-                        if (builder.ToString().IsNullOrWhiteSpace())
-                        {
-                            if (item.FeeAdjustment == EnumFeeAdjustment.Early)
-                            {
-                                if (allList.SafeAny(t => item.EffectiveStartDate.OnOrAfter(t.EffectiveStartDate)))
-                                {
-                                    builder.AppendHtmlLine("*Early Fee Type needs to be before Normal or On-Site Fee Type.");
-                                }
-                            }
-                            else if (item.FeeAdjustment == EnumFeeAdjustment.Normal)
-                            {
-                                if (allList.SafeAny(t => item.EffectiveStartDate.OnOrAfter(t.EffectiveStartDate) && t.FeeAdjustment == EnumFeeAdjustment.OnSite))
-                                {
-                                    builder.AppendHtmlLine("*Normal Fee Type needs to be before On-Site Fee Type.");
-                                }
-                                else if (allList.SafeAny(t => item.EffectiveStartDate.OnOrBefore(t.EffectiveEndDate) && t.FeeAdjustment == EnumFeeAdjustment.Early))
-                                {
-                                    builder.AppendHtmlLine("*Normal Fee Type needs to be after Early Fee Type.");
-                                }
-                            }
-                            else if (item.FeeAdjustment == EnumFeeAdjustment.OnSite)
-                            {
-                                if (allList.SafeAny(t => item.EffectiveStartDate.OnOrBefore(t.EffectiveEndDate)))
-                                {
-                                    builder.AppendHtmlLine("*Early Fee Type needs to be after Normal or Early Fee Type.");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+						if (builder.ToString().IsNullOrWhiteSpace())
+						{
+							if (item.FeeAdjustment == EnumFeeAdjustment.Early)
+							{
+								if (allList.SafeAny(t => item.EffectiveStartDate.OnOrAfter(t.EffectiveStartDate)))
+								{
+									builder.AppendHtmlLine("*Early Fee Type needs to be before Normal or On-Site Fee Type.");
+								}
+							}
+							else if (item.FeeAdjustment == EnumFeeAdjustment.Normal)
+							{
+								if (allList.SafeAny(t => item.EffectiveStartDate.OnOrAfter(t.EffectiveStartDate) && t.FeeAdjustment == EnumFeeAdjustment.OnSite))
+								{
+									builder.AppendHtmlLine("*Normal Fee Type needs to be before On-Site Fee Type.");
+								}
+								else if (allList.SafeAny(t => item.EffectiveStartDate.OnOrBefore(t.EffectiveEndDate) && t.FeeAdjustment == EnumFeeAdjustment.Early))
+								{
+									builder.AppendHtmlLine("*Normal Fee Type needs to be after Early Fee Type.");
+								}
+							}
+							else if (item.FeeAdjustment == EnumFeeAdjustment.OnSite)
+							{
+								if (allList.SafeAny(t => item.EffectiveStartDate.OnOrBefore(t.EffectiveEndDate)))
+								{
+									builder.AppendHtmlLine("*Early Fee Type needs to be after Normal or Early Fee Type.");
+								}
+							}
+						}
+					}
+				}
+			}
 
 			errorMessage = builder.ToString();
 
@@ -194,9 +195,17 @@ namespace ConferencePlus.Business
 			ConferenceFeeDao.Delete(conferenceFeeId);
 		}
 
-		public static decimal CalculateFee(int conferenceId, EnumFeeType feeType)
+		/// <summary>
+		/// Calculates Fee
+		/// </summary>
+		/// <param name="conferenceId" />
+		/// <param name="feeType" />
+		/// <param name="conferenceFee" />
+		/// <returns>Fee for specific FeeType</returns>
+		public static decimal CalculateFee(int conferenceId, EnumFeeType feeType, out ConferenceFee conferenceFee)
 		{
 			decimal fee = default(decimal);
+			conferenceFee = null;
 
 			Conference conference = ConferenceManager.Load(conferenceId);
 			if (conference != null)
@@ -206,7 +215,16 @@ namespace ConferencePlus.Business
 				List<ConferenceFee> conferenceFeeList = LoadOnConferenceId(conferenceId).Where(c => c.FeeType == feeType).ToList();
 				if (conferenceFeeList.SafeAny())
 				{
-					
+					conferenceFee
+						= conferenceFeeList.FirstOrDefault(c => DateTimeMethods.DoDatesOverlap(c.EffectiveStartDate,
+																							   c.EffectiveEndDate,
+																							   DateTime.Today,
+																							   DateTime.Today));
+
+					if (conferenceFee != null)
+					{
+						fee *= conferenceFee.Multiplier;
+					}
 				}
 			}
 

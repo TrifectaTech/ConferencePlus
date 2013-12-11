@@ -22,6 +22,11 @@ namespace ConferencePlus.Entities
         /// </summary>
         public int? TransactionId { get; set; }
 
+		/// <summary>
+		/// Gets or sets EventId.
+		/// </summary>
+		public int? EventId { get; set; }
+
         /// <summary>
         /// Gets or sets UserId.
         /// </summary>
@@ -93,6 +98,7 @@ namespace ConferencePlus.Entities
         public SearchTransaction()
         {
             TransactionId = null;
+	        EventId = null;
             UserId = null;
             FeeType = null;
             FeeAdjustment = null;

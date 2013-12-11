@@ -19,257 +19,269 @@ namespace ConferencePlus.Entities
 	[Serializable]
 	public class PaymentInfo
 	{
+		public static string DataTextField { get { return "DisplayName"; } }
+
+		public static string DataValueField { get { return "PaymentInfoId"; } }
+
 		public bool IsItemModified { get; set; }
 
-        private int? paymentInfoId;
+		private int? paymentInfoId;
 
-        /// <summary>
-        /// Gets or sets PaymentInfoId.
-        /// </summary>
-        [SqlName("PaymentInfoId")]
-        public int? PaymentInfoId
-        {   
-            get 
-            {
-                return paymentInfoId;
-            }
-            set
-            {
-                if (value != paymentInfoId)
-                {
-                    paymentInfoId = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets PaymentInfoId.
+		/// </summary>
+		[SqlName("PaymentInfoId")]
+		public int? PaymentInfoId
+		{
+			get
+			{
+				return paymentInfoId;
+			}
+			set
+			{
+				if (value != paymentInfoId)
+				{
+					paymentInfoId = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-        private Guid userId;
+		private Guid userId;
 
-        /// <summary>
-        /// Gets or sets UserId.
-        /// </summary>
-        [SqlName("UserId")]
-        public Guid UserId
-        {   
-            get 
-            {
-                return userId;
-            }
-            set
-            {
-                if (value != userId)
-                {
-                    userId = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets UserId.
+		/// </summary>
+		[SqlName("UserId")]
+		public Guid UserId
+		{
+			get
+			{
+				return userId;
+			}
+			set
+			{
+				if (value != userId)
+				{
+					userId = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-        private string creditCardNumber;
+		private string creditCardNumber;
 
-        /// <summary>
-        /// Gets or sets CreditCardNumber.
-        /// </summary>
-        [SqlName("CreditCardNumber")]
-        public string CreditCardNumber
-        {   
-            get 
-            {
-                return creditCardNumber;
-            }
-            set
-            {
-                if (value != creditCardNumber)
-                {
-                    creditCardNumber = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets CreditCardNumber.
+		/// </summary>
+		[SqlName("CreditCardNumber")]
+		public string CreditCardNumber
+		{
+			get
+			{
+				return creditCardNumber;
+			}
+			set
+			{
+				if (value != creditCardNumber)
+				{
+					creditCardNumber = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-        private EnumCreditCardType creditCardType;
+		private EnumCreditCardType creditCardType;
 
-        /// <summary>
-        /// Gets or sets CreditCardType.
-        /// </summary>
-        [SqlName("CreditCardTypeId")]
-        public EnumCreditCardType CreditCardType
-        {   
-            get 
-            {
-                return creditCardType;
-            }
-            set
-            {
-                if (value != creditCardType)
-                {
-                    creditCardType = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets CreditCardType.
+		/// </summary>
+		[SqlName("CreditCardTypeId")]
+		public EnumCreditCardType CreditCardType
+		{
+			get
+			{
+				return creditCardType;
+			}
+			set
+			{
+				if (value != creditCardType)
+				{
+					creditCardType = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-	    public string FormattedCreditCardType
-	    {
-	        get
-	        {
-	            return CreditCardType.ToFormattedString();
-	        }
-	    }
+		public string FormattedCreditCardType
+		{
+			get
+			{
+				return CreditCardType.ToFormattedString();
+			}
+		}
 
-        private DateTime expirationDate;
+		private DateTime expirationDate;
 
-        /// <summary>
-        /// Gets or sets ExpirationDate.
-        /// </summary>
-        [SqlName("ExpirationDate")]
-        public DateTime ExpirationDate
-        {   
-            get 
-            {
-                return expirationDate;
-            }
-            set
-            {
-                if (value != expirationDate)
-                {
-                    expirationDate = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets ExpirationDate.
+		/// </summary>
+		[SqlName("ExpirationDate")]
+		public DateTime ExpirationDate
+		{
+			get
+			{
+				return expirationDate;
+			}
+			set
+			{
+				if (value != expirationDate)
+				{
+					expirationDate = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-        private int ccv;
+		private int ccv;
 
-        /// <summary>
-        /// Gets or sets CCV.
-        /// </summary>
-        [SqlName("CCV")]
-        public int CCV
-        {   
-            get 
-            {
+		/// <summary>
+		/// Gets or sets CCV.
+		/// </summary>
+		[SqlName("CCV")]
+		public int CCV
+		{
+			get
+			{
 				return ccv;
-            }
-            set
-            {
+			}
+			set
+			{
 				if (value != ccv)
-                {
+				{
 					ccv = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+					IsItemModified = true;
+				}
+			}
+		}
 
-        private string billingAddress;
+		private string billingAddress;
 
-        /// <summary>
-        /// Gets or sets BillingAddress.
-        /// </summary>
-        [SqlName("BillingAddress")]
-        public string BillingAddress
-        {   
-            get 
-            {
-                return billingAddress;
-            }
-            set
-            {
-                if (value != billingAddress)
-                {
-                    billingAddress = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets BillingAddress.
+		/// </summary>
+		[SqlName("BillingAddress")]
+		public string BillingAddress
+		{
+			get
+			{
+				return billingAddress;
+			}
+			set
+			{
+				if (value != billingAddress)
+				{
+					billingAddress = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-        private string billingCity;
+		private string billingCity;
 
-        /// <summary>
-        /// Gets or sets BillingCity.
-        /// </summary>
-        [SqlName("BillingCity")]
-        public string BillingCity
-        {   
-            get 
-            {
-                return billingCity;
-            }
-            set
-            {
-                if (value != billingCity)
-                {
-                    billingCity = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets BillingCity.
+		/// </summary>
+		[SqlName("BillingCity")]
+		public string BillingCity
+		{
+			get
+			{
+				return billingCity;
+			}
+			set
+			{
+				if (value != billingCity)
+				{
+					billingCity = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-        private string billingState;
+		private string billingState;
 
-        /// <summary>
-        /// Gets or sets BillingState.
-        /// </summary>
-        [SqlName("BillingState")]
-        public string BillingState
-        {   
-            get 
-            {
-                return billingState;
-            }
-            set
-            {
-                if (value != billingState)
-                {
-                    billingState = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets BillingState.
+		/// </summary>
+		[SqlName("BillingState")]
+		public string BillingState
+		{
+			get
+			{
+				return billingState;
+			}
+			set
+			{
+				if (value != billingState)
+				{
+					billingState = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-        private string billingZip;
+		private string billingZip;
 
-        /// <summary>
-        /// Gets or sets BillingZip.
-        /// </summary>
-        [SqlName("BillingZip")]
-        public string BillingZip
-        {   
-            get 
-            {
-                return billingZip;
-            }
-            set
-            {
-                if (value != billingZip)
-                {
-                    billingZip = value;
-                    IsItemModified = true;
-                }
-            }
-        }
+		/// <summary>
+		/// Gets or sets BillingZip.
+		/// </summary>
+		[SqlName("BillingZip")]
+		public string BillingZip
+		{
+			get
+			{
+				return billingZip;
+			}
+			set
+			{
+				if (value != billingZip)
+				{
+					billingZip = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
-        /// <summary>
-        /// Initializes a new instance of the PaymentInfo class.
-        /// </summary>
-        public PaymentInfo()
-        {
-            PaymentInfoId = default(int?);
-            UserId = default(Guid);
-            CreditCardNumber = default(string);
-            CreditCardType = default(EnumCreditCardType);
-            ExpirationDate = default(DateTime);
-            CCV = default(int);
-            BillingAddress = default(string);
-            BillingCity = default(string);
-            BillingState = default(string);
-            BillingZip = default(string);
-            IsItemModified = false;
-        }
+		/// <summary>
+		/// Initializes a new instance of the PaymentInfo class.
+		/// </summary>
+		public PaymentInfo()
+		{
+			PaymentInfoId = default(int?);
+			UserId = default(Guid);
+			CreditCardNumber = default(string);
+			CreditCardType = default(EnumCreditCardType);
+			ExpirationDate = default(DateTime);
+			CCV = default(int);
+			BillingAddress = default(string);
+			BillingCity = default(string);
+			BillingState = default(string);
+			BillingZip = default(string);
+			IsItemModified = false;
+		}
 
 		public override string ToString()
 		{
 			return string.Format("PaymentInfoId: {0}, UserId: {1}, CreditCardNumber: {2}, CreditCardType: {3};", PaymentInfoId, UserId, CreditCardNumber, CreditCardType);
+		}
+
+		public string DisplayName
+		{
+			get
+			{
+				return string.Format("{0} - {1}", CreditCardType.ToFormattedString(), ExpirationDate.ToString("MM/yyyy"));
+			}
 		}
 	}
 }

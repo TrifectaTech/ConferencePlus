@@ -49,6 +49,19 @@ namespace ConferencePlus.Business
 			return Search(search).FirstOrDefault();
         }
 
+		/// <summary>
+		/// Loads Transaction by EventId
+		/// </summary>
+		/// <param name="eventId" />
+		/// <returns>Transaction entity object</returns>
+		public static Transaction LoadByEvent(int eventId)
+		{
+			return Search(new SearchTransaction
+			{
+				EventId = eventId
+			}).FirstOrDefault();
+		}
+
         /// <summary>
         /// Save Transaction Entity
         /// </summary>

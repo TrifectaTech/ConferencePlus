@@ -8,6 +8,7 @@
 // </summary>
 // ---------------------------------
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using ConferencePlus.Entities.Common;
 
 namespace ConferencePlus.Entities
@@ -41,6 +42,28 @@ namespace ConferencePlus.Entities
                 }
             }
         }
+
+		private int eventId;
+
+		/// <summary>
+		/// Gets or sets EventId.
+		/// </summary>
+		[SqlName("EventId")]
+		public int EventId
+		{
+			get
+			{
+				return eventId;
+			}
+			set
+			{
+				if (value != eventId)
+				{
+					eventId = value;
+					IsItemModified = true;
+				}
+			}
+		}
 
         private Guid userId;
 
@@ -334,6 +357,7 @@ namespace ConferencePlus.Entities
         public Transaction()
         {
             TransactionId = default(int?);
+	        EventId = default(int);
             UserId = default(Guid);
             FeeType = default(EnumFeeType);
             FeeAdjustment = default(EnumFeeAdjustment);

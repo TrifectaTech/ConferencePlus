@@ -92,6 +92,7 @@ namespace ConferencePlus.Entities.ExtensionMethods
         {
             return value > 0;
         }
+
         /// <summary>
         /// Rounds up to two double values with MidpointAway From zero.
         /// </summary>
@@ -101,5 +102,15 @@ namespace ConferencePlus.Entities.ExtensionMethods
         {
             return Math.Round(value, 2, MidpointRounding.AwayFromZero);
         }
+
+		/// <summary>
+		/// Returns value as Decimal
+		/// </summary>
+		/// <param name="value" />
+		/// <returns>Value as a Decimal</returns>
+	    public static decimal ToDecimal(this double value)
+	    {
+		    return (decimal) value;
+	    }
     }
 }

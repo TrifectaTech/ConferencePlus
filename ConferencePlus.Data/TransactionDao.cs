@@ -36,6 +36,7 @@ namespace ConferencePlus.Data
                 = new List<SqlParameter>
 					{
 						new SqlParameter("@TransactionId", item.TransactionId),
+						new SqlParameter("@EventId", item.EventId),
                         new SqlParameter("@UserId", item.UserId),
                         new SqlParameter("@FeeTypeId", item.FeeType),
                         new SqlParameter("@FeeAdjustmentId", item.FeeAdjustment),
@@ -85,6 +86,7 @@ namespace ConferencePlus.Data
             List<SqlParameter> parameters 
 				= new List<SqlParameter>
 					{
+						new SqlParameter("@EventId", item.EventId),						
 						new SqlParameter("@UserId", item.UserId),
                         new SqlParameter("@FeeTypeId", item.FeeType),
                         new SqlParameter("@FeeAdjustmentId", item.FeeAdjustment),
@@ -112,6 +114,7 @@ namespace ConferencePlus.Data
 				= new List<SqlParameter>
 					{
 						new SqlParameter("@TransactionId", item.TransactionId),
+						new SqlParameter("@EventId", item.EventId),
                         new SqlParameter("@UserId", item.UserId),
                         new SqlParameter("@FeeTypeId", item.FeeType),
                         new SqlParameter("@FeeAdjustmentId", item.FeeAdjustment),
@@ -153,6 +156,7 @@ namespace ConferencePlus.Data
             return dataRows.Select(row => new Transaction
 				{
                     TransactionId = row.GetValue<int>("TransactionId"),
+					EventId = row.GetValue<int>("EventId"),
                     UserId = row.GetValue<Guid>("UserId"),
                     FeeType = row.GetValue<EnumFeeType>("FeeTypeId"),
                     FeeAdjustment = row.GetValue<EnumFeeAdjustment>("FeeAdjustmentId"),
