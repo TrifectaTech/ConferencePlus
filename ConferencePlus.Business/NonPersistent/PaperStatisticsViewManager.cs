@@ -27,6 +27,17 @@ namespace ConferencePlus.Business.NonPersistent
         public static IEnumerable<PaperStatisticsView> Search(SearchPaperStatisticsView search)
         {            
 			return search == null ? new List <PaperStatisticsView>() : PaperStatisticsViewDao.Search(search);
-        }	
+        }
+
+        /// <summary>
+        /// Search all paper types with count
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        public static IEnumerable<PaperStatisticsView> LoadAll()
+        {
+            return Search(new SearchPaperStatisticsView());
+        }
+
     }
 }
