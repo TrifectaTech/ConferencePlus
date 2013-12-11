@@ -16,7 +16,10 @@
     <telerik:RadAjaxPanel ID="ajxPnl" LoadingPanelID="LdingPnl" runat="server" ClientEvents-OnRequestStart="onRequestStart">
     <asp:Label ID="lblmessage" runat="server" ForeColor="Red" />
     <br />
-    <asp:Panel ID="pnlExport" runat="server" GroupingText="Export">
+        <div class="container">
+        <fieldset>
+            <legend>Export</legend>
+        </fieldset>
         <table>
             <tr>
                 <td>
@@ -24,9 +27,12 @@
                 </td>
             </tr>
         </table>
-    </asp:Panel>
+          
     <br />
-
+            <div class="container">
+        <fieldset>
+            <legend class="text-info">Conferences</legend>
+        </fieldset>
     <telerik:RadGrid ID="grdConference" OnNeedDataSource="grdConference_NeedDataSource" OnUpdateCommand="grdConference_UpdateCommand"
         runat="server" OnItemDataBound="grdConference_ItemDataBound" AutoGenerateColumns="false" AllowSorting="true" AllowFilteringByColumn="true"
         AllowPaging="true" OnDetailTableDataBind="grdConference_DetailTableDataBind" OnDeleteCommand="grdConference_DeleteCommand" Skin="MetroTouch">
@@ -59,5 +65,6 @@
             </DetailTables>
         </MasterTableView>
     </telerik:RadGrid>
+                  </div>
         </telerik:RadAjaxPanel>
 </asp:Content>
