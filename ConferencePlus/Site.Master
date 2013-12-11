@@ -57,7 +57,7 @@
 					<ul class="nav navbar-nav">
 						<li><a runat="server" href="~/Browse/BrowseConference.aspx">Browse Conferences</a></li>
                         <asp:Panel runat="server" ID="pnlMemberFunctions" Visible="False" CssClass="nav navbar-nav">
-                        <li><a runat="server" href="~/Account/SearchRegisteredEvents.aspx">Search Past Registered Events</a></li>
+                        <li><a runat="server" href="~/Account/SearchRegisteredEvents.aspx">Registered Events</a></li>
                         </asp:Panel>
                         <asp:Panel runat="server" ID="pnlAdminFunctions" Visible="False" CssClass="nav navbar-nav">
                         <li><a runat="server" href="~/Admin/ManageConference.aspx">Manage Conferences</a></li>

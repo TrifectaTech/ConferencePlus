@@ -8,6 +8,7 @@
 // </summary>
 // ---------------------------------
 
+using System;
 using System.Collections.Generic;
 using ConferencePlus.Data.NonPersistent;
 using ConferencePlus.Entities.NonPersistent;
@@ -41,5 +42,13 @@ namespace ConferencePlus.Business.NonPersistent
 			    ConferenceId = conferenceId
 		    });
 	    }
+
+        public static IEnumerable<ConferenceEventsView> LoadByUserId(Guid userId)
+        {
+            return Search(new SearchConferenceEventsView
+            {
+                UserId = userId
+            });
+        }
     }
 }
