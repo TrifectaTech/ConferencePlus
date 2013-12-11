@@ -10,6 +10,7 @@
 
 using System;
 using ConferencePlus.Entities.Common;
+using ConferencePlus.Entities.ExtensionMethods;
 
 namespace ConferencePlus.Entities.NonPersistent
 {
@@ -38,6 +39,21 @@ namespace ConferencePlus.Entities.NonPersistent
         /// Gets or sets ConferenceId.
         /// </summary>
         public int ConferenceId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public EnumActivityType ActivityType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ConferenceDescription { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ConferenceName { get; set; }
 
         /// <summary>
         /// Gets or sets StartDate.
@@ -79,6 +95,49 @@ namespace ConferencePlus.Entities.NonPersistent
         /// </summary>
         public string Author { get; set; }
 
+	    public string FormattedFoodPreference
+	    {
+	        get
+	        {
+	            return FoodPreference.ToFormattedString();
+	        }
+	    }
+
+	    public string FormattedPaperCategory
+	    {
+	        get
+	        {
+	            return PaperCategory.ToFormattedString();
+	        }
+	    }
+
+	    public string FormattedActivityType
+	    {
+	        get
+	        {
+	            return ActivityType.ToFormattedString();
+	        }
+	    }
+
+	    public DateTime ConferenceStartDate
+	    {
+	        get; set;
+	    }
+
+	    public DateTime ConferenceEndDate
+	    {
+	        get; set;
+	    }
+
+	    public string FormattedConferenceDate
+	    {
+	        get
+	        {
+	            return string.Format("{0} to {1}", ConferenceStartDate.ToShortDateString(),
+	                ConferenceEndDate.ToShortDateString());
+	        }
+	    }
+
         /// <summary>
         /// Initializes a new instance of the ConferenceEventsView class.
         /// </summary>
@@ -96,6 +155,11 @@ namespace ConferencePlus.Entities.NonPersistent
             Description = default(string);
             PaperCategory = default(EnumPaperCategory);
             Author = default(string);
+            ConferenceDescription = default(string);
+            ConferenceName = default(string);
+            ActivityType = default(EnumActivityType);
+            ConferenceStartDate = default(DateTime);
+            ConferenceEndDate = default(DateTime);
         }
 
 		//Returns a proper string denoting this entity

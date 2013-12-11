@@ -22,7 +22,7 @@
         <telerik:RadMultiPage runat="server" ID="mpManageAccount" SelectedIndex="0">
             <telerik:RadPageView runat="server" ID="pvPaymentInformation">
                 <telerik:RadGrid runat="server" ID="grdPaymentInfo" AllowSorting="True" AllowAutomaticDeletes="False" Skin="MetroTouch"
-                    AllowAutomaticInserts="False" AllowAutomaticUpdates="False" Width="" AllowMultiRowEdit="False"
+                    AllowAutomaticInserts="False" AllowAutomaticUpdates="False" AllowMultiRowEdit="False"
                     AutoGenerateColumns="False" AllowPaging="True" OnNeedDataSource="grdPaymentInfo_OnNeedDataSource" OnInsertCommand="grdPaymentInfo_OnInsertCommand"
                     OnDeleteCommand="grdPaymentInfo_OnDeleteCommand" OnUpdateCommand="grdPaymentInfo_OnUpdateCommand" OnItemDataBound="grdPaymentInfo_OnItemDataBound">
                     <MasterTableView Name="grdPaymentInfo" DataKeyNames="UserId,PaymentInfoId" CommandItemDisplay="Top"

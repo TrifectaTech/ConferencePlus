@@ -46,7 +46,7 @@ namespace ConferencePlus.Data.NonPersistent
                         new SqlParameter("@Name", item.Name),
                         new SqlParameter("@Description", item.Description),
                         new SqlParameter("@PaperCategoryId", (int?)item.PaperCategory),
-                        new SqlParameter("@Author", item.Author)
+                        new SqlParameter("@Author", item.Author),
 					};
 
             DataSet set = DataManager.ExecuteProcedure(ConferencePlusConnectionString, "PCP_GetVCP_ConferenceEvents", parameters);
@@ -74,7 +74,12 @@ namespace ConferencePlus.Data.NonPersistent
 		        Name = row.GetValue<string>("Name").TrimSafely(),
 		        Description = row.GetValue<string>("Description").TrimSafely(),
 		        PaperCategory = row.GetValue<EnumPaperCategory>("PaperCategoryId"),
-		        Author = row.GetValue<string>("Author").TrimSafely()
+		        Author = row.GetValue<string>("Author").TrimSafely(),
+                ActivityType = row.GetValue<EnumActivityType>("ActivityTypeId"),
+                ConferenceDescription = row.GetValue<string>("ConferenceDescription"),
+                ConferenceName = row.GetValue<string>("ConferenceName"),
+                ConferenceEndDate = row.GetValue<DateTime>("ConferenceEndDate"),
+                ConferenceStartDate = row.GetValue<DateTime>("ConferenceStartDate")
 	        });
         }
     }
