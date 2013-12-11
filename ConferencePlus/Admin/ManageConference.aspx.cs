@@ -123,5 +123,10 @@ namespace ConferencePlus.Admin
                 ConferenceFeeManager.Delete(conferenceFeeId);
             }
         }
+
+        protected void btnExportCSV_OnClick(object sender, EventArgs e)
+        {
+            grdConference.MasterTableView.ExportToCSV();
+        }
     }
 }

@@ -22,6 +22,24 @@ namespace ConferencePlus.Admin {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// LdingPnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel LdingPnl;
+        
+        /// <summary>
+        /// ajxPnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxPanel ajxPnl;
+        
+        /// <summary>
         /// lblmessage control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace ConferencePlus.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmessage;
+        
+        /// <summary>
+        /// btnExportCSV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton btnExportCSV;
         
         /// <summary>
         /// grdConference control.
