@@ -121,6 +121,26 @@ namespace ConferencePlus.Business
                 builder.AppendHtmlLine("*Effective End Date needs to be after the Effective Start Date");
             }
 
+            //Validate Conference
+            if (builder.ToString().IsNullOrWhiteSpace())
+            {
+                SearchConference search = new SearchConference { ConferenceId = item.ConferenceId };
+                Conference conference = ConferenceManager.Search(search).FirstOrDefault();
+
+                if (conference == null)
+                {
+                    builder.AppendHtmlLine("*Conference Does not exists.");
+                }
+                else
+                {
+                    if (item.EffectiveStartDate.OnOrAfter(conference.StartDate))
+                    {
+                        builder.AppendHtmlLine("*There is a conflict with the Conference Start date.");
+                    }
+                }
+            }
+
+            //Validate ConferenceFees
             if (builder.ToString().IsNullOrWhiteSpace())
             {
                 SearchConferenceFee searchList = new SearchConferenceFee{FeeType = item.FeeType, FeeAdjustment = item.FeeAdjustment, ConferenceId = item.ConferenceId};
@@ -133,7 +153,7 @@ namespace ConferencePlus.Business
                 else
                 {
                     SearchConferenceFee allSearch = new SearchConferenceFee { FeeType = item.FeeType, ConferenceId = item.ConferenceId };
-                    List<ConferenceFee> allList = Search(searchList).Where(t => t.ConferenceFeeId != item.ConferenceFeeId.GetValueOrDefault(0) ).ToList();
+                    List<ConferenceFee> allList = Search(allSearch).Where(t => t.ConferenceFeeId != item.ConferenceFeeId.GetValueOrDefault(0)).ToList();
 
                     if (allList.SafeAny())
                     {
@@ -167,7 +187,7 @@ namespace ConferencePlus.Business
                             {
                                 if (allList.SafeAny(t => item.EffectiveStartDate.OnOrBefore(t.EffectiveEndDate)))
                                 {
-                                    builder.AppendHtmlLine("*Early Fee Type needs to be after Normal or Early Fee Type.");
+                                    builder.AppendHtmlLine("*On-Site Fee Type needs to be after Normal or Early Fee Type.");
                                 }
                             }
                         }
