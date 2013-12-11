@@ -123,5 +123,12 @@ namespace ConferencePlus.Admin
                 ConferenceFeeManager.Delete(conferenceFeeId);
             }
         }
+
+        protected void btnExportCSV_OnClick(object sender, EventArgs e)
+        {
+            //foreach (GridDataItem item in grdConference.Items)
+           //     item.Style["background-color"] = "#888888";
+            grdConference.MasterTableView.ExportToCSV();
+        }
     }
 }
