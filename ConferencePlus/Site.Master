@@ -63,6 +63,7 @@
                         </asp:PlaceHolder>
                         <asp:PlaceHolder runat="server" ID="pnlAdminFunctions" Visible="False">
                             <li><a runat="server" href="~/Admin/ManageConference.aspx">Manage Conferences</a></li>
+                            <li><a runat="server" href="~/Admin/PaperStatistics.aspx">Paper Statistics</a></li>
                         </asp:PlaceHolder>
                         <li><a runat="server" href="~/About.aspx">About</a></li>
                         <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
