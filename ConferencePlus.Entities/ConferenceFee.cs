@@ -130,6 +130,50 @@ namespace ConferencePlus.Entities
             }
         }
 
+        private DateTime effectiveStartDate;
+
+        /// <summary>
+        /// Gets or sets EffectiveStartDate.
+        /// </summary>
+        [SqlName("EffectiveStartDate")]
+        public DateTime EffectiveStartDate
+        {
+            get
+            {
+                return effectiveStartDate;
+            }
+            set
+            {
+                if (value != effectiveStartDate)
+                {
+                    effectiveStartDate = value;
+                    IsItemModified = true;
+                }
+            }
+        }
+
+        private DateTime effectiveEndDate;
+
+        /// <summary>
+        /// Gets or sets EffectiveEndDate.
+        /// </summary>
+        [SqlName("EffectiveEndDate")]
+        public DateTime EffectiveEndDate
+        {
+            get
+            {
+                return effectiveEndDate;
+            }
+            set
+            {
+                if (value != effectiveEndDate)
+                {
+                    effectiveEndDate = value;
+                    IsItemModified = true;
+                }
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the ConferenceFee class.
         /// </summary>
@@ -140,6 +184,8 @@ namespace ConferencePlus.Entities
             FeeAdjustment = default(EnumFeeAdjustment);
             FeeType = default(EnumFeeType);
             Multiplier = default(decimal);
+            EffectiveStartDate = default(DateTime);
+            EffectiveEndDate = default(DateTime);
             IsItemModified = false;
         }
 

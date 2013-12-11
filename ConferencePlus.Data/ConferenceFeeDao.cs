@@ -39,7 +39,9 @@ namespace ConferencePlus.Data
                         new SqlParameter("@ConferenceId", item.ConferenceId),
                         new SqlParameter("@FeeAdjustmentId", item.FeeAdjustment),
                         new SqlParameter("@FeeTypeId", item.FeeType),
-                        new SqlParameter("@Multiplier", item.Multiplier)
+                        new SqlParameter("@Multiplier", item.Multiplier),
+                        new SqlParameter("@EffectiveStartDate", item.EffectiveStartDate),
+                        new SqlParameter("@EffectiveEndDate", item.EffectiveEndDate)
 					};
 
             DataSet set = DataManager.ExecuteProcedure(ConferencePlusConnectionString, "ConferenceFee_Get", parameters);
@@ -79,7 +81,9 @@ namespace ConferencePlus.Data
                         new SqlParameter("@ConferenceId", item.ConferenceId),
                         new SqlParameter("@FeeAdjustmentId", item.FeeAdjustment),
                         new SqlParameter("@FeeTypeId", item.FeeType),
-                        new SqlParameter("@Multiplier", item.Multiplier)
+                        new SqlParameter("@Multiplier", item.Multiplier),
+                        new SqlParameter("@EffectiveStartDate", item.EffectiveStartDate),
+                        new SqlParameter("@EffectiveEndDate", item.EffectiveEndDate)
 					};
             return Convert.ToInt32(DataManager.ExecuteScalarProcedure(ConferencePlusConnectionString, "ConferenceFee_Insert", parameters));
         }
@@ -97,7 +101,9 @@ namespace ConferencePlus.Data
                         new SqlParameter("@ConferenceId", item.ConferenceId),
                         new SqlParameter("@FeeAdjustmentId", item.FeeAdjustment),
                         new SqlParameter("@FeeTypeId", item.FeeType),
-                        new SqlParameter("@Multiplier", item.Multiplier)
+                        new SqlParameter("@Multiplier", item.Multiplier),
+                        new SqlParameter("@EffectiveStartDate", item.EffectiveStartDate),
+                        new SqlParameter("@EffectiveEndDate", item.EffectiveEndDate)
 					};
             DataManager.ExecuteProcedure(ConferencePlusConnectionString, "ConferenceFee_Update", parameters);
         }
@@ -129,7 +135,9 @@ namespace ConferencePlus.Data
                     ConferenceId = row.GetValue<int>("ConferenceId"),
                     FeeAdjustment = row.GetValue<EnumFeeAdjustment>("FeeAdjustmentId"),
                     FeeType = row.GetValue<EnumFeeType>("FeeTypeId"),
-                    Multiplier = row.GetValue<decimal>("Multiplier")  
+                    Multiplier = row.GetValue<decimal>("Multiplier") ,
+                    EffectiveStartDate = row.GetValue<DateTime>("EffectiveStartDate"),
+                    EffectiveEndDate = row.GetValue<DateTime>("EffectiveEndDate")
 				});
         }
     }

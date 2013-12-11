@@ -67,6 +67,42 @@ namespace ConferencePlus.Controls {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valMultiplier;
         
         /// <summary>
+        /// dtStartPicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDateTimePicker dtStartPicker;
+        
+        /// <summary>
+        /// valstart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valstart;
+        
+        /// <summary>
+        /// dtEndPicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDateTimePicker dtEndPicker;
+        
+        /// <summary>
+        /// valend control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valend;
+        
+        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>

@@ -32,6 +32,8 @@
                         <telerik:GridBoundColumn DataField="FeeAdjustment" UniqueName="FeeAdjustment" HeaderText="FeeAdjustment" />
                         <telerik:GridBoundColumn DataField="FeeType" UniqueName="FeeType" HeaderText="FeeType" />
                         <telerik:GridNumericColumn DataField="Multiplier" UniqueName="Multiplier" HeaderText="Multiplier" NumericType="Number" />
+                        <telerik:GridDateTimeColumn DataField="EffectiveStartDate" UniqueName="EffectiveStartDate" HeaderText="Effective Start Date" />
+                        <telerik:GridDateTimeColumn DataField="EffectiveEndDate" UniqueName="EffectiveEndDate" HeaderText="Effective End Date" />
                     </Columns>
                     <EditFormSettings EditFormType="WebUserControl" UserControlName="~/Controls/ConferenceFeeTypeConfiguration.ascx"/>
                 </telerik:GridTableView>

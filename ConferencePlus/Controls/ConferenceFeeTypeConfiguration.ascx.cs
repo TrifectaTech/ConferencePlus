@@ -59,6 +59,8 @@ namespace ConferencePlus.Controls
 			ddlAdjustmentType.SelectedValue = fee.FeeAdjustment.ToString();
 			ddlFeeType.SelectedValue = fee.FeeType.ToString();
 			txtMultiplier.Value = (double)fee.Multiplier;
+            dtStartPicker.SelectedDate = fee.EffectiveStartDate;
+            dtEndPicker.SelectedDate = fee.EffectiveEndDate;
 		}
 
 		private void LoadDdlAdjustmenType()
@@ -89,7 +91,8 @@ namespace ConferencePlus.Controls
 			confFeeToSave.FeeAdjustment = EnumerationsHelper.ConvertFromString<EnumFeeAdjustment>(ddlAdjustmentType.SelectedValue);
 			confFeeToSave.FeeType = EnumerationsHelper.ConvertFromString<EnumFeeType>(ddlFeeType.SelectedValue);
 			confFeeToSave.Multiplier = (decimal)txtMultiplier.Value.GetValueOrDefault();
-
+            confFeeToSave.EffectiveStartDate = dtStartPicker.SelectedDate.GetValueOrDefault();
+            confFeeToSave.EffectiveEndDate = dtEndPicker.SelectedDate.GetValueOrDefault();
 
 			string error;
 			bool isValid = ConferenceFeeManager.Save(confFeeToSave, out error);
