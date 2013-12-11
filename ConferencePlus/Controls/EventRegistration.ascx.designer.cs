@@ -112,15 +112,6 @@ namespace ConferencePlus.Controls {
         protected global::System.Web.UI.WebControls.RadioButtonList rblFeeType;
         
         /// <summary>
-        /// rblFeeAdjustment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblFeeAdjustment;
-        
-        /// <summary>
         /// txtFee control.
         /// </summary>
         /// <remarks>

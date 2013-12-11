@@ -79,11 +79,6 @@
 		</tr>
 		<tr>
 			<td>
-				<asp:RadioButtonList runat="server" ID="rblFeeAdjustment" OnSelectedIndexChanged="rblFeeAdjustment_SelectedIndexChanged" />
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<telerik:RadNumericTextBox ID="txtFee" runat="server" NumberFormat-DecimalDigits="2" Type="Currency"/>
 			</td>
 		</tr>

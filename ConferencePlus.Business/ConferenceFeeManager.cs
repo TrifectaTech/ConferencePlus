@@ -7,7 +7,7 @@
 // Encapusulate business logic of ConferenceFee.   
 // </summary>
 // ---------------------------------
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,106 +18,130 @@ using ConferencePlus.Entities;
 
 namespace ConferencePlus.Business
 {
-    /// <summary>
-    /// This class encapsulates the business logic of ConferenceFee entity
-    /// </summary>
-    public static class ConferenceFeeManager
-    {        
-        /// <summary>
-        /// Searches for ConferenceFee
-        /// </summary>
-        /// <param name="search" />
-        /// <returns>An IEnumerable set of ConferenceFee</returns>
-        public static IEnumerable<ConferenceFee> Search(SearchConferenceFee search)
-        {            
+	/// <summary>
+	/// This class encapsulates the business logic of ConferenceFee entity
+	/// </summary>
+	public static class ConferenceFeeManager
+	{
+		/// <summary>
+		/// Searches for ConferenceFee
+		/// </summary>
+		/// <param name="search" />
+		/// <returns>An IEnumerable set of ConferenceFee</returns>
+		public static IEnumerable<ConferenceFee> Search(SearchConferenceFee search)
+		{
 			return ConferenceFeeDao.Search(search);
-        }	
-	     
-        /// <summary>
-        /// Loads ConferenceFee by the id parameter
-        /// </summary>
-        /// <param name="conferenceFeeId">Primary Key of ConferenceFee table</param>
-        /// <returns>ConferenceFee entity</returns>
-        public static ConferenceFee Load(int conferenceFeeId)
-        {
+		}
+
+		/// <summary>
+		/// Loads ConferenceFee by the id parameter
+		/// </summary>
+		/// <param name="conferenceFeeId">Primary Key of ConferenceFee table</param>
+		/// <returns>ConferenceFee entity</returns>
+		public static ConferenceFee Load(int conferenceFeeId)
+		{
 			SearchConferenceFee search
 				= new SearchConferenceFee
 					{
 						ConferenceFeeId = conferenceFeeId
-					};    
+					};
 			return Search(search).FirstOrDefault();
-        }
+		}
 
-        public static IEnumerable< ConferenceFee> LoadOnConferenceId(int conferenceId)
-        {
+		/// <summary>
+		/// Load ConferenceFee on ConferenceId
+		/// </summary>
+		/// <param name="conferenceId" />
+		/// <returns>An IEnumerable set of ConferenceFee</returns>
+		public static IEnumerable<ConferenceFee> LoadOnConferenceId(int conferenceId)
+		{
 			SearchConferenceFee search
 				= new SearchConferenceFee
 					{
-                        ConferenceId = conferenceId
-					};    
+						ConferenceId = conferenceId
+					};
 			return Search(search);
-        }
-        
-        /// <summary>
-        /// Save ConferenceFee Entity
-        /// </summary>
-        /// <param name="item">Entity to save</param>
-        /// <param name="errorMessage">Error Message</param>
+		}
+
+		/// <summary>
+		/// Save ConferenceFee Entity
+		/// </summary>
+		/// <param name="item">Entity to save</param>
+		/// <param name="errorMessage">Error Message</param>
 		/// <returns>return true if save successfully, else return false</returns>
-        public static bool Save(ConferenceFee item, out string errorMessage)
-        {
-            bool isValid = Validate(item, out errorMessage);                     
-            
+		public static bool Save(ConferenceFee item, out string errorMessage)
+		{
+			bool isValid = Validate(item, out errorMessage);
+
 			if (isValid)
 			{
-                ConferenceFeeDao.Save(item);				
-            }	        
+				ConferenceFeeDao.Save(item);
+			}
 
-            return isValid;
-        }
+			return isValid;
+		}
 
-        /// <summary>
-        /// Validate ConferenceFee Entity
-        /// </summary>
-        /// <param name="item">Entity to validate</param>
-        /// <param name="errorMessage">error message if vlidation failed</param>
-        /// <returns>return true if entity passes validation logic, else return false</returns>
-        public static bool Validate(ConferenceFee item, out string errorMessage)
-        {
-            StringBuilder builder = new StringBuilder();
+		/// <summary>
+		/// Validate ConferenceFee Entity
+		/// </summary>
+		/// <param name="item">Entity to validate</param>
+		/// <param name="errorMessage">error message if vlidation failed</param>
+		/// <returns>return true if entity passes validation logic, else return false</returns>
+		public static bool Validate(ConferenceFee item, out string errorMessage)
+		{
+			StringBuilder builder = new StringBuilder();
 
-            if (item.ConferenceId == default(int))
-            {
-                builder.AppendHtmlLine("*Please specify the conference to assign this fee to");
-            }
+			if (item.ConferenceId == default(int))
+			{
+				builder.AppendHtmlLine("*Please specify the conference to assign this fee to");
+			}
 
-            if (item.FeeAdjustment == EnumFeeAdjustment.None)
-            {
-                builder.AppendHtmlLine("*Please specify pricing type for this conference");
-            }
+			if (item.FeeAdjustment == EnumFeeAdjustment.None)
+			{
+				builder.AppendHtmlLine("*Please specify pricing type for this conference");
+			}
 
-            if (item.FeeType == EnumFeeType.None)
-            {
-                builder.AppendHtmlLine("*Please specify the type of fee for this conference");
-            }
+			if (item.FeeType == EnumFeeType.None)
+			{
+				builder.AppendHtmlLine("*Please specify the type of fee for this conference");
+			}
 
-            if (item.Multiplier < 0)
-            {
-                builder.AppendHtmlLine("*Multiplier must be greater than or equal to 0");
-            }
+			if (item.Multiplier < 0)
+			{
+				builder.AppendHtmlLine("*Multiplier must be greater than or equal to 0");
+			}
 
-            errorMessage = builder.ToString();
+			errorMessage = builder.ToString();
 
-            return errorMessage.IsNullOrWhiteSpace();
-        }
+			return errorMessage.IsNullOrWhiteSpace();
+		}
 
-        /// <summary>
-        /// Delete a ConferenceFee entity
-        /// </summary>
-        /// <param name="conferenceFeeId">Primary Key of ConferenceFee table</param>
-        public static void Delete(int conferenceFeeId)
-        {            
-            ConferenceFeeDao.Delete(conferenceFeeId);            
-        }
-    }
+		/// <summary>
+		/// Delete a ConferenceFee entity
+		/// </summary>
+		/// <param name="conferenceFeeId">Primary Key of ConferenceFee table</param>
+		public static void Delete(int conferenceFeeId)
+		{
+			ConferenceFeeDao.Delete(conferenceFeeId);
+		}
+
+		public static decimal CalculateFee(int conferenceId, EnumFeeType feeType)
+		{
+			decimal fee = default(decimal);
+
+			Conference conference = ConferenceManager.Load(conferenceId);
+			if (conference != null)
+			{
+				fee = conference.BaseFee;
+
+				List<ConferenceFee> conferenceFeeList = LoadOnConferenceId(conferenceId).Where(c => c.FeeType == feeType).ToList();
+				if (conferenceFeeList.SafeAny())
+				{
+					
+				}
+			}
+
+			return fee;
+		}
+	}
 }
