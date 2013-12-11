@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConferencePlus {
+namespace ConferencePlus.Account {
     
     
     public partial class CheckoutSuccess {

@@ -123,6 +123,7 @@ namespace ConferencePlus.Browse
 						int? transactionId = control.TransactionId;
 						if (transactionId.HasValue)
 						{
+							Session["TransactionId"] = transactionId;
 							RadAjaxPanel1.ResponseScripts.Add(string.Format("return ShowSuccessDialog('{0}');", transactionId.Value));
 						}
 					}

@@ -2,12 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 	<telerik:RadWindowManager ID="RadWindowManager1" runat="server" Skin="BlackMetroTouch" Behaviors="None"
-		Title="Success" VisibleStatusbar="False" Modal="True" Width="1000px" Height="675px" />
+		Title="Success" VisibleStatusbar="False" Modal="True" Width="1000px" Height="675px" ReloadOnShow="True" />
 
 	<telerik:RadCodeBlock runat="server">
 		<script type="text/javascript">
 			function ShowSuccessDialog(transactionId) {
-				var oWnd = window.radopen('<%= ResolveUrl("~/CheckoutSuccess.aspx?TransactionId=") %>') + transactionId;
+				var oWnd = window.radopen('<%= ResolveUrl("~/Account/CheckoutSuccess.aspx") %>') + "?TransactionId=" + transactionId;
 				oWnd.center();
 			}
 

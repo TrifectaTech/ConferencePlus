@@ -198,7 +198,7 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Browse\BrowseConference.aspx" />
-    <Content Include="CheckoutSuccess.aspx" />
+    <Content Include="Account\CheckoutSuccess.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -308,11 +308,11 @@
     <Compile Include="Browse\BrowseConference.aspx.designer.cs">
       <DependentUpon>BrowseConference.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CheckoutSuccess.aspx.cs">
+    <Compile Include="Account\CheckoutSuccess.aspx.cs">
       <DependentUpon>CheckoutSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CheckoutSuccess.aspx.designer.cs">
+    <Compile Include="Account\CheckoutSuccess.aspx.designer.cs">
       <DependentUpon>CheckoutSuccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
@@ -408,7 +408,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

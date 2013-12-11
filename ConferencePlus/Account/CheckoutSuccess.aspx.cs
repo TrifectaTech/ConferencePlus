@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using ConferencePlus.Base;
 using ConferencePlus.Business;
 using ConferencePlus.Entities;
 
-namespace ConferencePlus
+namespace ConferencePlus.Account
 {
     public partial class CheckoutSuccess : BasePage
     {
@@ -15,13 +14,9 @@ namespace ConferencePlus
             {
                 int trans = 0;
 
-                if (Request.QueryString.AllKeys.Contains("TransactionId"))
-                {
-                    int parsedTrans;
-                    if (int.TryParse(Request.QueryString["TransactionId"], out parsedTrans))
-                    {
-                        trans = parsedTrans;
-                    }
+				if (Session["TransactionId"] != null)
+				{
+					trans = (int) Session["TransactionId"];
                 }
 
                 return trans;

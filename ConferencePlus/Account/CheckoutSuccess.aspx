@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Success" Language="C#" AutoEventWireup="true" CodeBehind="CheckoutSuccess.aspx.cs" Inherits="ConferencePlus.CheckoutSuccess" %>
+﻿<%@ Page Title="Success" Language="C#" AutoEventWireup="true" CodeBehind="CheckoutSuccess.aspx.cs" Inherits="ConferencePlus.Account.CheckoutSuccess" %>
 
 <!DOCTYPE html>
 
