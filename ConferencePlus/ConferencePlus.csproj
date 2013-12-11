@@ -159,6 +159,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\SearchRegisteredEvents.aspx" />
     <Content Include="Admin\ManageConference.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
@@ -268,6 +269,13 @@
     </Compile>
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SearchRegisteredEvents.aspx.cs">
+      <DependentUpon>SearchRegisteredEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SearchRegisteredEvents.aspx.designer.cs">
+      <DependentUpon>SearchRegisteredEvents.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageConference.aspx.cs">
       <DependentUpon>ManageConference.aspx</DependentUpon>
@@ -392,7 +400,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
