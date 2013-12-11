@@ -65,12 +65,8 @@ namespace ConferencePlus.Controls
 
 		protected void rblFeeType_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			CalculateFee();
-		}
-
-		protected void rblFeeAdjustment_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			CalculateFee();
+			EnumFeeType type = EnumerationsHelper.ConvertFromString<EnumFeeType>(rblFeeType.SelectedValue);
+			txtFee.Value = (double)ConferenceFeeManager.CalculateFee(ConferenceId, type);
 		}
 		#endregion
 
@@ -128,41 +124,6 @@ namespace ConferencePlus.Controls
 		{
 			errorMessage = "test";
 			return false;
-		}
-
-		private void CalculateFee()
-		{
-			double fee = 0;
-
-			Conference conference = ConferenceManager.Load(ConferenceId);
-			if (conference != null)
-			{
-				fee = (double)conference.BaseFee;
-
-				List<ConferenceFee> conferenceFees = ConferenceFeeManager.LoadOnConferenceId(ConferenceId).ToList();
-
-				if (rblFeeAdjustment.SelectedValue.HasValue())
-				{
-					EnumFeeAdjustment adjustment = EnumerationsHelper.ConvertFromString<EnumFeeAdjustment>(rblFeeAdjustment.SelectedValue);
-					ConferenceFee conferenceFeeAdjustment = conferenceFees.FirstOrDefault(c => c.FeeAdjustment == adjustment);
-					if (conferenceFeeAdjustment != null)
-					{
-						fee *= (double)conferenceFeeAdjustment.Multiplier;
-					}
-				}
-
-				if (rblFeeType.SelectedValue.HasValue())
-				{
-					EnumFeeType type = EnumerationsHelper.ConvertFromString<EnumFeeType>(rblFeeType.SelectedValue);
-					ConferenceFee conferenceFeeType = conferenceFees.FirstOrDefault(c => c.FeeType == type);
-					if (conferenceFeeType != null)
-					{
-						fee *= (double)conferenceFeeType.Multiplier;
-					}
-				}
-			}
-
-			txtFee.Value = fee;
 		}
 		#endregion
 	}
