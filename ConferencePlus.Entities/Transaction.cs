@@ -109,13 +109,13 @@ namespace ConferencePlus.Entities
             }
         }
 
-        private EnumFeeAdjustment feeAdjustment;
+        private EnumFeeAdjustment? feeAdjustment;
 
         /// <summary>
         /// Gets or sets FeeAdjustment.
         /// </summary>
         [SqlName("FeeAdjustmentId")]
-        public EnumFeeAdjustment FeeAdjustment
+        public EnumFeeAdjustment? FeeAdjustment
         {   
             get 
             {
@@ -360,7 +360,7 @@ namespace ConferencePlus.Entities
 	        EventId = default(int);
             UserId = default(Guid);
             FeeType = default(EnumFeeType);
-            FeeAdjustment = default(EnumFeeAdjustment);
+            FeeAdjustment = default(EnumFeeAdjustment?);
             Fee = default(decimal);
             CreditCardNumber = default(string);
             CreditCardType = default(EnumCreditCardType);

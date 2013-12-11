@@ -130,33 +130,6 @@ namespace ConferencePlus.Controls {
         protected global::Telerik.Web.UI.RadNumericTextBox txtFee;
         
         /// <summary>
-        /// btnGoBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnGoBack;
-        
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnSave;
-        
-        /// <summary>
-        /// btnCancelTransaction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnCancelTransaction;
-        
-        /// <summary>
         /// pnlPaymentInfo control.
         /// </summary>
         /// <remarks>
@@ -184,13 +157,13 @@ namespace ConferencePlus.Controls {
         protected global::System.Web.UI.WebControls.Label lblCreditCardType;
         
         /// <summary>
-        /// ddlCreditCardType control.
+        /// rcbCreditCardType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadComboBox ddlCreditCardType;
+        protected global::Telerik.Web.UI.RadComboBox rcbCreditCardType;
         
         /// <summary>
         /// valCreditCardType control.
@@ -238,13 +211,13 @@ namespace ConferencePlus.Controls {
         protected global::System.Web.UI.WebControls.Label lblExpirationDate;
         
         /// <summary>
-        /// dtExpirationDate control.
+        /// rdpExpirationDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker dtExpirationDate;
+        protected global::Telerik.Web.UI.RadDatePicker rdpExpirationDate;
         
         /// <summary>
         /// valExpirationDate control.
@@ -389,5 +362,32 @@ namespace ConferencePlus.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valZip;
+        
+        /// <summary>
+        /// btnGoBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton btnGoBack;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton btnSave;
+        
+        /// <summary>
+        /// btnCancelTransaction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton btnCancelTransaction;
     }
 }

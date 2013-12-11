@@ -112,5 +112,15 @@ namespace ConferencePlus.Entities.ExtensionMethods
 	    {
 		    return (decimal) value;
 	    }
+
+		/// <summary>
+		/// Returns value as Int
+		/// </summary>
+		/// <param name="value" />
+		/// <returns>Value as an Int</returns>
+	    public static int ToInt(this double value)
+	    {
+		    return (int) value;
+	    }
     }
 }
