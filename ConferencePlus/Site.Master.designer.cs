@@ -19,7 +19,7 @@ namespace ConferencePlus {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlMemberFunctions;
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlMemberFunctions;
         
         /// <summary>
         /// pnlAdminFunctions control.
@@ -28,7 +28,7 @@ namespace ConferencePlus {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAdminFunctions;
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlAdminFunctions;
         
         /// <summary>
         /// MainContent control.

@@ -54,7 +54,7 @@ namespace ConferencePlus
             {
                 pnlAdminFunctions.Visible = false;
 
-                pnlMemberFunctions.Visible = true;
+                pnlMemberFunctions.Visible = false;
 
                 if (Roles.IsUserInRole(HttpContext.Current.User.Identity.Name, "Admin"))
                 {

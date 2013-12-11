@@ -4,11 +4,11 @@
 
     <div class="jumbotron">
         <h1>Everything is "learnable"</h1>
-        <p class="lead">Conference Plus is a free website to connect users to all sorts of interesting content.</p>
+        <p class="lead">Conference Plus is a website to connect users to all sorts of interesting content.</p>
         <asp:LoginView runat="server" ViewStateMode="Disabled">
             <AnonymousTemplate>
                 <p>
-                    <asp:LinkButton runat="server" ID="btnSignUp" Text="Get Started With A Free Account" PostBackUrl="~/Register.aspx" CssClass="btn btn-primary btn-lg" />
+                    <asp:LinkButton runat="server" ID="btnSignUp" Text="Get Started For Free" PostBackUrl="~/Register.aspx" CssClass="btn btn-primary btn-lg" />
                 </p>
             </AnonymousTemplate>
             <LoggedInTemplate>
